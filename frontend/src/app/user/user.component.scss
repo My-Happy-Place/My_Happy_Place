@@ -1,0 +1,58 @@
+@import 'src/styles.scss';
+
+.user-div {
+  display: flex;
+  align-items: baseline;
+  margin: 2em 0 0 1em;
+}
+
+.user-div button {
+  margin-left: 5%;
+}
+
+h1 {
+  // color: mat-color($light-app-primary);
+  color: #00A2E8;
+  font-weight: 550;
+  padding: 1em 2em;
+}
+
+.watch-button {
+  font-size: 1.2rem;
+  width: 200px;
+  height: 80px;
+  border-radius: 5px;
+  background-color: #00A2E8;
+  color: white;
+}
+
+.favorites {
+  margin: 1em 5em 5em;
+}
+
+.card-row {
+  display: flex;
+  justify-content: space-between;
+  max-width: 400px;
+  padding: 10px 0;
+}
+
+app-content-card {
+  padding: 0 20px;
+}
+
+h2 {
+  // color: mat-color($light-app-primary);
+  color: #00A2E8;
+}
+
+.see-all {
+  white-space: nowrap;
+  padding: 35% 1em;
+  font-size: small;
+}
+
+mat-divider {
+  margin: 1em 0;
+  border-width: 2px;
+}

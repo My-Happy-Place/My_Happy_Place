@@ -1,0 +1,28 @@
+<div class="user-div">
+  <h1>Olá, {{user}}!</h1>
+  <button mat-raised-button  class="watch-button">O que assistir?</button>
+</div>
+
+<!-- TODO: Criar exibição dinâmica de cards conforme tamanho de tela, e exibir link "Ver mais" quando precisar -->
+<div class="favorites">
+  <h2>Seus favoritos:</h2>
+  <div class="card-row">
+    <app-content-card *ngFor="let item of items" [item]="item"></app-content-card>
+    <h2 class="see-all">Ver mais</h2>
+  </div>
+  <mat-divider></mat-divider>
+
+  <h2>Filmes em alta:</h2>
+  <div class="card-row">
+    <app-content-card *ngFor="let item of items" [item]="item"></app-content-card>
+    <h2 class="see-all">Ver mais</h2>
+  </div>
+  <mat-divider></mat-divider>
+
+  <h2>Séries em alta:</h2>
+  <div class="card-row">
+    <app-content-card *ngFor="let item of items" [item]="item"></app-content-card>
+    <h2 class="see-all">Ver mais</h2>
+  </div>
+
+</div>
