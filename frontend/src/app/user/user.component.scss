@@ -1,4 +1,4 @@
-@import 'src/styles.scss';
+@import "src/styles.scss";
 
 .user-div {
   display: flex;
@@ -11,8 +11,7 @@
 }
 
 h1 {
-  // color: mat-color($light-app-primary);
-  color: #00A2E8;
+  color: mat-color($light-app-primary);
   font-weight: 550;
   padding: 1em 2em;
 }
@@ -22,7 +21,6 @@ h1 {
   width: 200px;
   height: 80px;
   border-radius: 5px;
-  background-color: #00A2E8;
   color: white;
 }
 
@@ -42,8 +40,7 @@ app-content-card {
 }
 
 h2 {
-  // color: mat-color($light-app-primary);
-  color: #00A2E8;
+  color: mat-color($light-app-primary);
 }
 
 .see-all {
