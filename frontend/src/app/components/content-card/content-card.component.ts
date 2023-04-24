@@ -12,7 +12,7 @@ export class ContentCardComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    //TODO: Tratamento para exibir apenas o ano
     this.releaseYear = this.item.release_date;
+    this.releaseYear = this.releaseYear.substring(0, 4);
   }
 }
