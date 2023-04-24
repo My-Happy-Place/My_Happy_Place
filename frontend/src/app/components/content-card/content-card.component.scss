@@ -1,4 +1,10 @@
+@import "src/styles.scss";
+
 mat-card {
-  width: 220px;
-  height: 330px;
+  width: 10em;
+}
+
+.title {
+  font-weight: 500;
+  color: mat-color($light-app-primary);
 }

@@ -8,14 +8,21 @@ import { ContentCardComponent } from './components/content-card/content-card.com
 import { HomeComponent } from './home/home.component';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { UserComponent } from './components/user/user.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, UserComponent, ContentCardComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    UserComponent,
+    ContentCardComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    AppMaterialModule
+    AppMaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent],

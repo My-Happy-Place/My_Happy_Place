@@ -7,8 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ContentCardComponent implements OnInit {
   @Input() item: any;
+  releaseYear!: string;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    //TODO: Tratamento para exibir apenas o ano
+    this.releaseYear = this.item.release_date;
+  }
 }

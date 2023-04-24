@@ -1,8 +1,7 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>{{ item.title }}</mat-card-title>
-  </mat-card-header>
+  <img mat-card-image src="{{item.poster_path}}" alt="Card image cap">
   <mat-card-content>
-    <p>{{ item.content }}</p>
+    <h4 class="title">{{item.title}}</h4>
+    <h5>{{releaseYear}}</h5>
   </mat-card-content>
 </mat-card>

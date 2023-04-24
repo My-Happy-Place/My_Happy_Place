@@ -1,3 +1,4 @@
+import { ContentService } from 'src/app/services/content/content.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user.component.scss']
 })
 export class UserComponent implements OnInit {
+  contentData: any;
 
   //TODO: retornar usuário logado
   user: String = 'Nicolas';
@@ -19,9 +21,11 @@ export class UserComponent implements OnInit {
     { title: 'Card 5', content: 'Content 5' }
   ];
 
-  constructor() { }
+  constructor(private contentService: ContentService) {}
 
   ngOnInit(): void {
+    this.contentService.getContentData().subscribe((data) => {
+      this.contentData = data;
+    });
   }
-
 }
