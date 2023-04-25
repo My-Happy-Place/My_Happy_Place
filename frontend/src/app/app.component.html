@@ -2,8 +2,8 @@
   <span>My Happy Place</span>
   <mat-form-field class="search-bar">
     <span matPrefix> </span>
-    <input matInput name="search">
-    <button matSuffix mat-button><mat-icon>search</mat-icon></button>
+    <input matInput type="text" name="search" [(ngModel)]="search">
+    <button matSuffix mat-button routerLink="/search/{{search}}"><mat-icon>search</mat-icon></button>
   </mat-form-field>
 </mat-toolbar>
 <router-outlet></router-outlet>

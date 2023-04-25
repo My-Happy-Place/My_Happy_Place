@@ -6,22 +6,19 @@
   margin: 2em 0 0 1em;
 }
 
-.user-div button {
-  margin-left: 5%;
-  height: auto;
-}
-
 h1 {
   color: mat-color($light-app-primary);
   font-weight: 550;
   padding: 1em 2em;
+  font-size: 2.2em;
 }
 
 .watch-button {
   font-size: 1.2rem;
   width: 200px;
-  height: 80px;
   border-radius: 5px;
+  margin-left: 5%;
+  height: auto;
 }
 
 .content-row {
@@ -42,6 +39,7 @@ app-content-card {
 
 h2 {
   color: mat-color($light-app-primary);
+  font-size: 2em;
 }
 
 ::-webkit-scrollbar {
