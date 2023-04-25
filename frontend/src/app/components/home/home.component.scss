@@ -1,0 +1,38 @@
+.hero-image {
+  /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url("https://media.gettyimages.com/id/1157313690/pt/foto/remote-control-with-television-in-living-room.jpg?s=2048x2048&w=gi&k=20&c=Mis9oW2JM7b1FvTWfaQhDA4_0_t9m1ScyXmQDSV9R4g=");
+  filter: blur(5px);
+
+  height: 100%;
+
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
+
+.hero-text {
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+}
+
+h1 {
+  font-size: 5em;
+  font-weight: 500;
+  padding-bottom: 2%;
+}
+
+h2 {
+  font-size: 2em;
+  font-weight: 300;
+}
+
+.mat-raised-button {
+  width: 10em;
+  height: 50px;
+}
