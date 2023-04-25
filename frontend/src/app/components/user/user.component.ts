@@ -25,8 +25,6 @@ export class UserComponent implements OnInit {
     });
     this.contentService.getTrendingTvShows().subscribe((data) => {
       this.trendingTv = data.results;
-      console.log(this.trendingTv);
-
     })
   }
 }
