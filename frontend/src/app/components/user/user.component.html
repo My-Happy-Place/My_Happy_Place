@@ -7,22 +7,22 @@
 <div class="favorites">
   <h2>Seus favoritos:</h2>
   <div class="card-row">
-    <app-content-card *ngFor="let item of contentData" [item]="item"></app-content-card>
-    <h2 class="see-all">Ver mais</h2>
+    <app-content-card *ngFor="let item of favorites" [item]="item"></app-content-card>
+    <!-- <h2 class="see-all" *ngIf="favorites.length > 5">Ver mais</h2> -->
   </div>
   <mat-divider></mat-divider>
 
   <h2>Filmes em alta:</h2>
   <div class="card-row">
-    <app-content-card *ngFor="let item of contentData" [item]="item"></app-content-card>
-    <h2 class="see-all">Ver mais</h2>
+    <app-content-card *ngFor="let item of trendingMovies" [item]="item"></app-content-card>
+    <!-- <h2 class="see-all" *ngIf="trendingMovies.length > 5">Ver mais</h2> -->
   </div>
   <mat-divider></mat-divider>
 
   <h2>Séries em alta:</h2>
   <div class="card-row">
-    <app-content-card *ngFor="let item of items" [item]="item"></app-content-card>
-    <h2 class="see-all">Ver mais</h2>
+    <app-content-card *ngFor="let item of trendingTv" [item]="item"></app-content-card>
+    <!-- <h2 class="see-all" *ngIf="trendingTv.length > 5">Ver mais</h2> -->
   </div>
 
 </div>

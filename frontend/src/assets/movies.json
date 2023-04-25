@@ -72,91 +72,114 @@
     "vote_average": 8.318,
     "vote_count": 9896
   },
-  {
-    "adult": false,
-    "backdrop_path": "/tilClWjFZeUTGJu0pxgF72fvUmN.jpg",
-    "belongs_to_collection": null,
-    "budget": 8272296,
-    "genres": [
-        {
-            "id": 35,
-            "name": "Comédia"
-        },
-        {
-            "id": 18,
-            "name": "Drama"
-        }
-    ],
-    "homepage": "",
-    "id": 99,
-    "imdb_id": "tt0185125",
-    "original_language": "es",
-    "original_title": "Todo sobre mi madre",
-    "overview": "Após a morte de seu amado filho adolescente em um acidente, Roth deixa Madri para Barcelona para lidar com sua dor, ficar com velhos amigos e – talvez – entrar em contato com o pai – distante – que o menino nunca conheceu.",
-    "popularity": 10.611,
-    "poster_path": "https://image.tmdb.org/t/p/w400/qn7ZHNdPR3J8XXJe2d0dXkCSWPN.jpg",
-    "production_companies": [
-        {
-            "id": 82,
-            "logo_path": null,
-            "name": "Renn Productions",
-            "origin_country": "FR"
-        },
-        {
-            "id": 83,
-            "logo_path": "/9OQ0rm55xtlgX7KcAKMUePJSrQc.png",
-            "name": "France 2 Cinéma",
-            "origin_country": "FR"
-        },
-        {
-            "id": 49,
-            "logo_path": "/xpf5iHdvvBtsH8jBMlgIJHAET0c.png",
-            "name": "El Deseo",
-            "origin_country": "ES"
-        },
-        {
-            "id": 357,
-            "logo_path": null,
-            "name": "Vía Digital",
-            "origin_country": "ES"
-        },
-        {
-            "id": 104,
-            "logo_path": "/9aotxauvc9685tq9pTcRJszuT06.png",
-            "name": "Canal+",
-            "origin_country": "FR"
-        }
-    ],
-    "production_countries": [
-        {
-            "iso_3166_1": "ES",
-            "name": "Spain"
-        },
-        {
-            "iso_3166_1": "FR",
-            "name": "France"
-        }
-    ],
-    "release_date": "1999-04-16",
-    "revenue": 67872296,
-    "runtime": 101,
-    "spoken_languages": [
-        {
-            "english_name": "Catalan",
-            "iso_639_1": "ca",
-            "name": "Català"
-        },
-        {
-            "english_name": "Spanish",
-            "iso_639_1": "es",
-            "name": "Español"
-        }
-    ],
-    "status": "Released",
-    "tagline": "",
-    "title": "Tudo Sobre Minha Mãe",
-    "video": false,
-    "vote_average": 7.664,
-    "vote_count": 1621
+{
+  "adult": false,
+  "backdrop_path": "/tilClWjFZeUTGJu0pxgF72fvUmN.jpg",
+  "belongs_to_collection": null,
+  "budget": 8272296,
+  "genres": [
+      {
+          "id": 35,
+          "name": "Comédia"
+      },
+      {
+          "id": 18,
+          "name": "Drama"
+      }
+  ],
+  "homepage": "",
+  "id": 99,
+  "imdb_id": "tt0185125",
+  "original_language": "es",
+  "original_title": "Todo sobre mi madre",
+  "overview": "Após a morte de seu amado filho adolescente em um acidente, Roth deixa Madri para Barcelona para lidar com sua dor, ficar com velhos amigos e – talvez – entrar em contato com o pai – distante – que o menino nunca conheceu.",
+  "popularity": 10.611,
+  "poster_path": "https://image.tmdb.org/t/p/w400/qn7ZHNdPR3J8XXJe2d0dXkCSWPN.jpg",
+  "production_companies": [
+      {
+          "id": 82,
+          "logo_path": null,
+          "name": "Renn Productions",
+          "origin_country": "FR"
+      },
+      {
+          "id": 83,
+          "logo_path": "/9OQ0rm55xtlgX7KcAKMUePJSrQc.png",
+          "name": "France 2 Cinéma",
+          "origin_country": "FR"
+      },
+      {
+          "id": 49,
+          "logo_path": "/xpf5iHdvvBtsH8jBMlgIJHAET0c.png",
+          "name": "El Deseo",
+          "origin_country": "ES"
+      },
+      {
+          "id": 357,
+          "logo_path": null,
+          "name": "Vía Digital",
+          "origin_country": "ES"
+      },
+      {
+          "id": 104,
+          "logo_path": "/9aotxauvc9685tq9pTcRJszuT06.png",
+          "name": "Canal+",
+          "origin_country": "FR"
+      }
+  ],
+  "production_countries": [
+      {
+          "iso_3166_1": "ES",
+          "name": "Spain"
+      },
+      {
+          "iso_3166_1": "FR",
+          "name": "France"
+      }
+  ],
+  "release_date": "1999-04-16",
+  "revenue": 67872296,
+  "runtime": 101,
+  "spoken_languages": [
+      {
+          "english_name": "Catalan",
+          "iso_639_1": "ca",
+          "name": "Català"
+      },
+      {
+          "english_name": "Spanish",
+          "iso_639_1": "es",
+          "name": "Español"
+      }
+  ],
+  "status": "Released",
+  "tagline": "",
+  "title": "Tudo Sobre Minha Mãe",
+  "video": false,
+  "vote_average": 7.664,
+  "vote_count": 1621
+},
+{
+  "adult": false,
+  "backdrop_path": "/lWqjXgut48IK5f5IRbDBAoO2Epp.jpg",
+  "id": 502356,
+  "title": "Super Mario Bros.: O Filme",
+  "original_language": "en",
+  "original_title": "The Super Mario Bros. Movie",
+  "overview": "Mario é um encanador junto com seu irmão Luigi. Um dia, eles vão parar no reino dos cogumelos, governado pela Princesa Peach, mas ameaçado pelo rei dos Koopas, que faz de tudo para conseguir reinar em todos os lugares.",
+  "poster_path": "i9XdxHsFrcqLkRWSF1coOHo4R39.jpg",
+  "media_type": "movie",
+  "genre_ids": [
+      16,
+      12,
+      10751,
+      14,
+      35
+  ],
+  "popularity": 14176.744,
+  "release_date": "2023-04-05",
+  "video": false,
+  "vote_average": 7.518,
+  "vote_count": 1341
 }
 ]

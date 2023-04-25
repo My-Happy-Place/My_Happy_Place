@@ -1,11 +1,12 @@
 @import "src/styles.scss";
 
 img {
-  width: 12em;
+  width: 13em;
   // border-radius: 5%;
 }
 
 .title {
   font-weight: 500;
   color: mat-color($light-app-primary);
+  margin: 0 0 2px;
 }
