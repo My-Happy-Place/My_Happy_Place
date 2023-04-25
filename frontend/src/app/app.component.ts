@@ -7,5 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-happy-place';
-  logged = false; //TODO: Verificar como validar se usuário está logado
+  logged = true; //TODO: Verificar como validar se usuário está logado
 }

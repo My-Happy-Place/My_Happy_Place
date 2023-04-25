@@ -5,6 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './content-card.component.html',
   styleUrls: ['./content-card.component.scss'],
 })
+//TODO: Criar modelos para filmes e séries
 export class ContentCardComponent implements OnInit {
   @Input() item: any;
   releaseYear!: string;
