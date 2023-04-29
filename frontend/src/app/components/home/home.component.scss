@@ -36,3 +36,18 @@ h2 {
   width: 10em;
   height: 50px;
 }
+
+.buttons {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.mat-raised-button {
+  font-size: 1.25em;
+}
+
+.login-btn {
+  background-color: transparent;
+  border: 1px solid white;
+  color: white;
+}
