@@ -3,7 +3,6 @@
 .user-div {
   display: flex;
   align-items: baseline;
-  margin: 2em 0 0 0;
 }
 
 h1 {
@@ -22,8 +21,11 @@ h1 {
 }
 
 .content-row {
-  margin: 2em 0em 1em 5em;
-  // max-height: 50%;
+  margin: 1em 0em 1em 5em;
+  background-color: rgb(232, 232, 232);
+  // background-color: rgb(232 232 232 / 50%);
+  border-radius: 10px;
+  padding: 1em;
 }
 
 .card-row {

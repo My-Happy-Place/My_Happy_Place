@@ -3,10 +3,19 @@
 img {
   width: 13em;
   border-radius: 5%;
+  border-color: mat-color($light-app-primary, 800);
+  border-style: solid;
 }
 
 .title {
   font-weight: 500;
   color: mat-color($light-app-primary);
   margin: 0 2px 2px;
+}
+
+// TODO: Quando inserir botão de curtir,
+// fazer clique na imagem acionar curtida
+img:hover {
+  filter: brightness(40%);
+  transition: all 1s ease;
 }
