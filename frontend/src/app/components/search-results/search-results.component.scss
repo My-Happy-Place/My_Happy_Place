@@ -1,0 +1,12 @@
+@import "src/styles.scss";
+
+h1 {
+  margin-left: 5%;
+  color: mat-color($light-app-primary);
+  font-weight: 500;
+}
+
+.results {
+  margin-left: 10%;
+  display: flex;
+}

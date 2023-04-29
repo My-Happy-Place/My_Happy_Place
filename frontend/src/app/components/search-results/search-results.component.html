@@ -1,1 +1,5 @@
-<p>{{search}}!</p>
+<h1>Resultados para {{search}}</h1>
+<div class="results" *ngFor="let item of results">
+  <app-content-card [item]="item"></app-content-card>
+  <p>{{item.overview}}</p>
+</div>
