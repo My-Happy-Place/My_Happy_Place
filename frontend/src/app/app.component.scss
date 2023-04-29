@@ -4,6 +4,10 @@
   margin-left: 70%;
 }
 
+.logo {
+  cursor: pointer;
+}
+
 footer {
   border-top: 1px solid mat-color($light-app-primary);
   display: flex;
