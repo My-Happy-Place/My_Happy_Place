@@ -12,7 +12,7 @@ export class ContentService {
 
   constructor(private http: HttpClient) {}
 
-  getFavorites() {
+  getFavorites(): Observable<any> {
     return this.http.get(this.jsonURL);
   }
 
