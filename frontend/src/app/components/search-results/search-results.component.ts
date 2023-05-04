@@ -31,16 +31,20 @@ export class SearchResultsComponent implements OnInit {
       this.results = [];
 
       this.contentService.getSearchResults(this.search).subscribe((data) => {
-        data.results.map((element: any) => {
+        data.results = data.results.filter(
+          (content: any) => content.media_type == 'movie' || content.media_type == 'tv'
+        );
+
+        data.results.map((content: any) => {
           this.results.push({
-            id: element.id,
-            name: element.title == undefined ? element.name : element.title,
-            overview: element.overview,
-            posterPath: element.poster_path,
+            id: content.id,
+            name: content.title == undefined ? content.name : content.title,
+            overview: content.overview,
+            posterPath: content.poster_path,
             releaseDate:
-              element.release_date == undefined
-                ? element.first_air_date
-                : element.release_date,
+              content.release_date == undefined
+                ? content.first_air_date
+                : content.release_date,
           });
         });
         this.results = this.results.filter(
