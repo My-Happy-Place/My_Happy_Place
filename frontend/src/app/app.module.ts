@@ -11,6 +11,7 @@ import { HomeComponent } from './components/home/home.component';
 import { SearchResultsComponent } from './components/search-results/search-results.component';
 import { UserComponent } from './components/user/user.component';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
+import { DetailedContentComponent } from './components/detailed-content/detailed-content.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { AppMaterialModule } from './shared/app-material/app-material.module';
     UserComponent,
     ContentCardComponent,
     SearchResultsComponent,
+    DetailedContentComponent,
   ],
   imports: [
     BrowserModule,

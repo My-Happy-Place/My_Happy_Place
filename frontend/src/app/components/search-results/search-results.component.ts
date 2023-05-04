@@ -1,6 +1,7 @@
 import { ContentService } from './../../services/content/content.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Content } from 'src/app/models/content';
 
 @Component({
   selector: 'app-search-results',
@@ -15,7 +16,7 @@ export class SearchResultsComponent implements OnInit {
   ) {}
 
   search!: string;
-  results: any;
+  results: Content[] = [];
 
   ngOnInit(): void {
     this.route.params.subscribe((routeParams) => {
@@ -27,9 +28,24 @@ export class SearchResultsComponent implements OnInit {
           this.router.navigate(['.', { myParam: this.search }]);
         });
 
+      this.results = [];
+
       this.contentService.getSearchResults(this.search).subscribe((data) => {
-        this.results = data.results;
-        console.log(this.results);
+        data.results.map((element: any) => {
+          this.results.push({
+            id: element.id,
+            name: element.title == undefined ? element.name : element.title,
+            overview: element.overview,
+            posterPath: element.poster_path,
+            releaseDate:
+              element.release_date == undefined
+                ? element.first_air_date
+                : element.release_date,
+          });
+        });
+        this.results = this.results.filter(
+          (content) => content.posterPath !== null && content.overview !== ''
+        );
       });
     });
   }

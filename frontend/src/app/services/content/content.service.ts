@@ -28,7 +28,7 @@ export class ContentService {
     );
   }
 
-  getSearchResults(query: string): Observable<any> {
-    return this.http.get(`${this.tmdbURL}/search/multi?api_key=${this.apiKey}&language=pt-BR&query=${query}`);
+  getSearchResults(query: string, searchType: string = "multi"): Observable<any> {
+    return this.http.get(`${this.tmdbURL}/search/${searchType}?api_key=${this.apiKey}&language=pt-BR&query=${query}`);
   }
 }

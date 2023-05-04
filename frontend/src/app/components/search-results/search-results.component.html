@@ -1,5 +1,19 @@
-<h1>Resultados para {{search}}</h1>
-<div class="results" *ngFor="let item of results">
-  <app-content-card [item]="item"></app-content-card>
-  <p>{{item.overview}}</p>
+<h1>Resultados da Busca:</h1>
+
+<div class="page">
+  <div class="filter">
+    <label id="radio-label">Filtros</label>
+    <mat-radio-group aria-labelledby="radio-label" class="example-radio-group">
+      <mat-radio-button class="radio-btn" value="0">Todos</mat-radio-button>
+      <mat-radio-button class="radio-btn" value="1">Filmes</mat-radio-button>
+      <mat-radio-button class="radio-btn" value="2">Séries</mat-radio-button>
+    </mat-radio-group>
+  </div>
+
+  <div class="results">
+    <div class="results-items" *ngFor="let item of results">
+      <!-- <app-content-card [item]="item"></app-content-card> -->
+      <app-detailed-content [item]="item"></app-detailed-content>
+    </div>
+  </div>
 </div>
