@@ -1,0 +1,272 @@
+[
+  {
+    "adult": false,
+    "backdrop_path": "/hpzQHv8cA7j2Dn2CphOFYmllXzj.jpg",
+    "belongs_to_collection": null,
+    "budget": 16400000,
+    "genres": [
+      {
+        "id": 18,
+        "name": "Drama"
+      }
+    ],
+    "homepage": "",
+    "id": 207,
+    "imdb_id": "tt0097165",
+    "original_language": "en",
+    "original_title": "Dead Poets Society",
+    "overview": "Em 1959 na Welton Academy, uma tradicional escola preparatória, um ex-aluno se torna o novo professor de literatura, mas logo seus métodos de incentivar os alunos a pensarem por si mesmos cria um choque com a ortodoxa direção do colégio, principalmente quando ele fala aos seus alunos sobre a \"Sociedade dos Poetas Mortos\".",
+    "popularity": 42.524,
+    "poster_path": "https://image.tmdb.org/t/p/w400/gMmbJEqEzupp4BYTcRkNsPDPvQE.jpg",
+    "production_companies": [
+      {
+        "id": 9195,
+        "logo_path": "/ou5BUbtulr6tIt699q6xJiEQTR9.png",
+        "name": "Touchstone Pictures",
+        "origin_country": "US"
+      },
+      {
+        "id": 10282,
+        "logo_path": null,
+        "name": "Silver Screen Partners IV",
+        "origin_country": "US"
+      },
+      {
+        "id": 184460,
+        "logo_path": null,
+        "name": "A Steven Haft Production",
+        "origin_country": ""
+      },
+      {
+        "id": 1089,
+        "logo_path": null,
+        "name": "Witt/Thomas Productions",
+        "origin_country": ""
+      }
+    ],
+    "production_countries": [
+      {
+        "iso_3166_1": "US",
+        "name": "United States of America"
+      }
+    ],
+    "release_date": "1989-06-02",
+    "revenue": 235860116,
+    "runtime": 128,
+    "spoken_languages": [
+      {
+        "english_name": "English",
+        "iso_639_1": "en",
+        "name": "English"
+      },
+      {
+        "english_name": "Latin",
+        "iso_639_1": "la",
+        "name": "Latin"
+      }
+    ],
+    "status": "Released",
+    "tagline": "Ele foi sua inspiração. Ele tornou suas vidas extraordinárias.",
+    "title": "Sociedade dos Poetas Mortos",
+    "video": false,
+    "vote_average": 8.318,
+    "vote_count": 9896
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/tilClWjFZeUTGJu0pxgF72fvUmN.jpg",
+    "belongs_to_collection": null,
+    "budget": 8272296,
+    "genres": [
+      {
+        "id": 35,
+        "name": "Comédia"
+      },
+      {
+        "id": 18,
+        "name": "Drama"
+      }
+    ],
+    "homepage": "",
+    "id": 99,
+    "imdb_id": "tt0185125",
+    "original_language": "es",
+    "original_title": "Todo sobre mi madre",
+    "overview": "Após a morte de seu amado filho adolescente em um acidente, Roth deixa Madri para Barcelona para lidar com sua dor, ficar com velhos amigos e – talvez – entrar em contato com o pai – distante – que o menino nunca conheceu.",
+    "popularity": 10.611,
+    "poster_path": "https://image.tmdb.org/t/p/w400/qn7ZHNdPR3J8XXJe2d0dXkCSWPN.jpg",
+    "production_companies": [
+      {
+        "id": 82,
+        "logo_path": null,
+        "name": "Renn Productions",
+        "origin_country": "FR"
+      },
+      {
+        "id": 83,
+        "logo_path": "/9OQ0rm55xtlgX7KcAKMUePJSrQc.png",
+        "name": "France 2 Cinéma",
+        "origin_country": "FR"
+      },
+      {
+        "id": 49,
+        "logo_path": "/xpf5iHdvvBtsH8jBMlgIJHAET0c.png",
+        "name": "El Deseo",
+        "origin_country": "ES"
+      },
+      {
+        "id": 357,
+        "logo_path": null,
+        "name": "Vía Digital",
+        "origin_country": "ES"
+      },
+      {
+        "id": 104,
+        "logo_path": "/9aotxauvc9685tq9pTcRJszuT06.png",
+        "name": "Canal+",
+        "origin_country": "FR"
+      }
+    ],
+    "production_countries": [
+      {
+        "iso_3166_1": "ES",
+        "name": "Spain"
+      },
+      {
+        "iso_3166_1": "FR",
+        "name": "France"
+      }
+    ],
+    "release_date": "1999-04-16",
+    "revenue": 67872296,
+    "runtime": 101,
+    "spoken_languages": [
+      {
+        "english_name": "Catalan",
+        "iso_639_1": "ca",
+        "name": "Català"
+      },
+      {
+        "english_name": "Spanish",
+        "iso_639_1": "es",
+        "name": "Español"
+      }
+    ],
+    "status": "Released",
+    "tagline": "",
+    "title": "Tudo Sobre Minha Mãe",
+    "video": false,
+    "vote_average": 7.664,
+    "vote_count": 1621
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/lWqjXgut48IK5f5IRbDBAoO2Epp.jpg",
+    "id": 502356,
+    "title": "Super Mario Bros.: O Filme",
+    "original_language": "en",
+    "original_title": "The Super Mario Bros. Movie",
+    "overview": "Mario é um encanador junto com seu irmão Luigi. Um dia, eles vão parar no reino dos cogumelos, governado pela Princesa Peach, mas ameaçado pelo rei dos Koopas, que faz de tudo para conseguir reinar em todos os lugares.",
+    "poster_path": "i9XdxHsFrcqLkRWSF1coOHo4R39.jpg",
+    "media_type": "movie",
+    "genre_ids": [16, 12, 10751, 14, 35],
+    "popularity": 14176.744,
+    "release_date": "2023-04-05",
+    "video": false,
+    "vote_average": 7.518,
+    "vote_count": 1341
+  },
+  {
+    "id": 1895,
+    "original_language": "en",
+    "original_title": "Star Wars: Episode III - Revenge of the Sith",
+    "overview": "As Guerras Clônicas estão em pleno andamento e Anakin Skywalker mantém um elo de lealdade com Palpatine, ao mesmo tempo em que luta para que seu casamento com Padmé Amidala não seja afetado por esta situação. Seduzido por promessas de poder, Anakin se aproxima cada vez mais de Darth Sidious até se tornar o temível Darth Vader. Juntos eles tramam um plano para aniquilar de uma vez por todas com os cavaleiros jedi.",
+    "popularity": 32.051,
+    "poster_path": "/nuF5yWtTJEEAd4Qa6cVkYz1XCST.jpg",
+    "release_date": "2005-05-17",
+    "title": "Star Wars: Episódio III - A Vingança dos Sith",
+    "video": false,
+    "vote_average": 7.403,
+    "vote_count": 12367
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/jHxCeXnSchAuwHnmVatTgqMYdX8.jpg",
+    "genre_ids": [14, 28],
+    "id": 557,
+    "original_language": "en",
+    "original_title": "Spider-Man",
+    "overview": "Peter Parker é um jovem estudioso que vive com seus tios, Ben e May, desde que seus pais faleceram. Peter tem dificuldade em se relacionar com seus colegas, por ser tímido e por eles o considerarem um nerd. Até que, em uma demonstração científica, um acidente inesperado faz com que uma aranha modificada geneticamente pique Peter. A partir de então seu corpo é quimicamente alterado pela picada da aranha.",
+    "popularity": 75.724,
+    "poster_path": "/2WIwz0qJpnVAiofTAhrmhbKxuvE.jpg",
+    "release_date": "2002-05-01",
+    "title": "Homem-Aranha",
+    "video": false,
+    "vote_average": 7.266,
+    "vote_count": 17046
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/thLAoL6VeZGmCyDpCOeoxLvA8yS.jpg",
+    "genre_ids": [10765, 10759],
+    "id": 76479,
+    "origin_country": ["US"],
+    "original_language": "en",
+    "original_name": "The Boys",
+    "overview": "Na trama, conhecemos um mundo em que super-heróis são as maiores celebridades do planeta, e rotineiramente abusam dos seus poderes ao invés de os usarem para o bem.",
+    "popularity": 188.93,
+    "poster_path": "/ut4PhX7OP2l2oJhrIUYWnt9pnQU.jpg",
+    "first_air_date": "2019-07-25",
+    "name": "The Boys",
+    "vote_average": 8.471,
+    "vote_count": 8267
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/rqbCbjB19amtOtFQbb3K2lgm2zv.jpg",
+    "genre_ids": [10765, 16, 10759],
+    "id": 1429,
+    "origin_country": ["JP"],
+    "original_language": "ja",
+    "original_name": "進撃の巨人",
+    "overview": "Titãs estão quase exterminando a raça humana. Porém alguns estão dispostos a formar um exército de ataque aos seres assassinos. O jovem Eren, após ver sua mãe ser devorada por um titã, decide que não deixará nenhum deles vivo e buscará sua vingança completa.",
+    "popularity": 79.353,
+    "poster_path": "/hNEG0e6aPq0EwrugX5A5rCc9TGg.jpg",
+    "first_air_date": "2013-04-07",
+    "name": "Attack on Titan",
+    "vote_average": 8.655,
+    "vote_count": 5157
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/tmU7GeKVybMWFButWEGl2M4GeiP.jpg",
+    "genre_ids": [18, 80],
+    "id": 238,
+    "original_language": "en",
+    "original_title": "The Godfather",
+    "overview": "Em 1945, Don Corleone é o chefe de uma mafiosa família italiana de Nova York. Ele costuma apadrinhar várias pessoas, realizando importantes favores para elas, em troca de favores futuros. Com a chegada das drogas, as famílias começam uma disputa pelo promissor mercado. Quando Corleone se recusa a facilitar a entrada dos narcóticos na cidade, não oferecendo ajuda política e policial, sua família começa a sofrer atentados para que mudem de posição. É nessa complicada época que Michael, um herói de guerra nunca envolvido nos negócios da família, vê a necessidade de proteger o seu pai e tudo o que ele construiu ao longo dos anos.",
+    "popularity": 101.772,
+    "poster_path": "/oJagOzBu9Rdd9BrciseCm3U3MCU.jpg",
+    "release_date": "1972-03-14",
+    "title": "O Poderoso Chefão",
+    "video": false,
+    "vote_average": 8.712,
+    "vote_count": 17843
+  },
+  {
+    "adult": false,
+    "backdrop_path": "/vQ77kC1amsZECKIxkUIsMJCtBVp.jpg",
+    "genre_ids": [35, 18],
+    "id": 70796,
+    "origin_country": ["US"],
+    "original_language": "en",
+    "original_name": "The Marvelous Mrs. Maisel",
+    "overview": "Miriam Midge Maisel gostaria de levar uma vida comum em Manhattan, mas seu talento como comediante stand-up transforma sua rotina de dona de casa.",
+    "popularity": 116.151,
+    "poster_path": "/i61vpsczXOfrDbkdyVHo6nSmVfQ.jpg",
+    "first_air_date": "2017-03-16",
+    "name": "Maravilhosa Sra. Maisel",
+    "vote_average": 8.1,
+    "vote_count": 567
+  }
+]

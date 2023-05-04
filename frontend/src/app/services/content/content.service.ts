@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ContentService {
-  private jsonURL = '/assets/movies.json';
+  private jsonURL = '/assets/favorites.json';
   private tmdbURL = 'https://api.themoviedb.org/3';
   private readonly apiKey = '7700f72b85d9932120594c5f27f336e1';
 

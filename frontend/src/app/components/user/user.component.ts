@@ -25,10 +25,13 @@ export class UserComponent implements OnInit {
       data.map((element: any) => {
         this.favorites.push({
           id: element.id,
-          name: element.title,
+          name: element.title == undefined ? element.name : element.title,
           overview: element.overview,
           posterPath: element.poster_path,
-          releaseDate: element.release_date,
+          releaseDate:
+            element.release_date == undefined
+              ? element.first_air_date
+              : element.release_date,
         });
       });
     });
