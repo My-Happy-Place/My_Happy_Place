@@ -12,6 +12,10 @@ export class ContentService {
 
   constructor(private http: HttpClient) {}
 
+  //TODO:
+  // Validar requests
+  // Método para ver se conteúdo está em favoritos
+
   getFavorites(): Observable<any> {
     return this.http.get(this.jsonURL);
   }
@@ -28,7 +32,12 @@ export class ContentService {
     );
   }
 
-  getSearchResults(query: string, searchType: string = "multi"): Observable<any> {
-    return this.http.get(`${this.tmdbURL}/search/${searchType}?api_key=${this.apiKey}&language=pt-BR&query=${query}`);
+  getSearchResults(
+    query: string,
+    searchType: string = 'multi'
+  ): Observable<any> {
+    return this.http.get(
+      `${this.tmdbURL}/search/${searchType}?api_key=${this.apiKey}&language=pt-BR&query=${query}`
+    );
   }
 }

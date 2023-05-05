@@ -4,4 +4,5 @@ export interface Content {
   overview: string;
   posterPath: string;
   releaseDate: string;
+  isFavorite: boolean;
 }

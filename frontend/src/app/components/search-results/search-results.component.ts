@@ -32,7 +32,8 @@ export class SearchResultsComponent implements OnInit {
 
       this.contentService.getSearchResults(this.search).subscribe((data) => {
         data.results = data.results.filter(
-          (content: any) => content.media_type == 'movie' || content.media_type == 'tv'
+          (content: any) =>
+            content.media_type == 'movie' || content.media_type == 'tv'
         );
 
         data.results.map((content: any) => {
@@ -45,6 +46,7 @@ export class SearchResultsComponent implements OnInit {
               content.release_date == undefined
                 ? content.first_air_date
                 : content.release_date,
+            isFavorite: false,
           });
         });
         this.results = this.results.filter(

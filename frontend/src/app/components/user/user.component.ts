@@ -20,7 +20,9 @@ export class UserComponent implements OnInit {
   constructor(private contentService: ContentService) {}
 
   ngOnInit(): void {
-    //TODO: preparar endpoint de buscar favoritos
+    //TODO:
+    //preparar endpoint de buscar favoritos
+    //validar conteúdos que vem favoritados
     this.contentService.getFavorites().subscribe((data: Object[]) => {
       data.map((element: any) => {
         this.favorites.push({
@@ -32,6 +34,7 @@ export class UserComponent implements OnInit {
             element.release_date == undefined
               ? element.first_air_date
               : element.release_date,
+          isFavorite: true,
         });
       });
     });
@@ -45,6 +48,7 @@ export class UserComponent implements OnInit {
           posterPath: element.poster_path,
           releaseDate: element.release_date,
           runtime: element.runtime,
+          isFavorite: false,
         });
       });
     });
@@ -60,6 +64,7 @@ export class UserComponent implements OnInit {
           numberOfSeasons: element.numberOfSeasons,
           releaseDate: element.first_air_date,
           lastYear: element.last_air_date,
+          isFavorite: false,
         });
       });
     });
