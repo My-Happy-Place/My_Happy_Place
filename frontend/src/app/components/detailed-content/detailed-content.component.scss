@@ -10,12 +10,18 @@
 }
 
 img {
-  width: 10em;
+  width: 133px;
+  height: 200px;
   border-right: 3px solid mat-color($light-app-primary, 800);
 }
 
 .details {
   margin-left: 2em;
+}
+
+.content-header {
+  display: flex;
+  align-items: baseline;
 }
 
 .name-year {
@@ -35,7 +41,16 @@ img {
   font-size: small;
 }
 
+.fav-btn {
+  margin-left: 0.5em;
+}
+
+.heart {
+  transform: scale(1.5);
+}
+
 .overview {
+  margin-right: 1em;
   text-overflow: ellipsis;
   overflow: hidden;
 }
