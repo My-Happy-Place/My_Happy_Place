@@ -10,6 +10,7 @@
     </mat-radio-group>
   </div>
 
+  <mat-spinner *ngIf="isLoading"></mat-spinner>
   <div class="results">
     <div class="results-items" *ngFor="let item of results">
       <!-- <app-content-card [item]="item"></app-content-card> -->

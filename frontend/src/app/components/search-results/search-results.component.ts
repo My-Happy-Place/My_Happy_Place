@@ -1,6 +1,7 @@
 import { ContentService } from './../../services/content/content.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { finalize } from 'rxjs';
 import { Content } from 'src/app/models/content';
 
 @Component({
@@ -17,9 +18,11 @@ export class SearchResultsComponent implements OnInit {
 
   search!: string;
   results: Content[] = [];
+  isLoading: boolean = false;
 
   ngOnInit(): void {
     this.route.params.subscribe((routeParams) => {
+      this.isLoading = true;
       this.search = routeParams['search'];
 
       this.router
@@ -30,29 +33,32 @@ export class SearchResultsComponent implements OnInit {
 
       this.results = [];
 
-      this.contentService.getSearchResults(this.search).subscribe((data) => {
-        data.results = data.results.filter(
-          (content: any) =>
-            content.media_type == 'movie' || content.media_type == 'tv'
-        );
+      this.contentService
+        .getSearchResults(this.search)
+        .pipe(finalize(() => (this.isLoading = false)))
+        .subscribe((data) => {
+          data.results = data.results.filter(
+            (content: any) =>
+              content.media_type == 'movie' || content.media_type == 'tv'
+          );
 
-        data.results.map((content: any) => {
-          this.results.push({
-            id: content.id,
-            name: content.title == undefined ? content.name : content.title,
-            overview: content.overview,
-            posterPath: content.poster_path,
-            releaseDate:
-              content.release_date == undefined
-                ? content.first_air_date
-                : content.release_date,
-            isFavorite: this.contentService.favoritesIds.includes(content.id),
+          data.results.map((content: any) => {
+            this.results.push({
+              id: content.id,
+              name: content.title == undefined ? content.name : content.title,
+              overview: content.overview,
+              posterPath: content.poster_path,
+              releaseDate:
+                content.release_date == undefined
+                  ? content.first_air_date
+                  : content.release_date,
+              isFavorite: this.contentService.favoritesIds.includes(content.id),
+            });
           });
+          this.results = this.results.filter(
+            (content) => content.posterPath !== null && content.overview !== ''
+          );
         });
-        this.results = this.results.filter(
-          (content) => content.posterPath !== null && content.overview !== ''
-        );
-      });
     });
   }
 }
