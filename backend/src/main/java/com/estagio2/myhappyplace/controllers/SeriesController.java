@@ -1,11 +1,30 @@
 package com.estagio2.myhappyplace.controllers;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.estagio2.myhappyplace.entities.FavoriteSeries;
+import com.estagio2.myhappyplace.service.SeriesService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
 
 @RestController
 @RequestMapping("/series")
 public class SeriesController {
 
+    @Autowired
+    SeriesService seriesService;
+
+    @GetMapping("/{id}")
+    public ResponseEntity<HashMap> buscarPorId(@PathVariable Long id){
+        HashMap serie = this.seriesService.seriePorId(id);
+        return ResponseEntity.ok().body(serie);
+    }
+
+    @PostMapping
+    public ResponseEntity<HashMap> salvarSerieFavorita(@RequestBody FavoriteSeries favoriteSeries){
+        Long id = this.seriesService.saveFavoriteSerie(favoriteSeries);
+        return ResponseEntity.noContent().build();
+    }
 
 }

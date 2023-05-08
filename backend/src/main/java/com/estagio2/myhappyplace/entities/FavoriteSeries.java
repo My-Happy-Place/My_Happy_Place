@@ -25,6 +25,6 @@ public class FavoriteSeries {
     @ManyToMany(mappedBy = "favoriteSeries")
     private List<User> userList = new ArrayList<User>();
 
-    @Column(name = "movieId_TMDB")
-    private Long movieId;
+    @Column(name = "serieId_TMDB")
+    private Long serieId;
 }

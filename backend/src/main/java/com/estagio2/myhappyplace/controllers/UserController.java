@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -22,6 +24,12 @@ public class UserController {
     public ResponseEntity<UserDTO> buscarPorId(@PathVariable Long id){
         UserDTO userDTO = userService.findById(id);
         return ResponseEntity.ok().body(userDTO);
+    }
+    @GetMapping("/{id}/findFavorites")
+    public ResponseEntity<List<HashMap>> buscarFavoritos(@PathVariable Long id,
+                                                   @RequestParam(value = "descricao", required = false) String descricao){
+        List<HashMap> allFavorites = userService.findFavorites(id, descricao);
+        return ResponseEntity.ok().body(allFavorites);
     }
 
     @PostMapping
