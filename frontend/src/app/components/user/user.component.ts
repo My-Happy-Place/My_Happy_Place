@@ -20,9 +20,6 @@ export class UserComponent implements OnInit {
   constructor(private contentService: ContentService) {}
 
   ngOnInit(): void {
-    //TODO:
-    //preparar endpoint de buscar favoritos
-    //validar conteúdos que vem favoritados
     this.contentService.getFavorites().subscribe((data: Object[]) => {
       data.map((element: any) => {
         this.favorites.push({
@@ -38,33 +35,33 @@ export class UserComponent implements OnInit {
         });
       });
     });
-    //TODO: Verificar se mapeamento dos dados em um array de filmes/séries não deve ser feito já no service
+    //TODO: Transferir tipagem dos dados para o backend.
     this.contentService.getTrendingMovies().subscribe((data) => {
-      data.results.map((element: any) => {
+      data.results.map((content: any) => {
         this.trendingMovies.push({
-          id: element.id,
-          name: element.title,
-          overview: element.overview,
-          posterPath: element.poster_path,
-          releaseDate: element.release_date,
-          runtime: element.runtime,
-          isFavorite: false,
+          id: content.id,
+          name: content.title,
+          overview: content.overview,
+          posterPath: content.poster_path,
+          releaseDate: content.release_date,
+          runtime: content.runtime,
+          isFavorite: this.contentService.favoritesIds.includes(content.id),
         });
       });
     });
 
     this.contentService.getTrendingTvShows().subscribe((data) => {
-      data.results.map((element: any) => {
+      data.results.map((content: any) => {
         this.trendingTv.push({
-          id: element.id,
-          name: element.name,
-          overview: element.overview,
-          posterPath: element.poster_path,
-          numberOfEpisodes: element.numberOfEpisodes,
-          numberOfSeasons: element.numberOfSeasons,
-          releaseDate: element.first_air_date,
-          lastYear: element.last_air_date,
-          isFavorite: false,
+          id: content.id,
+          name: content.name,
+          overview: content.overview,
+          posterPath: content.poster_path,
+          numberOfEpisodes: content.numberOfEpisodes,
+          numberOfSeasons: content.numberOfSeasons,
+          releaseDate: content.first_air_date,
+          lastYear: content.last_air_date,
+          isFavorite: this.contentService.favoritesIds.includes(content.id),
         });
       });
     });

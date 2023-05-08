@@ -46,7 +46,7 @@ export class SearchResultsComponent implements OnInit {
               content.release_date == undefined
                 ? content.first_air_date
                 : content.release_date,
-            isFavorite: false,
+            isFavorite: this.contentService.favoritesIds.includes(content.id),
           });
         });
         this.results = this.results.filter(

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Content } from 'src/app/models/content';
 
 @Injectable({
   providedIn: 'root',
@@ -9,8 +10,15 @@ export class ContentService {
   private jsonURL = '/assets/favorites.json';
   private tmdbURL = 'https://api.themoviedb.org/3';
   private readonly apiKey = '7700f72b85d9932120594c5f27f336e1';
+  favoritesIds: number[] = [];
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.getFavorites().subscribe((data: Content[]) => {
+      data.map((item: Content) => {
+        this.favoritesIds.push(item.id);
+      });
+    });
+  }
 
   //TODO:
   // Validar requests
