@@ -2,6 +2,8 @@ package com.estagio2.myhappyplace.service;
 
 import com.estagio2.myhappyplace.dto.UserDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
+import com.estagio2.myhappyplace.entities.FavoriteSeries;
+import com.estagio2.myhappyplace.entities.User;
 import com.estagio2.myhappyplace.repositories.FavoriteMoviesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
@@ -10,10 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Service
 public class MovieService {
@@ -33,6 +32,23 @@ public class MovieService {
          user.getFavoriteMovies().add(favoriteMovies);
          userService.update(user);
          return favoriteMovies.getId();
+    }
+    @Transactional
+    public void excluirFavoriteMovie(FavoriteMovies favoriteMovies){
+        UserDTO user = userService.findById(favoriteMovies.getUserList().get(0).getId());
+        user.getFavoriteMovies().remove(favoriteMovies);
+        userService.update(user);
+        favoriteMoviesRepository.delete(favoriteMovies);
+    }
+
+    @Transactional(readOnly = true)
+    public FavoriteMovies findById(Long id){
+        Optional<FavoriteMovies> obj = favoriteMoviesRepository.findById(id);
+        if(obj.isPresent()){
+            FavoriteMovies favoriteMovies = obj.get();
+            return favoriteMovies;
+        }
+        return new FavoriteMovies();
     }
 
     public HashMap moviePorId(Long codigo){

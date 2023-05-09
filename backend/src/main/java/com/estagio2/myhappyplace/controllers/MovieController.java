@@ -1,5 +1,6 @@
 package com.estagio2.myhappyplace.controllers;
 
+import com.estagio2.myhappyplace.dto.UserDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,10 +21,18 @@ public class MovieController {
         HashMap movie = this.movieService.moviePorId(id);
         return ResponseEntity.ok().body(movie);
     }
-
     @PostMapping
-    public ResponseEntity<HashMap> salvarFilmeFavorito(@RequestBody FavoriteMovies favoriteMovies){
+    public ResponseEntity<Void> salvarFilmeFavorito(@RequestBody FavoriteMovies favoriteMovies){
         Long id = this.movieService.saveFavoriteMovie(favoriteMovies);
+        return ResponseEntity.noContent().build();
+    }
+    @PutMapping
+    public ResponseEntity<Void> excluirFilmeFavorito(@RequestBody FavoriteMovies body){
+        FavoriteMovies favoriteMovies = movieService.findById(body.getId());
+        if (favoriteMovies.getId() == null){
+            return ResponseEntity.notFound().build();
+        }
+        movieService.excluirFavoriteMovie(body);
         return ResponseEntity.noContent().build();
     }
 
