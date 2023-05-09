@@ -1,6 +1,6 @@
 <mat-toolbar color="primary">
   <span class="logo" routerLink="/user">My Happy Place</span>
-  <mat-form-field class="search-bar" floatLabel="never">
+  <mat-form-field floatLabel="never">
     <input matInput type="text" name="search" placeholder="Pesquisar" [(ngModel)]="search"
       (keyup.enter)="onEnterPress(search)">
     <button matSuffix mat-button routerLink="/search/{{search}}"><mat-icon>search</mat-icon></button>

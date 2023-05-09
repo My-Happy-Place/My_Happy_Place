@@ -23,6 +23,7 @@ img {
 img:hover {
   filter: brightness(40%);
   transition: all 1s ease;
+  cursor: pointer;
 }
 
 h4 {
@@ -38,5 +39,5 @@ h4 {
 }
 
 .heart {
-  transform: scale(1.50);
+  transform: scale(1.30);
 }
