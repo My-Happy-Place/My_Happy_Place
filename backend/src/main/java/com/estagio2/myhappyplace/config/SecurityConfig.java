@@ -1,9 +1,7 @@
 package com.estagio2.myhappyplace.config;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -18,18 +16,13 @@ import java.util.Arrays;
 @EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    private Environment env;
-
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        if (Arrays.asList(env.getActiveProfiles()).contains("dev")) {
-            http.headers().frameOptions().disable();
-        }
 
+        http.headers().frameOptions().disable();
         http.cors().and().csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests().anyRequest().permitAll();
+        http.authorizeHttpRequests((auth) -> auth.anyRequest().permitAll());
 
         return http.build();
     }

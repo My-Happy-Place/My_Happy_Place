@@ -1,5 +1,6 @@
 package com.estagio2.myhappyplace.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -25,12 +26,14 @@ public class User {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "user_fav_movies",
             joinColumns = {@JoinColumn(name = "user_id")},
             inverseJoinColumns = {@JoinColumn(name = "favorite_movie_id")})
     private List<FavoriteMovies> favoriteMovies = new ArrayList<FavoriteMovies>();
 
+    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "user_fav_series",
             joinColumns = {@JoinColumn(name = "user_id")},

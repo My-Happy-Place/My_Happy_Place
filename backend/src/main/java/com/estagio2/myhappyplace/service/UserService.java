@@ -67,6 +67,8 @@ public class UserService {
     public UserDTO update(UserDTO userDTO){
         User obj = userRepository.findById(userDTO.getId()).get();
         obj.setName(userDTO.getName());
+        obj.setFavoriteMovies(userDTO.getFavoriteMovies());
+        obj.setFavoriteSeries(userDTO.getFavoriteSeries());
         obj = userRepository.save(obj);
         return new UserDTO(obj);
     }
