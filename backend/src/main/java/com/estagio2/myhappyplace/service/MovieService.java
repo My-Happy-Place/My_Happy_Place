@@ -99,7 +99,7 @@ public class MovieService {
                         .retrieve()
                         .bodyToMono(HashMap.class);
 
-                SeriesDTO serie = new SeriesDTO(Objects.requireNonNull(monoSerie.block()));
+                SeriesDTO serie = new SeriesDTO(Objects.requireNonNull(monoSerie.block()), true);
                 assert favorites != null;
                 favorites.add(serie.convertHashMap(serie));
             }

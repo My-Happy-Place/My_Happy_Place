@@ -1,5 +1,6 @@
 package com.estagio2.myhappyplace.controllers;
 
+import com.estagio2.myhappyplace.dto.SeriesDTO;
 import com.estagio2.myhappyplace.entities.FavoriteSeries;
 import com.estagio2.myhappyplace.service.SeriesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,13 +18,13 @@ public class SeriesController {
     SeriesService seriesService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<HashMap> buscarPorId(@PathVariable Long id){
-        HashMap serie = this.seriesService.seriePorId(id);
+    public ResponseEntity<SeriesDTO> buscarPorId(@PathVariable Long id){
+        SeriesDTO serie = this.seriesService.seriePorId(id);
         return ResponseEntity.ok().body(serie);
     }
 
     @PostMapping
-    public ResponseEntity<HashMap> salvarSerieFavorita(@RequestBody FavoriteSeries favoriteSeries){
+    public ResponseEntity<Void> salvarSerieFavorita(@RequestBody FavoriteSeries favoriteSeries){
         Long id = this.seriesService.saveFavoriteSerie(favoriteSeries);
         return ResponseEntity.noContent().build();
     }

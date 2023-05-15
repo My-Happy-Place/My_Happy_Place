@@ -35,7 +35,7 @@ public class SeriesService {
         return favoriteSeries.getId();
     }
 
-    public HashMap seriePorId(Long codigo){
+    public SeriesDTO seriePorId(Long codigo){
 //        String accessToken = requestToken();
         Mono<HashMap> monoSerie = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}")
@@ -48,7 +48,7 @@ public class SeriesService {
 
         HashMap serie = monoSerie.block();
 
-        return serie;
+        return new SeriesDTO(serie);
     }
 
     public List<SeriesDTO> listFavoriteSeries(List<Long> idsSeries){
@@ -69,7 +69,7 @@ public class SeriesService {
             }
         }
         SeriesDTO series = new SeriesDTO();
-        return series.isList(favorites);
+        return series.isList(favorites, true);
     }
 
 }

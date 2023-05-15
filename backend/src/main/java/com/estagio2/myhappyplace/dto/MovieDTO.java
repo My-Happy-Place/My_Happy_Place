@@ -81,6 +81,7 @@ public class MovieDTO {
         aux.put("posterPath", movieDTO.posterPath);
         aux.put("releaseDate", movieDTO.releaseDate);
         aux.put("runtime", movieDTO.runtime);
+        aux.put("isFavorite", movieDTO.isFavorite);
         return aux;
     }
 
