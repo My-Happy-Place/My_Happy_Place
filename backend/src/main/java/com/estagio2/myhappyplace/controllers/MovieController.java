@@ -12,6 +12,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping(value = "/movies")
+@CrossOrigin(origins = "*")
 public class MovieController {
 
     @Autowired

@@ -83,7 +83,7 @@ public class MovieService {
                         .retrieve()
                         .bodyToMono(HashMap.class);
 
-                MovieDTO movie = new MovieDTO(Objects.requireNonNull(monoMovie.block()));
+                MovieDTO movie = new MovieDTO(Objects.requireNonNull(monoMovie.block()), true);
                 assert favorites != null;
                 favorites.add(movie.convertHashMap(movie));
             }
@@ -126,7 +126,7 @@ public class MovieService {
             }
         }
         MovieDTO movies = new MovieDTO();
-        return movies.isList(favorites);
+        return movies.isList(favorites, true);
     }
 
 

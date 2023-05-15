@@ -10,6 +10,7 @@ import java.util.HashMap;
 
 @RestController
 @RequestMapping("/series")
+@CrossOrigin(origins = "*")
 public class SeriesController {
 
     @Autowired
