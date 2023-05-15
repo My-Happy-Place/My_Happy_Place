@@ -1,5 +1,6 @@
 package com.estagio2.myhappyplace.service;
 
+import com.estagio2.myhappyplace.dto.SeriesDTO;
 import com.estagio2.myhappyplace.dto.UserDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
 import com.estagio2.myhappyplace.entities.FavoriteSeries;
@@ -50,7 +51,7 @@ public class SeriesService {
         return serie;
     }
 
-    public List<HashMap> listFavoriteSeries(List<Long> idsSeries){
+    public List<SeriesDTO> listFavoriteSeries(List<Long> idsSeries){
         List<HashMap> favorites = new ArrayList<>();
         if(!idsSeries.isEmpty()){
             for (Long id : idsSeries){
@@ -67,8 +68,8 @@ public class SeriesService {
                 favorites.add(monoMovie.block());
             }
         }
-
-        return favorites;
+        SeriesDTO series = new SeriesDTO();
+        return series.isList(favorites);
     }
 
 }

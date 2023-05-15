@@ -1,5 +1,6 @@
 package com.estagio2.myhappyplace.controllers;
 
+import com.estagio2.myhappyplace.dto.MovieDTO;
 import com.estagio2.myhappyplace.dto.UserDTO;
 import com.estagio2.myhappyplace.entities.User;
 import com.estagio2.myhappyplace.service.UserService;
@@ -26,9 +27,9 @@ public class UserController {
         return ResponseEntity.ok().body(userDTO);
     }
     @GetMapping("/{id}/findFavorites")
-    public ResponseEntity<List<HashMap>> buscarFavoritos(@PathVariable Long id,
-                                                   @RequestParam(value = "descricao", required = false) String descricao){
-        List<HashMap> allFavorites = userService.findFavorites(id, descricao);
+    public ResponseEntity<List<?>> buscarFavoritos(@PathVariable Long id,
+                                                          @RequestParam(value = "descricao", required = false) String descricao){
+        List<?> allFavorites = userService.findFavorites(id, descricao);
         return ResponseEntity.ok().body(allFavorites);
     }
 

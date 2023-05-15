@@ -1,5 +1,7 @@
 package com.estagio2.myhappyplace.service;
 
+import com.estagio2.myhappyplace.dto.MovieDTO;
+import com.estagio2.myhappyplace.dto.SeriesDTO;
 import com.estagio2.myhappyplace.dto.UserDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
 import com.estagio2.myhappyplace.entities.FavoriteSeries;
@@ -52,7 +54,7 @@ public class MovieService {
         return new FavoriteMovies();
     }
 
-    public HashMap moviePorId(Long codigo){
+    public MovieDTO moviePorId(Long codigo){
 //        String accessToken = requestToken();
         Mono<HashMap> monoMovie = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}")
@@ -65,7 +67,7 @@ public class MovieService {
 
         HashMap movie = monoMovie.block();
 
-        return movie;
+        return new MovieDTO(movie);
     }
 
     public List<HashMap> listAllFavorites(List<Long> idsMovies, List<Long> idsSeries){
@@ -81,13 +83,14 @@ public class MovieService {
                         .retrieve()
                         .bodyToMono(HashMap.class);
 
+                MovieDTO movie = new MovieDTO(Objects.requireNonNull(monoMovie.block()));
                 assert favorites != null;
-                favorites.add(monoMovie.block());
+                favorites.add(movie.convertHashMap(movie));
             }
         }
         if (!idsSeries.isEmpty()) {
             for (Long id : idsSeries) {
-                Mono<HashMap> monoMovie = this.webClient.get()
+                Mono<HashMap> monoSerie = this.webClient.get()
                         .uri(uriBuilder -> uriBuilder.path("/tv/{id}")
                                 .queryParam("api_key", api_key)
                                 .queryParam("language", "pt-BR")
@@ -96,15 +99,16 @@ public class MovieService {
                         .retrieve()
                         .bodyToMono(HashMap.class);
 
+                SeriesDTO serie = new SeriesDTO(Objects.requireNonNull(monoSerie.block()));
                 assert favorites != null;
-                favorites.add(monoMovie.block());
+                favorites.add(serie.convertHashMap(serie));
             }
         }
 
         return favorites;
     }
 
-    public List<HashMap> listFavoriteMovies(List<Long> idsMovies){
+    public List<MovieDTO> listFavoriteMovies(List<Long> idsMovies){
         List<HashMap> favorites = new ArrayList<>();
         if(!idsMovies.isEmpty()){
             for (Long id : idsMovies){
@@ -121,8 +125,8 @@ public class MovieService {
                 favorites.add(monoMovie.block());
             }
         }
-
-        return favorites;
+        MovieDTO movies = new MovieDTO();
+        return movies.isList(favorites);
     }
 
 

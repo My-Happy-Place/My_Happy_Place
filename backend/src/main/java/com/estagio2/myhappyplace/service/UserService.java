@@ -1,5 +1,6 @@
 package com.estagio2.myhappyplace.service;
 
+import com.estagio2.myhappyplace.dto.MovieDTO;
 import com.estagio2.myhappyplace.dto.UserDTO;
 import com.estagio2.myhappyplace.entities.User;
 import com.estagio2.myhappyplace.repositories.UserRepository;
@@ -31,7 +32,7 @@ public class UserService {
         return new UserDTO();
     }
     @Transactional(readOnly = true)
-    public List<HashMap> findFavorites(Long id, String descricao){
+    public List<?> findFavorites(Long id, String descricao){
         UserDTO userDTO = findById(id);
         if (userDTO.getId() != null){
             if (descricao == null){

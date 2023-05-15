@@ -1,5 +1,6 @@
 package com.estagio2.myhappyplace.controllers;
 
+import com.estagio2.myhappyplace.dto.MovieDTO;
 import com.estagio2.myhappyplace.dto.UserDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,8 @@ public class MovieController {
     MovieService movieService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<HashMap> buscarPorId(@PathVariable Long id){
-        HashMap movie = this.movieService.moviePorId(id);
+    public ResponseEntity<MovieDTO> buscarPorId(@PathVariable Long id){
+        MovieDTO movie = this.movieService.moviePorId(id);
         return ResponseEntity.ok().body(movie);
     }
     @PostMapping
