@@ -35,6 +35,8 @@ public class MovieDTO {
 
     private Integer runtime;
 
+    private Boolean isTvShow;
+
     private Boolean isFavorite;
 
 
@@ -45,6 +47,7 @@ public class MovieDTO {
         this.posterPath = (String) movieTMDB.get("poster_path");
         this.releaseDate = (String) movieTMDB.get("release_date");
         this.runtime = (Integer) movieTMDB.get("runtime");
+        this.isTvShow = false;
         this.isFavorite = false;
     }
 
@@ -55,6 +58,7 @@ public class MovieDTO {
         this.posterPath = (String) movieTMDB.get("poster_path");
         this.releaseDate = (String) movieTMDB.get("release_date");
         this.runtime = (Integer) movieTMDB.get("runtime");
+        this.isTvShow = false;
         this.isFavorite = favorito;
     }
 
@@ -81,6 +85,7 @@ public class MovieDTO {
         aux.put("posterPath", movieDTO.posterPath);
         aux.put("releaseDate", movieDTO.releaseDate);
         aux.put("runtime", movieDTO.runtime);
+        aux.put("isTvShow", movieDTO.isTvShow);
         aux.put("isFavorite", movieDTO.isFavorite);
         return aux;
     }

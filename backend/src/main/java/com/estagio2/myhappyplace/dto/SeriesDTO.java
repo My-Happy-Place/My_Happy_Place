@@ -31,6 +31,8 @@ public class SeriesDTO {
 
     private String lastYear;
 
+    private Boolean isTvShow;
+
     private Boolean isFavorite;
 
     public SeriesDTO(HashMap seriesTMDB) {
@@ -42,6 +44,7 @@ public class SeriesDTO {
         this.numberOfSeasons = (Integer) seriesTMDB.get("number_of_seasons");
         this.releaseDate = (String) seriesTMDB.get("first_air_date");
         this.lastYear = (String) seriesTMDB.get("last_air_date");
+        this.isTvShow = true;
         this.isFavorite = false;
     }
     public SeriesDTO(HashMap seriesTMDB, boolean favorite) {
@@ -53,6 +56,7 @@ public class SeriesDTO {
         this.numberOfSeasons = (Integer) seriesTMDB.get("number_of_seasons");
         this.releaseDate = (String) seriesTMDB.get("first_air_date");
         this.lastYear = (String) seriesTMDB.get("last_air_date");
+        this.isTvShow = true;
         this.isFavorite = favorite;
     }
 
@@ -81,6 +85,7 @@ public class SeriesDTO {
         aux.put("numberOfSeasons", seriesDTO.numberOfSeasons);
         aux.put("releaseDate", seriesDTO.releaseDate);
         aux.put("lastYear", seriesDTO.lastYear);
+        aux.put("isTvShow", seriesDTO.isTvShow);
         aux.put("isFavorite", seriesDTO.isFavorite);
         return aux;
     }

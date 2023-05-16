@@ -38,7 +38,7 @@ public class MovieService {
     @Transactional
     public void excluirFavoriteMovie(FavoriteMovies favoriteMovies){
         UserDTO user = userService.findById(favoriteMovies.getUserList().get(0).getId());
-        user.getFavoriteMovies().removeIf(favoriteMovies1 -> Objects.equals(favoriteMovies1.getId(), favoriteMovies.getId()));
+        user.getFavoriteMovies().removeIf(favoriteMovies1 -> Objects.equals(favoriteMovies1.getMovieId(), favoriteMovies.getMovieId()));
         favoriteMovies.getUserList().removeIf(user1 -> Objects.equals(user1.getId(), user.getId()));
         userService.update(user);
         favoriteMoviesRepository.delete(favoriteMovies);
