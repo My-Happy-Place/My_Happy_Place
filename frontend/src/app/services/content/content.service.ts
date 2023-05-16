@@ -12,20 +12,10 @@ export class ContentService {
   private readonly apiKey = '7700f72b85d9932120594c5f27f336e1';
   favoritesIds: number[] = [];
 
-  constructor(private http: HttpClient) {
-    this.getFavorites().subscribe((data: Content[]) => {
-      data.map((item: Content) => {
-        this.favoritesIds.push(item.id);
-      });
-    });
-  }
-
-  //TODO:
-  // Validar requests
-  // Método para ver se conteúdo está em favoritos
+  constructor(private http: HttpClient) {}
 
   getFavorites(): Observable<any> {
-    return this.http.get(this.jsonURL);
+    return this.http.get('api/users/1/findFavorites');
   }
 
   getTrendingMovies(): Observable<any> {
@@ -47,5 +37,30 @@ export class ContentService {
     return this.http.get(
       `${this.tmdbURL}/search/${searchType}?api_key=${this.apiKey}&language=pt-BR&query=${query}`
     );
+  }
+
+  setFavoriteStatus(
+    id: number,
+    isTvShow: boolean,
+    status: boolean
+  ): Observable<any> {
+    const uri = isTvShow ? 'series' : 'movies';
+    const body: any = {
+      userList: [
+        {
+          id: 1,
+        },
+      ],
+    };
+
+    if (isTvShow) {
+      body.serieId = id;
+    } else {
+      body.movieId = id;
+    }
+
+    return status
+      ? this.http.post(`api/${uri}`, body)
+      : this.http.put(`api/${uri}`, body);
   }
 }

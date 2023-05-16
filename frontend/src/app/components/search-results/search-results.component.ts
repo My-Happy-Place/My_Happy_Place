@@ -53,6 +53,7 @@ export class SearchResultsComponent implements OnInit {
                   ? content.first_air_date
                   : content.release_date,
               isFavorite: this.contentService.favoritesIds.includes(content.id),
+              isTvShow: content.seasons != undefined,
             });
           });
           this.results = this.results.filter(

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Content } from 'src/app/models/content';
+import { ContentService } from 'src/app/services/content/content.service';
 
 @Component({
   selector: 'app-detailed-content',
@@ -14,7 +15,7 @@ export class DetailedContentComponent implements OnInit {
   isFavorite!: boolean;
   favoriteIcon!: 'favorite' | 'favorite_border';
 
-  constructor() {}
+  constructor(private contentService: ContentService) {}
 
   ngOnInit(): void {
     this.fullImagePath = this.baseImagePath + this.item.posterPath;
@@ -23,10 +24,11 @@ export class DetailedContentComponent implements OnInit {
     this.favoriteIcon = this.isFavorite ? 'favorite' : 'favorite_border';
   }
 
-  favorite(): void {
-    this.favoriteIcon = this.isFavorite
-      ? (this.favoriteIcon = 'favorite_border')
-      : (this.favoriteIcon = 'favorite');
+  changeFavoriteStatus(): void {
+    this.favoriteIcon = this.isFavorite ? 'favorite_border' : 'favorite';
     this.isFavorite = !this.isFavorite;
+    this.contentService
+      .setFavoriteStatus(this.item.id, this.item.isTvShow, this.isFavorite)
+      .subscribe();
   }
 }

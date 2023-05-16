@@ -1,6 +1,6 @@
 <img mat-card-image src="{{fullImagePath}}" alt="Card image cap">
 <h3 class="title">{{item.name}}</h3>
   <h4>{{releaseYear}}</h4>
-  <button mat-icon-button (click)="favorite()" class="fav-btn">
+  <button mat-icon-button (click)="changeFavoriteStatus()" class="fav-btn">
     <mat-icon class="heart" color="primary">{{favoriteIcon}}</mat-icon>
   </button>

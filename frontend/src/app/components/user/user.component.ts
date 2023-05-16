@@ -20,22 +20,10 @@ export class UserComponent implements OnInit {
   constructor(private contentService: ContentService) {}
 
   ngOnInit(): void {
-    this.contentService.getFavorites().subscribe((data: Object[]) => {
-      data.map((element: any) => {
-        this.favorites.push({
-          id: element.id,
-          name: element.title == undefined ? element.name : element.title,
-          overview: element.overview,
-          posterPath: element.poster_path,
-          releaseDate:
-            element.release_date == undefined
-              ? element.first_air_date
-              : element.release_date,
-          isFavorite: true,
-        });
-      });
+    this.contentService.getFavorites().subscribe((data) => {
+      this.favorites = data;
     });
-    //TODO: Transferir tipagem dos dados para o backend.
+
     this.contentService.getTrendingMovies().subscribe((data) => {
       data.results.map((content: any) => {
         this.trendingMovies.push({
@@ -46,6 +34,7 @@ export class UserComponent implements OnInit {
           releaseDate: content.release_date,
           runtime: content.runtime,
           isFavorite: this.contentService.favoritesIds.includes(content.id),
+          isTvShow: false,
         });
       });
     });
@@ -62,6 +51,7 @@ export class UserComponent implements OnInit {
           releaseDate: content.first_air_date,
           lastYear: content.last_air_date,
           isFavorite: this.contentService.favoritesIds.includes(content.id),
+          isTvShow: true,
         });
       });
     });
