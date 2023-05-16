@@ -8,7 +8,6 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -28,6 +27,8 @@ public class SeriesDTO {
 
     private Integer numberOfSeasons;
 
+    private String releaseDate;
+
     private String lastYear;
 
     private Boolean isFavorite;
@@ -39,6 +40,7 @@ public class SeriesDTO {
         this.posterPath = (String) seriesTMDB.get("poster_path");
         this.numberOfEpisodes = (Integer) seriesTMDB.get("number_of_episodes");
         this.numberOfSeasons = (Integer) seriesTMDB.get("number_of_seasons");
+        this.releaseDate = (String) seriesTMDB.get("first_air_date");
         this.lastYear = (String) seriesTMDB.get("last_air_date");
         this.isFavorite = false;
     }
@@ -49,6 +51,7 @@ public class SeriesDTO {
         this.posterPath = (String) seriesTMDB.get("poster_path");
         this.numberOfEpisodes = (Integer) seriesTMDB.get("number_of_episodes");
         this.numberOfSeasons = (Integer) seriesTMDB.get("number_of_seasons");
+        this.releaseDate = (String) seriesTMDB.get("first_air_date");
         this.lastYear = (String) seriesTMDB.get("last_air_date");
         this.isFavorite = favorite;
     }
@@ -76,6 +79,7 @@ public class SeriesDTO {
         aux.put("posterPath", seriesDTO.posterPath);
         aux.put("numberOfEpisodes", seriesDTO.numberOfEpisodes);
         aux.put("numberOfSeasons", seriesDTO.numberOfSeasons);
+        aux.put("releaseDate", seriesDTO.releaseDate);
         aux.put("lastYear", seriesDTO.lastYear);
         aux.put("isFavorite", seriesDTO.isFavorite);
         return aux;
