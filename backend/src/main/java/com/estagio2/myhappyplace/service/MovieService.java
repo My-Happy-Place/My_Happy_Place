@@ -214,4 +214,97 @@ public class MovieService {
 
         return reviews;
     }
+
+    public HashMap getSimilarMovies(Long codigo){
+        Mono<HashMap> monoSimilar = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}/similar")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap similarMovies = monoSimilar.block();
+
+        return similarMovies;
+    }
+
+    public HashMap getVideos(Long codigo){
+        Mono<HashMap> monoVideos = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}/videos")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap videos = monoVideos.block();
+
+        return videos;
+    }
+
+    public HashMap getWatchProviders(Long codigo){
+        Mono<HashMap> monoWatchProviders = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}/watch/providers")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap watchProviders = monoWatchProviders.block();
+
+        return watchProviders;
+    }
+
+    public HashMap getNowPlaying(){
+        Mono<HashMap> monoNowPlaying = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/movie/now_playing")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .queryParam("region", "BR")
+                        .build())
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap nowPlaying = monoNowPlaying.block();
+
+        return nowPlaying;
+    }
+
+    public HashMap getPopularTMDB(){
+        Mono<HashMap> monoPopular = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/movie/popular")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .queryParam("region", "BR")
+                        .build())
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap popular = monoPopular.block();
+
+        return popular;
+    }
+
+    public HashMap getMaisVotadosTMDB(){
+        Mono<HashMap> monoMaisVotados = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/movie/top_rated")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .queryParam("region", "BR")
+                        .build())
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap maisVotados = monoMaisVotados.block();
+
+        return maisVotados;
+    }
 }
