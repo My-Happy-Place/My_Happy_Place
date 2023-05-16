@@ -48,7 +48,7 @@ public class MovieController {
 
     @GetMapping("/{id}/images")
     public ResponseEntity<HashMap> getImages(@PathVariable Long id){
-        HashMap images = this.movieService.getCredits(id);
+        HashMap images = this.movieService.getImages(id);
         return ResponseEntity.ok().body(images);
     }
 
@@ -62,5 +62,41 @@ public class MovieController {
     public ResponseEntity<HashMap> getReviews(@PathVariable Long id){
         HashMap reviews = this.movieService.getReviews(id);
         return ResponseEntity.ok().body(reviews);
+    }
+
+    @GetMapping("/{id}/similar")
+    public ResponseEntity<HashMap> getSimilarMovies(@PathVariable Long id){
+        HashMap similarMovies = this.movieService.getSimilarMovies(id);
+        return ResponseEntity.ok().body(similarMovies);
+    }
+
+    @GetMapping("/{id}/videos")
+    public ResponseEntity<HashMap> getVideos(@PathVariable Long id){
+        HashMap videos = this.movieService.getVideos(id);
+        return ResponseEntity.ok().body(videos);
+    }
+
+    @GetMapping("/{id}/watchproviders")
+    public ResponseEntity<HashMap> getWatchProviders(@PathVariable Long id){
+        HashMap watchProviders = this.movieService.getWatchProviders(id);
+        return ResponseEntity.ok().body(watchProviders);
+    }
+
+    @GetMapping("/nowplaying")
+    public ResponseEntity<HashMap> getNowPlaying(){
+        HashMap nowPlaying = this.movieService.getNowPlaying();
+        return ResponseEntity.ok().body(nowPlaying);
+    }
+
+    @GetMapping("/popular")
+    public ResponseEntity<HashMap> getPopularTMDB(){
+        HashMap popular = this.movieService.getPopularTMDB();
+        return ResponseEntity.ok().body(popular);
+    }
+
+    @GetMapping("/toprated")
+    public ResponseEntity<HashMap> getMaisVotadosTMDB(){
+        HashMap maisVotados = this.movieService.getMaisVotadosTMDB();
+        return ResponseEntity.ok().body(maisVotados);
     }
 }

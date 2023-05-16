@@ -11,9 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class SeriesService {
@@ -33,6 +31,25 @@ public class SeriesService {
         user.getFavoriteSeries().add(favoriteSeries);
         userService.update(user);
         return favoriteSeries.getId();
+    }
+
+    @Transactional
+    public void excluirFavoriteSerie(FavoriteSeries favoriteSeries){
+        UserDTO user = userService.findById(favoriteSeries.getUserList().get(0).getId());
+        user.getFavoriteSeries().removeIf(favoriteSeries1 -> Objects.equals(favoriteSeries1.getSerieId(), favoriteSeries.getSerieId()));
+        favoriteSeries.getUserList().removeIf(user1 -> Objects.equals(user1.getId(), user.getId()));
+        userService.update(user);
+        favoriteSeriesRepository.delete(favoriteSeries);
+    }
+
+    @Transactional(readOnly = true)
+    public FavoriteSeries findById(Long id){
+        Optional<FavoriteSeries> obj = favoriteSeriesRepository.findBySerieId(id);
+        if(obj.isPresent()){
+            FavoriteSeries favoriteSeries = obj.get();
+            return favoriteSeries;
+        }
+        return new FavoriteSeries();
     }
 
     public SeriesDTO seriePorId(Long codigo){
