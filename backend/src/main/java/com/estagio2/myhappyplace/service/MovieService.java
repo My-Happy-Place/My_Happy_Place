@@ -46,7 +46,7 @@ public class MovieService {
 
     @Transactional(readOnly = true)
     public FavoriteMovies findById(Long id){
-        Optional<FavoriteMovies> obj = favoriteMoviesRepository.findById(id);
+        Optional<FavoriteMovies> obj = favoriteMoviesRepository.findByMovieId(id);
         if(obj.isPresent()){
             FavoriteMovies favoriteMovies = obj.get();
             return favoriteMovies;
