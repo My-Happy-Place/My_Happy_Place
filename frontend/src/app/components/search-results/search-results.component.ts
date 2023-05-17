@@ -12,7 +12,7 @@ import { Content } from 'src/app/models/content';
 export class SearchResultsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
+    // private router: Router,
     private contentService: ContentService
   ) {}
 
@@ -25,11 +25,11 @@ export class SearchResultsComponent implements OnInit {
       this.isLoading = true;
       this.search = routeParams['search'];
 
-      this.router
-        .navigateByUrl('/search', { skipLocationChange: true })
-        .then(() => {
-          this.router.navigate(['.', { myParam: this.search }]);
-        });
+      // this.router
+      //   .navigateByUrl('/search', { skipLocationChange: true })
+      //   .then(() => {
+      //     this.router.navigate(['.', { myParam: this.search }]);
+      //   });
 
       this.results = [];
 

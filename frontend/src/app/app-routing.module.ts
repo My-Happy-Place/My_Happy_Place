@@ -7,13 +7,11 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'user', component: UserComponent },
-  { path: 'search/:search', component: SearchResultsComponent },
+  { path: 'search/:search', component: SearchResultsComponent, title: "Busca" },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
-  ],
+  imports: [RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
