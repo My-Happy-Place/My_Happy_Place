@@ -89,4 +89,22 @@ public class SeriesService {
         return series.isList(favorites, true);
     }
 
+
+    //------------- METODOS TMDB ---------------------------------------------------------------
+
+    public HashMap getCredits(Long codigo){
+        Mono<HashMap> monoCredits = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}/credits")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap credits = monoCredits.block();
+
+        return credits;
+    }
+
 }
