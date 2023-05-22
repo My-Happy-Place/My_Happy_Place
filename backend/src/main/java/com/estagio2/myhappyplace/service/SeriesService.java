@@ -1,5 +1,6 @@
 package com.estagio2.myhappyplace.service;
 
+import com.estagio2.myhappyplace.dto.AllTypesDTO;
 import com.estagio2.myhappyplace.dto.SeriesDTO;
 import com.estagio2.myhappyplace.dto.UserDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
@@ -43,7 +44,7 @@ public class SeriesService {
     }
 
     @Transactional(readOnly = true)
-    public FavoriteSeries findById(Long id){
+    public FavoriteSeries findById(Integer id){
         Optional<FavoriteSeries> obj = favoriteSeriesRepository.findBySerieId(id);
         if(obj.isPresent()){
             FavoriteSeries favoriteSeries = obj.get();
@@ -68,10 +69,10 @@ public class SeriesService {
         return new SeriesDTO(serie);
     }
 
-    public List<SeriesDTO> listFavoriteSeries(List<Long> idsSeries){
+    public List<SeriesDTO> listFavoriteSeries(List<Integer> idsSeries){
         List<HashMap> favorites = new ArrayList<>();
         if(!idsSeries.isEmpty()){
-            for (Long id : idsSeries){
+            for (Integer id : idsSeries){
                 Mono<HashMap> monoMovie = this.webClient.get()
                         .uri(uriBuilder -> uriBuilder.path("/tv/{id}")
                                 .queryParam("api_key", api_key)
@@ -86,25 +87,77 @@ public class SeriesService {
             }
         }
         SeriesDTO series = new SeriesDTO();
-        return series.isList(favorites, true);
+        return series.isList(favorites, true, null);
     }
 
 
     //------------- METODOS TMDB ---------------------------------------------------------------
 
-    public HashMap getCredits(Long codigo){
-        Mono<HashMap> monoCredits = this.webClient.get()
-                .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}/credits")
+    public List<SeriesDTO> getSeriesAiringToday(Long id, Integer page){
+        List<HashMap> series;
+        Mono<HashMap> monoSeries = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/airing_today")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
-                        .build(codigo))
+                        .queryParam("page", page)
+                        .build())
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap credits = monoCredits.block();
+        series = Objects.requireNonNull(Objects.requireNonNull(monoSeries.block()).values().stream().toList());
+        series = (List<HashMap>) series.get(2);
+        String type = "S";
+        for (HashMap aux : series){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        SeriesDTO seriesDTO = new SeriesDTO();
 
-        return credits;
+        return seriesDTO.isList(series, null, type);
     }
 
+    public HashMap getSeriesOnTheAir(){
+        Mono<HashMap> monoSeries = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/on_the_air")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build())
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap series = monoSeries.block();
+
+        return series;
+    }
+
+    public HashMap getSeriesPopular(){
+        Mono<HashMap> monoSeries = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/popular")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build())
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap series = monoSeries.block();
+
+        return series;
+    }
+
+    public HashMap getSeriesTopRated(){
+        Mono<HashMap> monoSeries = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/top_rated")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build())
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap series = monoSeries.block();
+
+        return series;
+    }
 }

@@ -8,6 +8,7 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -60,15 +61,32 @@ public class SeriesDTO {
         this.isFavorite = favorite;
     }
 
-    public List<SeriesDTO> isList(List<HashMap> seriesTMDB, boolean favorito){
+    public SeriesDTO(HashMap seriesTMDB, String type) {
+        this.idTMDB = (Integer) seriesTMDB.get("id");
+        this.name = (String) seriesTMDB.get("name");
+        this.overview = (String) seriesTMDB.get("overview");
+        this.posterPath = (String) seriesTMDB.get("poster_path");
+        this.numberOfEpisodes = (Integer) seriesTMDB.get("number_of_episodes");
+        this.numberOfSeasons = (Integer) seriesTMDB.get("number_of_seasons");
+        this.releaseDate = (String) seriesTMDB.get("first_air_date");
+        this.lastYear = (String) seriesTMDB.get("last_air_date");
+        this.isTvShow = true;
+        this.isFavorite = (Boolean) seriesTMDB.get("isFavorite");
+    }
+
+    public List<SeriesDTO> isList(List<HashMap> seriesTMDB, Boolean favorito, String type){
         List<SeriesDTO> listSeries = new ArrayList<>();
         if(favorito){
             for (HashMap serie : seriesTMDB){
                 listSeries.add(new SeriesDTO(serie, favorito));
             }
+        } else if(Objects.nonNull(type)) {
+            for (HashMap serie : seriesTMDB){
+                listSeries.add(new SeriesDTO(serie, type));
+            }
         } else {
             for (HashMap serie : seriesTMDB){
-                listSeries.add(new SeriesDTO(serie));
+                listSeries.add(new SeriesDTO(serie, favorito));
             }
         }
 

@@ -45,7 +45,7 @@ public class MovieService {
     }
 
     @Transactional(readOnly = true)
-    public FavoriteMovies findById(Long id){
+    public FavoriteMovies findById(Integer id){
         Optional<FavoriteMovies> obj = favoriteMoviesRepository.findByMovieId(id);
         if(obj.isPresent()){
             FavoriteMovies favoriteMovies = obj.get();
@@ -70,10 +70,10 @@ public class MovieService {
         return new MovieDTO(movie);
     }
 
-    public List<HashMap> listAllFavorites(List<Long> idsMovies, List<Long> idsSeries){
+    public List<HashMap> listAllFavorites(List<Integer> idsMovies, List<Integer> idsSeries){
         List<HashMap> favorites = new ArrayList<>();
         if(!idsMovies.isEmpty()){
-            for (Long id : idsMovies){
+            for (Integer id : idsMovies){
                 Mono<HashMap> monoMovie = this.webClient.get()
                         .uri(uriBuilder -> uriBuilder.path("/movie/{id}")
                                 .queryParam("api_key", api_key)
@@ -89,7 +89,7 @@ public class MovieService {
             }
         }
         if (!idsSeries.isEmpty()) {
-            for (Long id : idsSeries) {
+            for (Integer id : idsSeries) {
                 Mono<HashMap> monoSerie = this.webClient.get()
                         .uri(uriBuilder -> uriBuilder.path("/tv/{id}")
                                 .queryParam("api_key", api_key)
@@ -108,10 +108,10 @@ public class MovieService {
         return favorites;
     }
 
-    public List<MovieDTO> listFavoriteMovies(List<Long> idsMovies){
+    public List<MovieDTO> listFavoriteMovies(List<Integer> idsMovies){
         List<HashMap> favorites = new ArrayList<>();
         if(!idsMovies.isEmpty()){
-            for (Long id : idsMovies){
+            for (Integer id : idsMovies){
                 Mono<HashMap> monoMovie = this.webClient.get()
                         .uri(uriBuilder -> uriBuilder.path("/movie/{id}")
                                 .queryParam("api_key", api_key)

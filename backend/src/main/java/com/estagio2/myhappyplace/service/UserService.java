@@ -8,9 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class UserService {
@@ -24,28 +22,42 @@ public class UserService {
 
     @Transactional(readOnly = true)
     public UserDTO findById(Long id){
-        Optional<User> obj = userRepository.findById(id);
+        Optional<User> obj = this.userRepository.findById(id);
         if(obj.isPresent()){
             User user = obj.get();
             return new UserDTO(user);
         }
         return new UserDTO();
     }
+
+    public boolean isFavorite(Integer idTMDB, Long idUser){
+        UserDTO user = findById(idUser);
+        List<Integer> idsTMDB = new ArrayList<>(user.getFavoriteMovies().stream().map(movie -> movie.getMovieId()).toList());
+        user.getFavoriteSeries().stream().map(serie -> idsTMDB.add(serie.getSerieId()));
+        boolean isFavorite = false;
+        for (Integer id : idsTMDB) {
+            if(Objects.equals(id, idTMDB)){
+                isFavorite = true;
+            }
+        }
+        return isFavorite;
+    }
+
     @Transactional(readOnly = true)
     public List<?> findFavorites(Long id, String descricao){
         UserDTO userDTO = findById(id);
         if (userDTO.getId() != null){
             if (descricao == null){
-                List<Long> idsMovies = userDTO.getFavoriteMovies().stream().map(i -> i.getMovieId()).toList();
-                List<Long> idsSeries = userDTO.getFavoriteSeries().stream().map(i -> i.getSerieId()).toList();
+                List<Integer> idsMovies = userDTO.getFavoriteMovies().stream().map(i -> i.getMovieId()).toList();
+                List<Integer> idsSeries = userDTO.getFavoriteSeries().stream().map(i -> i.getSerieId()).toList();
                 return movieService.listAllFavorites(idsMovies, idsSeries);
             }
             if(descricao.trim().equalsIgnoreCase("m")){
-                List<Long> idsMovies = userDTO.getFavoriteMovies().stream().map(i -> i.getMovieId()).toList();
+                List<Integer> idsMovies = userDTO.getFavoriteMovies().stream().map(i -> i.getMovieId()).toList();
                 return movieService.listFavoriteMovies(idsMovies);
             }
             if(descricao.trim().equalsIgnoreCase("s")){
-                List<Long> idsSeries = userDTO.getFavoriteSeries().stream().map(i -> i.getSerieId()).toList();
+                List<Integer> idsSeries = userDTO.getFavoriteSeries().stream().map(i -> i.getSerieId()).toList();
                 return seriesService.listFavoriteSeries(idsSeries);
             }
         }

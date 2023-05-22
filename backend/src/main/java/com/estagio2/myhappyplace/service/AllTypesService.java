@@ -1,12 +1,15 @@
 package com.estagio2.myhappyplace.service;
 
+import com.estagio2.myhappyplace.dto.AllTypesDTO;
 import com.estagio2.myhappyplace.dto.SeriesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-import java.util.HashMap;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class AllTypesService {
@@ -16,7 +19,10 @@ public class AllTypesService {
     @Autowired
     private WebClient webClient;
 
-    public HashMap getCollection(String name){
+    @Autowired
+    private UserService userService;
+
+    public HashMap getCollection(Long id, String name, Integer page){
         Mono<HashMap> monoSearch = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/search/collection")
                         .queryParam("api_key", api_key)
@@ -32,44 +38,62 @@ public class AllTypesService {
         return search;
     }
 
-    public HashMap getMoviesByDescription(String descricao){
+    public List<AllTypesDTO> getMoviesByDescription(Long id, String descricao, Integer page){
+        List<HashMap> movies;
         Mono<HashMap> monoMovies = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/search/movie")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
                         .queryParam("query", descricao)
+                        .queryParam("page", page)
                         .build())
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap search = monoMovies.block();
+        movies = Objects.requireNonNull(Objects.requireNonNull(monoMovies.block()).values().stream().toList());
+        movies = (List<HashMap>) movies.get(2);
+        String type = "M";
+        for (HashMap aux : movies){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        AllTypesDTO allTypesDTO = new AllTypesDTO();
 
-        return search;
+        return allTypesDTO.isList(movies, type);
     }
 
-    public HashMap getAllTypesByDescription(String descricao){
+    public List<AllTypesDTO> getAllTypesByDescription(Long id, String descricao, Integer page){
+        List<HashMap> list;
         Mono<HashMap> monoSearch = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/search/multi")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
                         .queryParam("query", descricao)
+                        .queryParam("page", page)
                         .build())
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap search = monoSearch.block();
+        list = Objects.requireNonNull(Objects.requireNonNull(monoSearch.block()).values().stream().toList());
+        list = (List<HashMap>) list.get(2);
+//        String type = "M";
+        for (HashMap aux : list){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        AllTypesDTO allTypesDTO = new AllTypesDTO();
 
-        return search;
+        return allTypesDTO.isList(list, null);
     }
 
-    public HashMap getSeriesByDescription(String descricao){
+    public List<AllTypesDTO> getSeriesByDescription(Long id, String descricao, Integer page){
+        List<HashMap> series;
         Mono<HashMap> monoSeries = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/search/tv")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
                         .queryParam("query", descricao)
+                        .queryParam("page", page)
                         .build())
 
                 .retrieve()
@@ -77,51 +101,83 @@ public class AllTypesService {
 
         HashMap search = monoSeries.block();
 
-        return search;
+        series = Objects.requireNonNull(Objects.requireNonNull(monoSeries.block()).values().stream().toList());
+        series = (List<HashMap>) series.get(2);
+        String type = "S";
+        for (HashMap aux : series){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        AllTypesDTO allTypesDTO = new AllTypesDTO();
+
+        return allTypesDTO.isList(series, type);
     }
 
-    public HashMap getTrendingAllTypes(String timeWindow){
+    public List<AllTypesDTO> getTrendingAllTypes(Long id, String timeWindow, Integer page){
+        List<HashMap> trending;
         Mono<HashMap> monoTrending = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/trending/all/{timeWindow}")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .build(timeWindow))
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap trending = monoTrending.block();
+        trending = Objects.requireNonNull(Objects.requireNonNull(monoTrending.block()).values().stream().toList());
+        trending = (List<HashMap>) trending.get(2);
+//        String type = "S";
+        for (HashMap aux : trending){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        AllTypesDTO allTypesDTO = new AllTypesDTO();
 
-        return trending;
+        return allTypesDTO.isList(trending, null);
     }
 
-    public HashMap getTrendingMovies(String timeWindow){
+    public List<AllTypesDTO> getTrendingMovies(Long id, String timeWindow, Integer page){
+        List<HashMap> trendingMovies;
         Mono<HashMap> monoTrending = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/trending/movie/{timeWindow}")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .build(timeWindow))
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap trendingMovies = monoTrending.block();
+        trendingMovies = Objects.requireNonNull(Objects.requireNonNull(monoTrending.block()).values().stream().toList());
+        trendingMovies = (List<HashMap>) trendingMovies.get(2);
+        String type = "M";
+        for (HashMap aux : trendingMovies){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        AllTypesDTO allTypesDTO = new AllTypesDTO();
 
-        return trendingMovies;
+        return allTypesDTO.isList(trendingMovies, type);
     }
 
-    public HashMap getTrendingSeries(String timeWindow){
+    public List<AllTypesDTO> getTrendingSeries(Long id, String timeWindow, Integer page){
+        List<HashMap> trendingSeries;
         Mono<HashMap> monoTrending = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/trending/tv/{timeWindow}")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .build(timeWindow))
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap trendingSeries = monoTrending.block();
+        trendingSeries = Objects.requireNonNull(Objects.requireNonNull(monoTrending.block()).values().stream().toList());
+        trendingSeries = (List<HashMap>) trendingSeries.get(2);
+        String type = "S";
+        for (HashMap aux : trendingSeries){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        AllTypesDTO allTypesDTO = new AllTypesDTO();
 
-        return trendingSeries;
+        return allTypesDTO.isList(trendingSeries, type);
     }
 }

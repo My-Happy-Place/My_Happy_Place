@@ -27,5 +27,5 @@ public class FavoriteSeries {
     private List<User> userList = new ArrayList<User>();
 
     @Column(name = "serieId_TMDB")
-    private Long serieId;
+    private Integer serieId;
 }

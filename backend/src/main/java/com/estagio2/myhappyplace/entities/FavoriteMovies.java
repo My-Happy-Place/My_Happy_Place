@@ -26,5 +26,5 @@ public class FavoriteMovies {
     private List<User> userList = new ArrayList<User>();
 
     @Column(name = "movieId_TMDB")
-    private Long movieId;
+    private Integer movieId;
 }
