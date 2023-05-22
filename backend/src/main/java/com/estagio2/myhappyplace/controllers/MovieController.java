@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import com.estagio2.myhappyplace.service.MovieService;
 
 import java.util.HashMap;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/movies")
@@ -53,20 +54,22 @@ public class MovieController {
     }
 
     @GetMapping("/{id}/recommendations")
-    public ResponseEntity<HashMap> getRecommendations(@PathVariable Long id){
-        HashMap recommendations = this.movieService.getRecommendations(id);
+    public ResponseEntity<List<MovieDTO>> getRecommendations(@PathVariable Long id, @RequestParam(value = "idUser") Long idUser,
+                                                      @RequestParam(value = "page") Integer page){
+        List<MovieDTO> recommendations = this.movieService.getRecommendations(id, idUser, page);
         return ResponseEntity.ok().body(recommendations);
     }
 
     @GetMapping("/{id}/reviews")
-    public ResponseEntity<HashMap> getReviews(@PathVariable Long id){
-        HashMap reviews = this.movieService.getReviews(id);
+    public ResponseEntity<HashMap> getReviews(@PathVariable Long id, @RequestParam(value = "page") Integer page){
+        HashMap reviews = this.movieService.getReviews(id, page);
         return ResponseEntity.ok().body(reviews);
     }
 
     @GetMapping("/{id}/similar")
-    public ResponseEntity<HashMap> getSimilarMovies(@PathVariable Long id){
-        HashMap similarMovies = this.movieService.getSimilarMovies(id);
+    public ResponseEntity<List<MovieDTO>> getSimilarMovies(@PathVariable Long id,  @RequestParam(value = "idUser") Long idUser,
+                                                    @RequestParam(value = "page") Integer page){
+        List<MovieDTO> similarMovies = this.movieService.getSimilarMovies(id, idUser, page);
         return ResponseEntity.ok().body(similarMovies);
     }
 
@@ -83,20 +86,20 @@ public class MovieController {
     }
 
     @GetMapping("/nowplaying")
-    public ResponseEntity<HashMap> getNowPlaying(){
-        HashMap nowPlaying = this.movieService.getNowPlaying();
+    public ResponseEntity<List<MovieDTO>> getNowPlaying(@RequestParam(value = "idUser") Long idUser, @RequestParam(value = "page") Integer page){
+        List<MovieDTO> nowPlaying = this.movieService.getNowPlaying(idUser, page);
         return ResponseEntity.ok().body(nowPlaying);
     }
 
     @GetMapping("/popular")
-    public ResponseEntity<HashMap> getPopularTMDB(){
-        HashMap popular = this.movieService.getPopularTMDB();
+    public ResponseEntity<List<MovieDTO>> getPopularTMDB(@RequestParam(value = "idUser") Long idUser, @RequestParam(value = "page") Integer page){
+        List<MovieDTO> popular = this.movieService.getPopularTMDB(idUser, page);
         return ResponseEntity.ok().body(popular);
     }
 
     @GetMapping("/toprated")
-    public ResponseEntity<HashMap> getMaisVotadosTMDB(){
-        HashMap maisVotados = this.movieService.getMaisVotadosTMDB();
+    public ResponseEntity<List<MovieDTO>> getMaisVotadosTMDB(@RequestParam(value = "idUser") Long idUser, @RequestParam(value = "page") Integer page){
+        List<MovieDTO> maisVotados = this.movieService.getMaisVotadosTMDB(idUser, page);
         return ResponseEntity.ok().body(maisVotados);
     }
 }

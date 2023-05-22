@@ -50,21 +50,21 @@ public class SeriesController {
         return ResponseEntity.ok().body(seriesAiringToday);
     }
 
-    @GetMapping("/ontheair")
-    public ResponseEntity<HashMap> getSeriesOnTheAir(){
-        HashMap seriesOnTheAir = this.seriesService.getSeriesOnTheAir();
+    @GetMapping("/ontheair/{id}")
+    public ResponseEntity<List<SeriesDTO>> getSeriesOnTheAir(@PathVariable Long id, @RequestParam(value = "page") Integer page){
+        List<SeriesDTO> seriesOnTheAir = this.seriesService.getSeriesOnTheAir(id, page);
         return ResponseEntity.ok().body(seriesOnTheAir);
     }
 
-    @GetMapping("/popular")
-    public ResponseEntity<HashMap> getSeriesPopular(){
-        HashMap seriesPopular = this.seriesService.getSeriesPopular();
+    @GetMapping("/popular/{id}")
+    public ResponseEntity<List<SeriesDTO>> getSeriesPopular(@PathVariable Long id, @RequestParam(value = "page") Integer page){
+        List<SeriesDTO> seriesPopular = this.seriesService.getSeriesPopular(id, page);
         return ResponseEntity.ok().body(seriesPopular);
     }
 
-    @GetMapping("/toprated")
-    public ResponseEntity<HashMap> getSeriesTopRated(){
-        HashMap seriesTopRated = this.seriesService.getSeriesTopRated();
+    @GetMapping("/toprated/{id}")
+    public ResponseEntity<List<SeriesDTO>> getSeriesTopRated(@PathVariable Long id, @RequestParam(value = "page") Integer page){
+        List<SeriesDTO> seriesTopRated = this.seriesService.getSeriesTopRated(id, page);
         return ResponseEntity.ok().body(seriesTopRated);
     }
 }

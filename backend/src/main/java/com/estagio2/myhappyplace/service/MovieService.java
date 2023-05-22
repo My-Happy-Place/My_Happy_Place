@@ -126,7 +126,7 @@ public class MovieService {
             }
         }
         MovieDTO movies = new MovieDTO();
-        return movies.isList(favorites, true);
+        return movies.isList(favorites, true, null);
     }
 
 
@@ -185,26 +185,35 @@ public class MovieService {
         return images;
     }
 
-    public HashMap getRecommendations(Long codigo){
+    public List<MovieDTO> getRecommendations(Long codigo, Long idUser,  Integer page){
+        List<HashMap> recommendations;
         Mono<HashMap> monoRecommendations = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}/recommendations")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .build(codigo))
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap recommendations = monoRecommendations.block();
+        recommendations = Objects.requireNonNull(Objects.requireNonNull(monoRecommendations.block()).values().stream().toList());
+        recommendations = (List<HashMap>) recommendations.get(2);
+        String type = "M";
+        for (HashMap aux : recommendations){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), idUser));
+        }
+        MovieDTO movieDTO = new MovieDTO();
 
-        return recommendations;
+        return movieDTO.isList(recommendations, false, type);
     }
 
-    public HashMap getReviews(Long codigo){
+    public HashMap getReviews(Long codigo, Integer page){
         Mono<HashMap> monoReviews = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}/reviews")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .build(codigo))
 
                 .retrieve()
@@ -215,19 +224,27 @@ public class MovieService {
         return reviews;
     }
 
-    public HashMap getSimilarMovies(Long codigo){
+    public List<MovieDTO> getSimilarMovies(Long codigo, Long idUser, Integer page){
+        List<HashMap> similarMovies;
         Mono<HashMap> monoSimilar = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}/similar")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .build(codigo))
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap similarMovies = monoSimilar.block();
+        similarMovies = Objects.requireNonNull(Objects.requireNonNull(monoSimilar.block()).values().stream().toList());
+        similarMovies = (List<HashMap>) similarMovies.get(2);
+        String type = "M";
+        for (HashMap aux : similarMovies){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), idUser));
+        }
+        MovieDTO movieDTO = new MovieDTO();
 
-        return similarMovies;
+        return movieDTO.isList(similarMovies, false, type);
     }
 
     public HashMap getVideos(Long codigo){
@@ -260,51 +277,75 @@ public class MovieService {
         return watchProviders;
     }
 
-    public HashMap getNowPlaying(){
+    public List<MovieDTO> getNowPlaying(Long idUser, Integer page){
+        List<HashMap> movies;
         Mono<HashMap> monoNowPlaying = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/movie/now_playing")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .queryParam("region", "BR")
                         .build())
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap nowPlaying = monoNowPlaying.block();
+        movies = Objects.requireNonNull(Objects.requireNonNull(monoNowPlaying.block()).values().stream().toList());
+        movies = (List<HashMap>) movies.get(3);
+        String type = "M";
+        for (HashMap aux : movies){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), idUser));
+        }
+        MovieDTO movieDTO = new MovieDTO();
 
-        return nowPlaying;
+        return movieDTO.isList(movies, false, type);
     }
 
-    public HashMap getPopularTMDB(){
+    public List<MovieDTO> getPopularTMDB(Long idUser, Integer page){
+        List<HashMap> populares;
         Mono<HashMap> monoPopular = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/movie/popular")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .queryParam("region", "BR")
                         .build())
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap popular = monoPopular.block();
+        populares = Objects.requireNonNull(Objects.requireNonNull(monoPopular.block()).values().stream().toList());
+        populares = (List<HashMap>) populares.get(2);
+        String type = "M";
+        for (HashMap aux : populares){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), idUser));
+        }
+        MovieDTO movieDTO = new MovieDTO();
 
-        return popular;
+        return movieDTO.isList(populares, false, type);
     }
 
-    public HashMap getMaisVotadosTMDB(){
+    public List<MovieDTO> getMaisVotadosTMDB(Long idUser, Integer page){
+        List<HashMap> maisVotados;
         Mono<HashMap> monoMaisVotados = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/movie/top_rated")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .queryParam("region", "BR")
                         .build())
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap maisVotados = monoMaisVotados.block();
+        maisVotados = Objects.requireNonNull(Objects.requireNonNull(monoMaisVotados.block()).values().stream().toList());
+        maisVotados = (List<HashMap>) maisVotados.get(2);
+        String type = "M";
+        for (HashMap aux : maisVotados){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), idUser));
+        }
+        MovieDTO movieDTO = new MovieDTO();
 
-        return maisVotados;
+        return movieDTO.isList(maisVotados, false, type);
     }
 }

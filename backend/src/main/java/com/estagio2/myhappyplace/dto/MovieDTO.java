@@ -10,18 +10,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class MovieDTO {
-
-    private UserService userService = new UserService();
 
     private Integer idTMDB;
 
@@ -62,11 +57,26 @@ public class MovieDTO {
         this.isFavorite = favorito;
     }
 
-    public List<MovieDTO> isList(List<HashMap> moviesTMDB, boolean favorito){
+    public MovieDTO(HashMap movieTMDB, String type) {
+        this.idTMDB = (Integer) movieTMDB.get("id");
+        this.name = (String) movieTMDB.get("title");
+        this.overview = (String) movieTMDB.get("overview");
+        this.posterPath = (String) movieTMDB.get("poster_path");
+        this.releaseDate = (String) movieTMDB.get("release_date");
+        this.runtime = (Integer) movieTMDB.get("runtime");
+        this.isTvShow = false;
+        this.isFavorite = (Boolean) movieTMDB.get("isFavorite");
+    }
+
+    public List<MovieDTO> isList(List<HashMap> moviesTMDB, boolean favorito, String type){
         List<MovieDTO> listMovie = new ArrayList<>();
         if(favorito){
             for (HashMap movie : moviesTMDB){
                 listMovie.add(new MovieDTO(movie, favorito));
+            }
+        } else if(Objects.nonNull(type)){
+            for (HashMap movie : moviesTMDB){
+                listMovie.add(new MovieDTO(movie, type));
             }
         } else {
             for (HashMap movie : moviesTMDB){
@@ -91,7 +101,6 @@ public class MovieDTO {
     }
 
     public boolean temNosFavoritos(Integer idTMDB, Long idUser){
-         UserDTO user = userService.findById(idUser);
 
         return true;
     }

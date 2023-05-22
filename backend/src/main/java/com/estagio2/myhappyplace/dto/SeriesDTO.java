@@ -74,7 +74,7 @@ public class SeriesDTO {
         this.isFavorite = (Boolean) seriesTMDB.get("isFavorite");
     }
 
-    public List<SeriesDTO> isList(List<HashMap> seriesTMDB, Boolean favorito, String type){
+    public List<SeriesDTO> isList(List<HashMap> seriesTMDB, boolean favorito, String type){
         List<SeriesDTO> listSeries = new ArrayList<>();
         if(favorito){
             for (HashMap serie : seriesTMDB){
@@ -86,7 +86,7 @@ public class SeriesDTO {
             }
         } else {
             for (HashMap serie : seriesTMDB){
-                listSeries.add(new SeriesDTO(serie, favorito));
+                listSeries.add(new SeriesDTO(serie));
             }
         }
 

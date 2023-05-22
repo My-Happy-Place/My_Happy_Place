@@ -113,51 +113,75 @@ public class SeriesService {
         }
         SeriesDTO seriesDTO = new SeriesDTO();
 
-        return seriesDTO.isList(series, null, type);
+        return seriesDTO.isList(series, false, type);
     }
 
-    public HashMap getSeriesOnTheAir(){
+    public List<SeriesDTO> getSeriesOnTheAir(Long id, Integer page){
+        List<HashMap> series;
         Mono<HashMap> monoSeries = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/tv/on_the_air")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .build())
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap series = monoSeries.block();
+        series = Objects.requireNonNull(Objects.requireNonNull(monoSeries.block()).values().stream().toList());
+        series = (List<HashMap>) series.get(2);
+        String type = "S";
+        for (HashMap aux : series){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        SeriesDTO seriesDTO = new SeriesDTO();
 
-        return series;
+        return seriesDTO.isList(series, false, type);
     }
 
-    public HashMap getSeriesPopular(){
+    public List<SeriesDTO> getSeriesPopular(Long id, Integer page){
+        List<HashMap> series;
         Mono<HashMap> monoSeries = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/tv/popular")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .build())
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap series = monoSeries.block();
+        series = Objects.requireNonNull(Objects.requireNonNull(monoSeries.block()).values().stream().toList());
+        series = (List<HashMap>) series.get(2);
+        String type = "S";
+        for (HashMap aux : series){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        SeriesDTO seriesDTO = new SeriesDTO();
 
-        return series;
+        return seriesDTO.isList(series, false, type);
     }
 
-    public HashMap getSeriesTopRated(){
+    public List<SeriesDTO> getSeriesTopRated(Long id, Integer page){
+        List<HashMap> series;
         Mono<HashMap> monoSeries = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/tv/top_rated")
                         .queryParam("api_key", api_key)
                         .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
                         .build())
 
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap series = monoSeries.block();
+        series = Objects.requireNonNull(Objects.requireNonNull(monoSeries.block()).values().stream().toList());
+        series = (List<HashMap>) series.get(2);
+        String type = "S";
+        for (HashMap aux : series){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        SeriesDTO seriesDTO = new SeriesDTO();
 
-        return series;
+        return seriesDTO.isList(series, false, type);
     }
 }
