@@ -19,6 +19,15 @@ export class SearchResultsComponent implements OnInit {
   search!: string;
   results: Content[] = [];
   isLoading: boolean = false;
+  selectedRadio: string = 'multisearch';
+
+  changeSearchType(): void {
+    this.contentService
+      .getSearchResults(this.search, this.selectedRadio)
+      .subscribe((data) => {
+        this.results = data;
+      });
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((routeParams) => {
@@ -37,28 +46,8 @@ export class SearchResultsComponent implements OnInit {
         .getSearchResults(this.search)
         .pipe(finalize(() => (this.isLoading = false)))
         .subscribe((data) => {
-          data.results = data.results.filter(
-            (content: any) =>
-              content.media_type == 'movie' || content.media_type == 'tv'
-          );
-
-          data.results.map((content: any) => {
-            this.results.push({
-              id: content.id,
-              name: content.title == undefined ? content.name : content.title,
-              overview: content.overview,
-              posterPath: content.poster_path,
-              releaseDate:
-                content.release_date == undefined
-                  ? content.first_air_date
-                  : content.release_date,
-              isFavorite: this.contentService.favoritesIds.includes(content.id),
-              isTvShow: content.seasons != undefined,
-            });
-          });
-          this.results = this.results.filter(
-            (content) => content.posterPath !== null && content.overview !== ''
-          );
+          this.results = data;
+          console.log(this.results);
         });
     });
   }

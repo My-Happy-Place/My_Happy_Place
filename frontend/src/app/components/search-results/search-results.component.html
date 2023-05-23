@@ -1,12 +1,12 @@
-<h1>Resultados da Busca:</h1>
+<h1>Resultados da busca:</h1>
 
 <div class="page">
   <div class="filter">
     <label id="radio-label">Filtros</label>
-    <mat-radio-group aria-labelledby="radio-label" class="example-radio-group">
-      <mat-radio-button class="radio-btn" value="0">Todos</mat-radio-button>
-      <mat-radio-button class="radio-btn" value="1">Filmes</mat-radio-button>
-      <mat-radio-button class="radio-btn" value="2">Séries</mat-radio-button>
+    <mat-radio-group aria-labelledby="radio-label" [(ngModel)]="selectedRadio" (change)="changeSearchType()">
+      <mat-radio-button class="radio-btn" value="multisearch">Todos</mat-radio-button>
+      <mat-radio-button class="radio-btn" value="movies">Filmes</mat-radio-button>
+      <mat-radio-button class="radio-btn" value="series">Séries</mat-radio-button>
     </mat-radio-group>
   </div>
 

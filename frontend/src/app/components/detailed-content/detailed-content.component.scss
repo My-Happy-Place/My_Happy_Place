@@ -46,11 +46,11 @@ img {
 }
 
 .heart {
-  transform: scale(1.10);
+  transform: scale(1.1);
 }
 
 .overview {
   margin-right: 1em;
-  text-overflow: ellipsis;
+  height: 120px;
   overflow: hidden;
 }

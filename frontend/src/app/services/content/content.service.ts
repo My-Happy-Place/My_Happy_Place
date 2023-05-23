@@ -32,10 +32,11 @@ export class ContentService {
 
   getSearchResults(
     query: string,
-    searchType: string = 'multi'
+    searchType: string = 'multisearch',
+    page: number = 1
   ): Observable<any> {
     return this.http.get(
-      `${this.tmdbURL}/search/${searchType}?api_key=${this.apiKey}&language=pt-BR&query=${query}`
+      `api/all-types/${searchType}/1?descricao="${query}"&page=${page}`
     );
   }
 
