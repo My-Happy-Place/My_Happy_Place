@@ -99,8 +99,6 @@ public class AllTypesService {
                 .retrieve()
                 .bodyToMono(HashMap.class);
 
-        HashMap search = monoSeries.block();
-
         series = Objects.requireNonNull(Objects.requireNonNull(monoSeries.block()).values().stream().toList());
         series = (List<HashMap>) series.get(2);
         String type = "S";

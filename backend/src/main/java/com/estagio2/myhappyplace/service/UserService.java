@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -33,7 +34,7 @@ public class UserService {
     public boolean isFavorite(Integer idTMDB, Long idUser){
         UserDTO user = findById(idUser);
         List<Integer> idsTMDB = new ArrayList<>(user.getFavoriteMovies().stream().map(movie -> movie.getMovieId()).toList());
-        user.getFavoriteSeries().stream().map(serie -> idsTMDB.add(serie.getSerieId()));
+        idsTMDB.addAll(user.getFavoriteSeries().stream().map(serie -> serie.getSerieId()).toList());
         boolean isFavorite = false;
         for (Integer id : idsTMDB) {
             if(Objects.equals(id, idTMDB)){
