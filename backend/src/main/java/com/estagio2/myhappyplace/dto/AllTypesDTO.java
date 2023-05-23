@@ -93,7 +93,7 @@ public class AllTypesDTO {
 
     public HashMap convertHashMap(AllTypesDTO allTypesDTO){
         HashMap aux = new HashMap();
-        aux.put("id", allTypesDTO.idTMDB);
+        aux.put("idTMDB", allTypesDTO.idTMDB);
         aux.put("name", allTypesDTO.name);
         aux.put("overview", allTypesDTO.overview);
         aux.put("posterPath", allTypesDTO.posterPath);

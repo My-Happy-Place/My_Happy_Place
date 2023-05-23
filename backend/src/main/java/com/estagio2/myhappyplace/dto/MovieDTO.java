@@ -89,7 +89,7 @@ public class MovieDTO {
 
     public HashMap convertHashMap(MovieDTO movieDTO){
         HashMap aux = new HashMap();
-        aux.put("id", movieDTO.idTMDB);
+        aux.put("idTMDB", movieDTO.idTMDB);
         aux.put("name", movieDTO.name);
         aux.put("overview", movieDTO.overview);
         aux.put("posterPath", movieDTO.posterPath);

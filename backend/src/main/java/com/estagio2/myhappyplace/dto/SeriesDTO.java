@@ -95,7 +95,7 @@ public class SeriesDTO {
 
     public HashMap convertHashMap(SeriesDTO seriesDTO){
         HashMap aux = new HashMap();
-        aux.put("id", seriesDTO.idTMDB);
+        aux.put("idTMDB", seriesDTO.idTMDB);
         aux.put("name", seriesDTO.name);
         aux.put("overview", seriesDTO.overview);
         aux.put("posterPath", seriesDTO.posterPath);
