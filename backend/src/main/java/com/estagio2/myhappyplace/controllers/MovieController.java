@@ -37,7 +37,7 @@ public class MovieController {
     @PutMapping
     public ResponseEntity<Void> excluirFilmeFavorito(@RequestBody FavoriteMovies body){
         FavoriteMovies favoriteMovies = movieService.findById(body.getMovieId());
-        if (favoriteMovies.getId() == null){
+        if (Objects.nonNull(favoriteMovies.getId())){
             return ResponseEntity.notFound().build();
         }
         movieService.excluirFavoriteMovie(body);

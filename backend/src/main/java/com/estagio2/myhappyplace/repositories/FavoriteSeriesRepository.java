@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface FavoriteSeriesRepository extends JpaRepository<FavoriteSeries, Long> {
     Optional<FavoriteSeries> findBySerieId(Integer id);
+
+    Integer deleteBySerieId(Integer id);
 }

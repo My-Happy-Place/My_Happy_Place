@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/series")
@@ -26,15 +27,19 @@ public class SeriesController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> salvarSerieFavorita(@RequestBody FavoriteSeries favoriteSeries){
-        Long id = this.seriesService.saveFavoriteSerie(favoriteSeries);
+    public ResponseEntity<String> salvarSerieFavorita(@RequestBody FavoriteSeries body){
+        FavoriteSeries favoriteSeries = seriesService.findById(body.getSerieId());
+        if (Objects.nonNull(favoriteSeries.getId())){
+            return ResponseEntity.badRequest().body("Serie já favoritada.");
+        }
+        this.seriesService.saveFavoriteSerie(favoriteSeries);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping
     public ResponseEntity<Void> excluirSerieFavorita(@RequestBody FavoriteSeries body){
         FavoriteSeries favoriteSeries = seriesService.findById(body.getSerieId());
-        if (favoriteSeries.getId() == null){
+        if (Objects.nonNull(favoriteSeries.getId())){
             return ResponseEntity.notFound().build();
         }
         seriesService.excluirFavoriteSerie(body);

@@ -40,7 +40,7 @@ public class SeriesService {
         user.getFavoriteSeries().removeIf(favoriteSeries1 -> Objects.equals(favoriteSeries1.getSerieId(), favoriteSeries.getSerieId()));
         favoriteSeries.getUserList().removeIf(user1 -> Objects.equals(user1.getId(), user.getId()));
         userService.update(user);
-        favoriteSeriesRepository.delete(favoriteSeries);
+        favoriteSeriesRepository.deleteBySerieId(favoriteSeries.getSerieId());
     }
 
     @Transactional(readOnly = true)
