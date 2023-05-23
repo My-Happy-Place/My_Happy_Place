@@ -1,13 +1,16 @@
-<mat-toolbar color="primary">
-  <span class="logo" routerLink="/user">My Happy Place</span>
-  <mat-form-field floatLabel="never">
-    <input matInput type="text" name="search" placeholder="Pesquisar" [(ngModel)]="search"
-      (keyup.enter)="onEnterPress(search)">
-    <button matSuffix mat-button routerLink="/search/{{search}}"><mat-icon>search</mat-icon></button>
-  </mat-form-field>
-</mat-toolbar>
+<div class="container">
+  <mat-toolbar color="primary">
+    <span class="logo" routerLink="/user">My Happy Place</span>
+    <mat-form-field floatLabel="never">
+      <input matInput type="text" name="search" placeholder="Pesquisar" [(ngModel)]="search"
+        (keyup.enter)="onEnterPress(search)">
+      <button matSuffix mat-button routerLink="/search/{{search}}"><mat-icon>search</mat-icon></button>
+    </mat-form-field>
+  </mat-toolbar>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+
+</div>
 
 <footer>
   <span>My Happy Place &copy; 2023</span>
