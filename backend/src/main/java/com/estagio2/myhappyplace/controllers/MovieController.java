@@ -10,6 +10,7 @@ import com.estagio2.myhappyplace.service.MovieService;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping(value = "/movies")
@@ -25,8 +26,12 @@ public class MovieController {
         return ResponseEntity.ok().body(movie);
     }
     @PostMapping
-    public ResponseEntity<Void> salvarFilmeFavorito(@RequestBody FavoriteMovies favoriteMovies){
-        Long id = this.movieService.saveFavoriteMovie(favoriteMovies);
+    public ResponseEntity<String> salvarFilmeFavorito(@RequestBody FavoriteMovies body){
+        FavoriteMovies favoriteMovies = movieService.findById(body.getMovieId());
+        if (Objects.nonNull(favoriteMovies.getId())){
+            return ResponseEntity.badRequest().body("Filme já favoritado.");
+        }
+        this.movieService.saveFavoriteMovie(body);
         return ResponseEntity.noContent().build();
     }
     @PutMapping

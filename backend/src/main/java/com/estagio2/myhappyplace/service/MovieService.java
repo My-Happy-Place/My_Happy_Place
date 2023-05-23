@@ -41,7 +41,7 @@ public class MovieService {
         user.getFavoriteMovies().removeIf(favoriteMovies1 -> Objects.equals(favoriteMovies1.getMovieId(), favoriteMovies.getMovieId()));
         favoriteMovies.getUserList().removeIf(user1 -> Objects.equals(user1.getId(), user.getId()));
         userService.update(user);
-        favoriteMoviesRepository.delete(favoriteMovies);
+        favoriteMoviesRepository.deleteByMovieId(favoriteMovies.getMovieId());
     }
 
     @Transactional(readOnly = true)
