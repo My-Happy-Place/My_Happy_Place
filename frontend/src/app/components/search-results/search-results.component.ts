@@ -31,6 +31,7 @@ export class SearchResultsComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe((routeParams) => {
+      this.selectedRadio = 'multisearch';
       this.isLoading = true;
       this.search = routeParams['search'];
 
