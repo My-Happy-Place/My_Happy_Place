@@ -1,5 +1,5 @@
 export interface Content {
-  id: number;
+  idTMDB: number;
   name: string;
   overview: string;
   posterPath: string;

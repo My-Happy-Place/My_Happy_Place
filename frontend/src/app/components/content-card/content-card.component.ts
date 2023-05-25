@@ -29,7 +29,7 @@ export class ContentCardComponent implements OnInit {
     this.favoriteIcon = this.isFavorite ? 'favorite_border' : 'favorite';
     this.isFavorite = !this.isFavorite;
     this.contentService
-      .setFavoriteStatus(this.item.id, this.item.isTvShow, this.isFavorite)
+      .setFavoriteStatus(this.item.idTMDB, this.item.isTvShow, this.isFavorite)
       .subscribe();
   }
 }

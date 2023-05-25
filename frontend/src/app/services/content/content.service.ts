@@ -1,32 +1,24 @@
-import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Content } from 'src/app/models/content';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContentService {
-  private jsonURL = '/assets/favorites.json';
-  private tmdbURL = 'https://api.themoviedb.org/3';
-  private readonly apiKey = '7700f72b85d9932120594c5f27f336e1';
-  favoritesIds: number[] = [];
-
   constructor(private http: HttpClient) {}
 
   getFavorites(): Observable<any> {
     return this.http.get('api/users/1/findFavorites');
   }
 
-  getTrendingMovies(): Observable<any> {
-    return this.http.get(
-      `${this.tmdbURL}/trending/movie/week?api_key=${this.apiKey}&language=pt-BR`
-    );
+  getPopularMovies(): Observable<any> {
+    return this.http.get(`api/movies/popular?idUser=1&page=1`);
   }
 
-  getTrendingTvShows(): Observable<any> {
+  getTrendingShows(): Observable<any> {
     return this.http.get(
-      `${this.tmdbURL}/trending/tv/week?api_key=${this.apiKey}&language=pt-BR`
+      `api/all-types/trendingseries/1?timeWindow=week&page=1`
     );
   }
 
@@ -54,11 +46,7 @@ export class ContentService {
       ],
     };
 
-    if (isTvShow) {
-      body.serieId = id;
-    } else {
-      body.movieId = id;
-    }
+    isTvShow ? (body.serieId = id) : (body.movieId = id);
 
     return status
       ? this.http.post(`api/${uri}`, body)

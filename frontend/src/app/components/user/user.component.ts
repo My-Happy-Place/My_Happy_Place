@@ -24,36 +24,13 @@ export class UserComponent implements OnInit {
       this.favorites = data;
     });
 
-    this.contentService.getTrendingMovies().subscribe((data) => {
-      data.results.map((content: any) => {
-        this.trendingMovies.push({
-          id: content.id,
-          name: content.title,
-          overview: content.overview,
-          posterPath: content.poster_path,
-          releaseDate: content.release_date,
-          runtime: content.runtime,
-          isFavorite: this.contentService.favoritesIds.includes(content.id),
-          isTvShow: false,
-        });
-      });
+    this.contentService.getPopularMovies().subscribe((data) => {
+      this.trendingMovies = data;
     });
 
-    this.contentService.getTrendingTvShows().subscribe((data) => {
-      data.results.map((content: any) => {
-        this.trendingTv.push({
-          id: content.id,
-          name: content.name,
-          overview: content.overview,
-          posterPath: content.poster_path,
-          numberOfEpisodes: content.numberOfEpisodes,
-          numberOfSeasons: content.numberOfSeasons,
-          releaseDate: content.first_air_date,
-          lastYear: content.last_air_date,
-          isFavorite: this.contentService.favoritesIds.includes(content.id),
-          isTvShow: true,
-        });
-      });
+    this.contentService.getTrendingShows().subscribe((data) => {
+      this.trendingTv = data;
+
     });
   }
 }
