@@ -4,7 +4,7 @@
     url("https://media.gettyimages.com/id/1157313690/pt/foto/remote-control-with-television-in-living-room.jpg?s=2048x2048&w=gi&k=20&c=Mis9oW2JM7b1FvTWfaQhDA4_0_t9m1ScyXmQDSV9R4g=");
   filter: blur(5px);
 
-  height: 100%;
+  height: 100vh;
 
   background-position: center;
   background-repeat: no-repeat;
@@ -46,7 +46,7 @@ h2 {
   font-size: 1.25em;
 }
 
-.login-btn {
+.create-acct {
   background-color: transparent;
   border: 1px solid white;
   color: white;
