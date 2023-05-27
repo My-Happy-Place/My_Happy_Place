@@ -5,7 +5,7 @@ import { ContentService } from 'src/app/services/content/content.service';
 @Component({
   template: '',
 })
-export abstract class BaseContent {
+export abstract class BaseContentComponent {
   @Input() item!: Content;
   releaseYear!: string;
   readonly baseImagePath = 'https://image.tmdb.org/t/p/w400/';
