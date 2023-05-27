@@ -5,5 +5,5 @@ export interface Content {
   posterPath: string;
   releaseDate: string;
   isFavorite: boolean;
-  isTvShow: boolean;
+  mediaType: "movie" | "tv";
 }

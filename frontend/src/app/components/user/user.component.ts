@@ -30,7 +30,6 @@ export class UserComponent implements OnInit {
 
     this.contentService.getTrendingShows().subscribe((data) => {
       this.trendingTv = data;
-
     });
   }
 }

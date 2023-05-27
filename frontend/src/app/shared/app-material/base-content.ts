@@ -26,7 +26,7 @@ export abstract class BaseContent {
     this.favoriteIcon = this.isFavorite ? 'favorite_border' : 'favorite';
     this.isFavorite = !this.isFavorite;
     this.contentService
-      .setFavoriteStatus(this.item.idTMDB, this.item.isTvShow, this.isFavorite)
+      .setFavoriteStatus(this.item.idTMDB, this.item.mediaType, this.isFavorite)
       .subscribe();
   }
 }

@@ -34,10 +34,10 @@ export class ContentService {
 
   setFavoriteStatus(
     id: number,
-    isTvShow: boolean,
+    mediaType: 'movie' | 'tv',
     status: boolean
   ): Observable<any> {
-    const uri = isTvShow ? 'series' : 'movies';
+    const uri = mediaType == 'tv' ? 'series' : 'movies';
     const body: any = {
       userList: [
         {
@@ -46,7 +46,7 @@ export class ContentService {
       ],
     };
 
-    isTvShow ? (body.serieId = id) : (body.movieId = id);
+    mediaType == 'tv' ? (body.serieId = id) : (body.movieId = id);
 
     return status
       ? this.http.post(`api/${uri}`, body)

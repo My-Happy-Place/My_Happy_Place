@@ -37,6 +37,8 @@ public class AllTypesDTO {
 
     private Boolean isFavorite;
 
+    private String mediaType;
+
 
     public AllTypesDTO(HashMap objectTMDB) {
         this.idTMDB = (Integer) objectTMDB.get("id");
@@ -55,6 +57,7 @@ public class AllTypesDTO {
         }
 
         this.isFavorite = (Boolean) objectTMDB.get("isFavorite");
+        this.mediaType = (String) objectTMDB.get("media_type");
     }
 
     public AllTypesDTO(HashMap objectTMDB, String type) {
@@ -74,6 +77,7 @@ public class AllTypesDTO {
         }
 
         this.isFavorite = (Boolean) objectTMDB.get("isFavorite");
+        this.mediaType = (String) objectTMDB.get("media_type");
     }
 
     public List<AllTypesDTO> isList(List<HashMap> objectsTMDB, String type){
