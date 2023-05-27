@@ -39,7 +39,7 @@ public class SeriesController {
     @PutMapping
     public ResponseEntity<Void> excluirSerieFavorita(@RequestBody FavoriteSeries body){
         FavoriteSeries favoriteSeries = seriesService.findById(body.getSerieId());
-        if (Objects.nonNull(favoriteSeries.getId())){
+        if (Objects.isNull(favoriteSeries.getId())){
             return ResponseEntity.notFound().build();
         }
         seriesService.excluirFavoriteSerie(body);
