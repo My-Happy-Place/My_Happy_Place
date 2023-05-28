@@ -184,4 +184,126 @@ public class SeriesService {
 
         return seriesDTO.isList(series, false, type);
     }
+
+    public HashMap getAggregateCredits(Long codigo){
+        Mono<HashMap> monoCredits = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/aggregate_credits")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap credits = monoCredits.block();
+
+        return credits;
+    }
+
+    public HashMap getImages(Long codigo){
+        Mono<HashMap> monoImages = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/images")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap images = monoImages.block();
+
+        return images;
+    }
+
+    public List<SeriesDTO> getRecommendations(Long codigo, Long id, Integer page){
+        List<HashMap> series;
+        Mono<HashMap> monoSeries = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/recommendations")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        series = Objects.requireNonNull(Objects.requireNonNull(monoSeries.block()).values().stream().toList());
+        series = (List<HashMap>) series.get(2);
+        String type = "S";
+        for (HashMap aux : series){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        SeriesDTO seriesDTO = new SeriesDTO();
+
+        return seriesDTO.isList(series, false, type);
+    }
+
+    public HashMap getReviews(Long codigo, Integer page){
+        Mono<HashMap> monoReviews = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/reviews")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap reviews = monoReviews.block();
+
+        return reviews;
+    }
+
+    public List<SeriesDTO> getSimilar(Long codigo, Long id, Integer page){
+        List<HashMap> series;
+        Mono<HashMap> monoSeries = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/similar")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .queryParam("page", page)
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        series = Objects.requireNonNull(Objects.requireNonNull(monoSeries.block()).values().stream().toList());
+        series = (List<HashMap>) series.get(2);
+        String type = "S";
+        for (HashMap aux : series){
+            aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+        }
+        SeriesDTO seriesDTO = new SeriesDTO();
+
+        return seriesDTO.isList(series, false, type);
+    }
+
+    public HashMap getVideos(Long codigo){
+        Mono<HashMap> monoVideos = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/videos")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap videos = monoVideos.block();
+
+        return videos;
+    }
+
+    public HashMap getWatchProviders(Long codigo){
+        Mono<HashMap> monoProviders = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/watch/providers")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap providers = monoProviders.block();
+
+        return providers;
+    }
 }

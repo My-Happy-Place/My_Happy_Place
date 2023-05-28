@@ -72,4 +72,48 @@ public class SeriesController {
         List<SeriesDTO> seriesTopRated = this.seriesService.getSeriesTopRated(id, page);
         return ResponseEntity.ok().body(seriesTopRated);
     }
+
+    @GetMapping("/{id}/aggregateCredits")
+    public ResponseEntity<HashMap> getSeriesAggregatedCredits(@PathVariable Long id){
+        HashMap credits = this.seriesService.getAggregateCredits(id);
+        return ResponseEntity.ok().body(credits);
+    }
+
+    @GetMapping("/{id}/images")
+    public ResponseEntity<HashMap> getSeriesImages(@PathVariable Long id){
+        HashMap images = this.seriesService.getImages(id);
+        return ResponseEntity.ok().body(images);
+    }
+
+    @GetMapping("/{id}/recommendations")
+    public ResponseEntity<List<SeriesDTO>> getRecommendationsBasedSerie(@PathVariable Long id, @RequestParam(value = "idUser") Long idUser,
+                                                                @RequestParam(value = "page") Integer page){
+        List<SeriesDTO> recommendations = this.seriesService.getRecommendations(id, idUser, page);
+        return ResponseEntity.ok().body(recommendations);
+    }
+
+    @GetMapping("/{id}/reviews")
+    public ResponseEntity<HashMap> getSerieReviews(@PathVariable Long id, @RequestParam(value = "page") Integer page){
+        HashMap reviews = this.seriesService.getReviews(id, page);
+        return ResponseEntity.ok().body(reviews);
+    }
+
+    @GetMapping("/{id}/similar")
+    public ResponseEntity<List<SeriesDTO>> getSerieReviews(@PathVariable Long id, @RequestParam(value = "idUser") Long idUser,
+                                                   @RequestParam(value = "page") Integer page){
+        List<SeriesDTO> similarSeries = this.seriesService.getSimilar(id, idUser, page);
+        return ResponseEntity.ok().body(similarSeries);
+    }
+
+    @GetMapping("/{id}/videos")
+    public ResponseEntity<HashMap> getSerieReviews(@PathVariable Long id){
+        HashMap videos = this.seriesService.getVideos(id);
+        return ResponseEntity.ok().body(videos);
+    }
+
+    @GetMapping("/{id}/watchproviders")
+    public ResponseEntity<HashMap> getWatchProvidersSerie(@PathVariable Long id){
+        HashMap providers = this.seriesService.getWatchProviders(id);
+        return ResponseEntity.ok().body(providers);
+    }
 }
