@@ -315,4 +315,24 @@ public class SeriesService {
     public SeriesSeasonsDTO getSerieSeason(Long codigo, Long seasonNumber, Long id){
         return seriesSeasonsService.getSeason(codigo, seasonNumber, id);
     }
+
+    public HashMap getSerieSeasonAggregateCredits(Long codigo, Long seasonNumber){
+        return seriesSeasonsService.getAggregateCredits(codigo, seasonNumber);
+    }
+
+    public HashMap getSerieSeasonCredits(Long codigo, Long seasonNumber){
+        return seriesSeasonsService.getCredits(codigo, seasonNumber);
+    }
+
+    public HashMap getSerieSeasonImages(Long codigo, Long seasonNumber){
+        return seriesSeasonsService.getImages(codigo, seasonNumber);
+    }
+
+    public HashMap getSerieSeasonVideos(Long codigo, Long seasonNumber){
+        return seriesSeasonsService.getVideos(codigo, seasonNumber);
+    }
+
+    public HashMap getSerieSeasonWatchProviders(Long codigo, Long seasonNumber){
+        return seriesSeasonsService.getWatchProviders(codigo, seasonNumber);
+    }
 }

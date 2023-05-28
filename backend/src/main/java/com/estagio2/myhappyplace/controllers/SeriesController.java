@@ -119,9 +119,39 @@ public class SeriesController {
     }
 
     @GetMapping("/{id}/seasons/{seasonnumber}")
-    public ResponseEntity<SeriesSeasonsDTO> getWatchProvidersSerie(@PathVariable Long id, @PathVariable Long seasonnumber,
+    public ResponseEntity<SeriesSeasonsDTO> getSerieSeason(@PathVariable Long id, @PathVariable Long seasonnumber,
                                                                    @RequestParam Long idUser){
         SeriesSeasonsDTO season = this.seriesService.getSerieSeason(id, seasonnumber, idUser);
         return ResponseEntity.ok().body(season);
+    }
+
+    @GetMapping("/{id}/seasons/{seasonnumber}/aggregatecredits")
+    public ResponseEntity<HashMap> getSerieSeasonAggregateCredits(@PathVariable Long id, @PathVariable Long seasonnumber){
+        HashMap credits = this.seriesService.getSerieSeasonAggregateCredits(id, seasonnumber);
+        return ResponseEntity.ok().body(credits);
+    }
+
+    @GetMapping("/{id}/seasons/{seasonnumber}/credits")
+    public ResponseEntity<HashMap> getSerieSeasonCredits(@PathVariable Long id, @PathVariable Long seasonnumber){
+        HashMap credits = this.seriesService.getSerieSeasonCredits(id, seasonnumber);
+        return ResponseEntity.ok().body(credits);
+    }
+
+    @GetMapping("/{id}/seasons/{seasonnumber}/images")
+    public ResponseEntity<HashMap> getSerieSeasonImages(@PathVariable Long id, @PathVariable Long seasonnumber){
+        HashMap images = this.seriesService.getSerieSeasonImages(id, seasonnumber);
+        return ResponseEntity.ok().body(images);
+    }
+
+    @GetMapping("/{id}/seasons/{seasonnumber}/videos")
+    public ResponseEntity<HashMap> getSerieSeasonVideos(@PathVariable Long id, @PathVariable Long seasonnumber){
+        HashMap videos = this.seriesService.getSerieSeasonVideos(id, seasonnumber);
+        return ResponseEntity.ok().body(videos);
+    }
+
+    @GetMapping("/{id}/seasons/{seasonnumber}/watchproviders")
+    public ResponseEntity<HashMap> getSerieSeasonWatchProviders(@PathVariable Long id, @PathVariable Long seasonnumber){
+        HashMap providers = this.seriesService.getSerieSeasonWatchProviders(id, seasonnumber);
+        return ResponseEntity.ok().body(providers);
     }
 }

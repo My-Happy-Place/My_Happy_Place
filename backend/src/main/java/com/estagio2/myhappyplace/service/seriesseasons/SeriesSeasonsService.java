@@ -46,4 +46,79 @@ public class SeriesSeasonsService {
 
         return new SeriesSeasonsDTO(season);
     }
+
+    public HashMap getAggregateCredits(Long codigo, Long seasonNumber){
+        Mono<HashMap> monoCredits = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/season/{seasonNumber}/aggregate_credits")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo, seasonNumber))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap credits = Objects.requireNonNull(monoCredits.block());
+
+        return credits;
+    }
+
+    public HashMap getCredits(Long codigo, Long seasonNumber){
+        Mono<HashMap> monoCredits = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/season/{seasonNumber}/credits")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo, seasonNumber))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap credits = Objects.requireNonNull(monoCredits.block());
+
+        return credits;
+    }
+
+    public HashMap getImages(Long codigo, Long seasonNumber){
+        Mono<HashMap> monoImages = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/season/{seasonNumber}/images")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo, seasonNumber))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap images = Objects.requireNonNull(monoImages.block());
+
+        return images;
+    }
+
+    public HashMap getVideos(Long codigo, Long seasonNumber){
+        Mono<HashMap> monoVideos = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/season/{seasonNumber}/videos")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo, seasonNumber))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap videos = Objects.requireNonNull(monoVideos.block());
+
+        return videos;
+    }
+
+    public HashMap getWatchProviders(Long codigo, Long seasonNumber){
+        Mono<HashMap> monoProviders = this.webClient.get()
+                .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}/season/{seasonNumber}/watch/providers")
+                        .queryParam("api_key", api_key)
+                        .queryParam("language", "pt-BR")
+                        .build(codigo, seasonNumber))
+
+                .retrieve()
+                .bodyToMono(HashMap.class);
+
+        HashMap providers = Objects.requireNonNull(monoProviders.block());
+
+        return providers;
+    }
 }
