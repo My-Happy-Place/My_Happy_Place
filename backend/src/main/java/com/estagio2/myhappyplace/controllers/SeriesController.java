@@ -1,6 +1,7 @@
 package com.estagio2.myhappyplace.controllers;
 
 import com.estagio2.myhappyplace.dto.SeriesDTO;
+import com.estagio2.myhappyplace.dto.seriesseasons.SeriesSeasonsDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
 import com.estagio2.myhappyplace.entities.FavoriteSeries;
 import com.estagio2.myhappyplace.service.SeriesService;
@@ -115,5 +116,12 @@ public class SeriesController {
     public ResponseEntity<HashMap> getWatchProvidersSerie(@PathVariable Long id){
         HashMap providers = this.seriesService.getWatchProviders(id);
         return ResponseEntity.ok().body(providers);
+    }
+
+    @GetMapping("/{id}/seasons/{seasonnumber}")
+    public ResponseEntity<SeriesSeasonsDTO> getWatchProvidersSerie(@PathVariable Long id, @PathVariable Long seasonnumber,
+                                                                   @RequestParam Long idUser){
+        SeriesSeasonsDTO season = this.seriesService.getSerieSeason(id, seasonnumber, idUser);
+        return ResponseEntity.ok().body(season);
     }
 }

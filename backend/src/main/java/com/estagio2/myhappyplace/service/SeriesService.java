@@ -3,9 +3,11 @@ package com.estagio2.myhappyplace.service;
 import com.estagio2.myhappyplace.dto.AllTypesDTO;
 import com.estagio2.myhappyplace.dto.SeriesDTO;
 import com.estagio2.myhappyplace.dto.UserDTO;
+import com.estagio2.myhappyplace.dto.seriesseasons.SeriesSeasonsDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
 import com.estagio2.myhappyplace.entities.FavoriteSeries;
 import com.estagio2.myhappyplace.repositories.FavoriteSeriesRepository;
+import com.estagio2.myhappyplace.service.seriesseasons.SeriesSeasonsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,9 @@ public class SeriesService {
     private FavoriteSeriesRepository favoriteSeriesRepository;
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SeriesSeasonsService seriesSeasonsService;
 
 
     @Transactional
@@ -305,5 +310,9 @@ public class SeriesService {
         HashMap providers = monoProviders.block();
 
         return providers;
+    }
+
+    public SeriesSeasonsDTO getSerieSeason(Long codigo, Long seasonNumber, Long id){
+        return seriesSeasonsService.getSeason(codigo, seasonNumber, id);
     }
 }
