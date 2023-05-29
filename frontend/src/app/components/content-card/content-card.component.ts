@@ -6,4 +6,8 @@ import { BaseContentComponent } from '../base-content/base-content.component';
   templateUrl: './content-card.component.html',
   styleUrls: ['./content-card.component.scss'],
 })
-export class ContentCardComponent extends BaseContentComponent {}
+export class ContentCardComponent extends BaseContentComponent {
+  ngOnInit(): void {
+    super.init();
+  }
+}

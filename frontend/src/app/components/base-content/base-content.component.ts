@@ -15,7 +15,7 @@ export abstract class BaseContentComponent {
 
   constructor(private contentService: ContentService) {}
 
-  ngOnInit(): void {
+  init(): void {
     this.fullImagePath = this.baseImagePath + this.item.posterPath;
     this.releaseYear = this.item.releaseDate.substring(0, 4);
     this.isFavorite = this.item.isFavorite;
