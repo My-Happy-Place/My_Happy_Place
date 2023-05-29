@@ -30,7 +30,7 @@ public class MovieDTO {
 
     private Integer runtime;
 
-    private Boolean isTvShow;
+    private String mediaType;
 
     private Boolean isFavorite;
 
@@ -42,7 +42,7 @@ public class MovieDTO {
         this.posterPath = (String) movieTMDB.get("poster_path");
         this.releaseDate = (String) movieTMDB.get("release_date");
         this.runtime = (Integer) movieTMDB.get("runtime");
-        this.isTvShow = false;
+        this.mediaType = "movie";
         this.isFavorite = false;
     }
 
@@ -53,7 +53,7 @@ public class MovieDTO {
         this.posterPath = (String) movieTMDB.get("poster_path");
         this.releaseDate = (String) movieTMDB.get("release_date");
         this.runtime = (Integer) movieTMDB.get("runtime");
-        this.isTvShow = false;
+        this.mediaType = "movie";
         this.isFavorite = favorito;
     }
 
@@ -64,7 +64,7 @@ public class MovieDTO {
         this.posterPath = (String) movieTMDB.get("poster_path");
         this.releaseDate = (String) movieTMDB.get("release_date");
         this.runtime = (Integer) movieTMDB.get("runtime");
-        this.isTvShow = false;
+        this.mediaType = "movie";
         this.isFavorite = (Boolean) movieTMDB.get("isFavorite");
     }
 
@@ -95,7 +95,7 @@ public class MovieDTO {
         aux.put("posterPath", movieDTO.posterPath);
         aux.put("releaseDate", movieDTO.releaseDate);
         aux.put("runtime", movieDTO.runtime);
-        aux.put("isTvShow", movieDTO.isTvShow);
+        aux.put("mediaType", movieDTO.mediaType);
         aux.put("isFavorite", movieDTO.isFavorite);
         return aux;
     }

@@ -104,6 +104,7 @@ public class AllTypesDTO {
         aux.put("releaseDate", allTypesDTO.releaseDate);
         aux.put("runtime", allTypesDTO.runtime);
         aux.put("isFavorite", allTypesDTO.isFavorite);
+        aux.put("mediaType", allTypesDTO.mediaType);
         return aux;
     }
 
