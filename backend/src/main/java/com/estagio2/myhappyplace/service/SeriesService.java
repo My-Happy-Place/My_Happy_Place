@@ -316,6 +316,16 @@ public class SeriesService {
         return seriesSeasonsService.getSeason(codigo, seasonNumber, id);
     }
 
+    public List<SeriesSeasonsDTO> getSeasonsList(Long codigo, Long id){
+        SeriesDTO serie = seriePorId(codigo);
+        List<SeriesSeasonsDTO> seasons = new ArrayList<>();
+
+        for (int i = 1; i <= serie.getNumberOfSeasons(); i++) {
+            seasons.add(seriesSeasonsService.getSeason(codigo, (long) i, id));
+        }
+        return seasons;
+    }
+
     public HashMap getSerieSeasonAggregateCredits(Long codigo, Long seasonNumber){
         return seriesSeasonsService.getAggregateCredits(codigo, seasonNumber);
     }

@@ -33,7 +33,7 @@ public class SeriesController {
         if (Objects.nonNull(favoriteSeries.getId())){
             return ResponseEntity.badRequest().body("Serie já favoritada.");
         }
-        this.seriesService.saveFavoriteSerie(favoriteSeries);
+        this.seriesService.saveFavoriteSerie(body);
         return ResponseEntity.noContent().build();
     }
 
@@ -123,6 +123,12 @@ public class SeriesController {
                                                                    @RequestParam Long idUser){
         SeriesSeasonsDTO season = this.seriesService.getSerieSeason(id, seasonnumber, idUser);
         return ResponseEntity.ok().body(season);
+    }
+
+    @GetMapping("/{id}/seasons")
+    public ResponseEntity<List<SeriesSeasonsDTO>> getSerieSeasonList(@PathVariable Long id, @RequestParam Long idUser){
+        List<SeriesSeasonsDTO> seasonsList = this.seriesService.getSeasonsList(id, idUser);
+        return ResponseEntity.ok().body(seasonsList);
     }
 
     @GetMapping("/{id}/seasons/{seasonnumber}/aggregatecredits")
