@@ -8,7 +8,6 @@ import { ContentService } from 'src/app/services/content/content.service';
 export abstract class BaseContentComponent {
   @Input() item!: Content;
   releaseYear!: string;
-  readonly baseImagePath = 'https://image.tmdb.org/t/p/w400/';
   fullImagePath!: string;
   isFavorite!: boolean;
   favoriteIcon!: 'favorite' | 'favorite_border';
@@ -16,7 +15,7 @@ export abstract class BaseContentComponent {
   constructor(private contentService: ContentService) {}
 
   init(): void {
-    this.fullImagePath = this.baseImagePath + this.item.posterPath;
+    this.fullImagePath = this.contentService.getBaseImagePath(400) + this.item.posterPath;
     this.releaseYear = this.item.releaseDate.substring(0, 4);
     this.isFavorite = this.item.isFavorite;
     this.favoriteIcon = this.isFavorite ? 'favorite' : 'favorite_border';

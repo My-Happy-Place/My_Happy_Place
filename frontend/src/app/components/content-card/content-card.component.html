@@ -1,4 +1,4 @@
-<img mat-card-image src="{{fullImagePath}}" alt="Card image cap">
+<img mat-card-image src="{{fullImagePath}}" alt="Card image cap" [routerLink]="['/', item.mediaType, item.idTMDB]">
 <h3 class="title">{{item.name}}</h3>
   <h4>{{releaseYear}}</h4>
   <button mat-icon-button (click)="changeFavoriteStatus()" class="fav-btn">

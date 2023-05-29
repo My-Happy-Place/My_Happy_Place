@@ -6,20 +6,31 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ContentService {
+  userId: number = 1;
+
   constructor(private http: HttpClient) {}
 
+  getBaseImagePath(width: number) {
+    return `https://image.tmdb.org/t/p/w${width}/`;
+  }
+
   getFavorites(): Observable<any> {
-    return this.http.get('api/users/1/findFavorites');
+    return this.http.get(`api/users/${this.userId}/findFavorites`);
   }
 
   getPopularMovies(): Observable<any> {
-    return this.http.get(`api/movies/popular?idUser=1&page=1`);
+    return this.http.get(`api/movies/popular?idUser=${this.userId}&page=1`);
   }
 
   getTrendingShows(): Observable<any> {
     return this.http.get(
-      `api/all-types/trendingseries/1?timeWindow=week&page=1`
+      `api/all-types/trendingseries/${this.userId}?timeWindow=week&page=1`
     );
+  }
+
+  getContentDetails(mediaType: string, idTMDB: number): Observable<any> {
+    const pathParam = mediaType == 'movie' ? 'movies' : 'series';
+    return this.http.get(`api/${pathParam}/${idTMDB}`);
   }
 
   getSearchResults(
@@ -28,7 +39,7 @@ export class ContentService {
     page: number = 1
   ): Observable<any> {
     return this.http.get(
-      `api/all-types/${searchType}/1?descricao="${query}"&page=${page}`
+      `api/all-types/${searchType}/${this.userId}?descricao="${query}"&page=${page}`
     );
   }
 
@@ -41,7 +52,7 @@ export class ContentService {
     const body: any = {
       userList: [
         {
-          id: 1,
+          id: this.userId,
         },
       ],
     };
@@ -51,5 +62,20 @@ export class ContentService {
     return status
       ? this.http.post(`api/${uri}`, body)
       : this.http.put(`api/${uri}`, body);
+  }
+
+  getSimilar(
+    mediaType: 'movie' | 'tv',
+    idTMDB: number,
+    page: number = 1
+  ): Observable<any> {
+    const uri = mediaType == 'movie' ? 'movies' : 'series';
+    return this.http.get(
+      `api/${uri}/${idTMDB}/recommendations?idUser=${this.userId}&page=${page}`
+    );
+  }
+
+  getShowSeasons(idTMDB: number): Observable<any> {
+    return this.http.get(`api/series/${idTMDB}/seasons?idUser=1`);
   }
 }

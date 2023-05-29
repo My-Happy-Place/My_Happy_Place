@@ -12,6 +12,7 @@ import { SearchResultsComponent } from './components/search-results/search-resul
 import { UserComponent } from './components/user/user.component';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { DetailedContentComponent } from './components/detailed-content/detailed-content.component';
+import { ContentPageComponent } from './components/content-page/content-page.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { DetailedContentComponent } from './components/detailed-content/detailed
     ContentCardComponent,
     SearchResultsComponent,
     DetailedContentComponent,
+    ContentPageComponent,
   ],
   imports: [
     BrowserModule,
