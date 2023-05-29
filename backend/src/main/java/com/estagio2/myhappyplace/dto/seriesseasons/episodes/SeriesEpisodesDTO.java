@@ -31,6 +31,8 @@ public class SeriesEpisodesDTO {
 
     private String stillPath;
 
+    private Boolean isFavorite;
+
 
     public SeriesEpisodesDTO(HashMap seriesEpisodesTMDB) {
         this.idTMDB = (Integer) seriesEpisodesTMDB.get("id");
@@ -42,5 +44,6 @@ public class SeriesEpisodesDTO {
         this.seasonNumber = (Integer) seriesEpisodesTMDB.get("season_number");
         this.idSerie = (Integer) seriesEpisodesTMDB.get("show_id");
         this.stillPath = (String) seriesEpisodesTMDB.get("still_path");
+        this.isFavorite = false;
     }
 }

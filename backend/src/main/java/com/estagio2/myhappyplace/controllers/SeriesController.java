@@ -2,6 +2,7 @@ package com.estagio2.myhappyplace.controllers;
 
 import com.estagio2.myhappyplace.dto.SeriesDTO;
 import com.estagio2.myhappyplace.dto.seriesseasons.SeriesSeasonsDTO;
+import com.estagio2.myhappyplace.dto.seriesseasons.episodes.SeriesEpisodesDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
 import com.estagio2.myhappyplace.entities.FavoriteSeries;
 import com.estagio2.myhappyplace.service.SeriesService;
@@ -120,13 +121,13 @@ public class SeriesController {
 
     @GetMapping("/{id}/seasons/{seasonnumber}")
     public ResponseEntity<SeriesSeasonsDTO> getSerieSeason(@PathVariable Long id, @PathVariable Long seasonnumber,
-                                                                   @RequestParam Long idUser){
+                                                                   @RequestParam(value = "idUser") Long idUser){
         SeriesSeasonsDTO season = this.seriesService.getSerieSeason(id, seasonnumber, idUser);
         return ResponseEntity.ok().body(season);
     }
 
     @GetMapping("/{id}/seasons")
-    public ResponseEntity<List<SeriesSeasonsDTO>> getSerieSeasonList(@PathVariable Long id, @RequestParam Long idUser){
+    public ResponseEntity<List<SeriesSeasonsDTO>> getSerieSeasonList(@PathVariable Long id, @RequestParam(value = "idUser") Long idUser){
         List<SeriesSeasonsDTO> seasonsList = this.seriesService.getSeasonsList(id, idUser);
         return ResponseEntity.ok().body(seasonsList);
     }
@@ -159,5 +160,35 @@ public class SeriesController {
     public ResponseEntity<HashMap> getSerieSeasonWatchProviders(@PathVariable Long id, @PathVariable Long seasonnumber){
         HashMap providers = this.seriesService.getSerieSeasonWatchProviders(id, seasonnumber);
         return ResponseEntity.ok().body(providers);
+    }
+
+
+    //---------------- EPISODES METHODS ---------------------------------------------------------------------------
+    @GetMapping("/{id}/seasons/{seasonnumber}/episodes/{episodenumber}")
+    public ResponseEntity<SeriesEpisodesDTO> getSerieEpisode(@PathVariable Long id, @PathVariable Long seasonnumber,
+                                                                @PathVariable Long episodenumber, @RequestParam(value = "idUser") Long idUser){
+        SeriesEpisodesDTO episode = this.seriesService.getSerieEpisode(id, seasonnumber, episodenumber, idUser);
+        return ResponseEntity.ok().body(episode);
+    }
+
+    @GetMapping("/{id}/seasons/{seasonnumber}/episodes/{episodenumber}/credits")
+    public ResponseEntity<HashMap> getSerieEpisodeCredits(@PathVariable Long id, @PathVariable Long seasonnumber,
+                                                                          @PathVariable Long episodenumber){
+        HashMap credits = this.seriesService.getSerieEpisodeCredits(id, seasonnumber, episodenumber);
+        return ResponseEntity.ok().body(credits);
+    }
+
+    @GetMapping("/{id}/seasons/{seasonnumber}/episodes/{episodenumber}/images")
+    public ResponseEntity<HashMap> getSerieEpisodeImages(@PathVariable Long id, @PathVariable Long seasonnumber,
+                                                          @PathVariable Long episodenumber){
+        HashMap images = this.seriesService.getSerieEpisodeImages(id, seasonnumber, episodenumber);
+        return ResponseEntity.ok().body(images);
+    }
+
+    @GetMapping("/{id}/seasons/{seasonnumber}/episodes/{episodenumber}/videos")
+    public ResponseEntity<HashMap> getSerieEpisodeVideos(@PathVariable Long id, @PathVariable Long seasonnumber,
+                                                         @PathVariable Long episodenumber){
+        HashMap videos = this.seriesService.getSerieEpisodeVideos(id, seasonnumber, episodenumber);
+        return ResponseEntity.ok().body(videos);
     }
 }

@@ -4,6 +4,7 @@ import com.estagio2.myhappyplace.dto.AllTypesDTO;
 import com.estagio2.myhappyplace.dto.SeriesDTO;
 import com.estagio2.myhappyplace.dto.UserDTO;
 import com.estagio2.myhappyplace.dto.seriesseasons.SeriesSeasonsDTO;
+import com.estagio2.myhappyplace.dto.seriesseasons.episodes.SeriesEpisodesDTO;
 import com.estagio2.myhappyplace.entities.FavoriteMovies;
 import com.estagio2.myhappyplace.entities.FavoriteSeries;
 import com.estagio2.myhappyplace.repositories.FavoriteSeriesRepository;
@@ -312,6 +313,7 @@ public class SeriesService {
         return providers;
     }
 
+    //---------------- SEASONS METHODS ---------------------------------------------------------
     public SeriesSeasonsDTO getSerieSeason(Long codigo, Long seasonNumber, Long id){
         return seriesSeasonsService.getSeason(codigo, seasonNumber, id);
     }
@@ -344,5 +346,23 @@ public class SeriesService {
 
     public HashMap getSerieSeasonWatchProviders(Long codigo, Long seasonNumber){
         return seriesSeasonsService.getWatchProviders(codigo, seasonNumber);
+    }
+
+    //---------------- EPISODES METHODS ---------------------------------------------------------
+
+    public SeriesEpisodesDTO getSerieEpisode(Long codigo, Long seasonNumber, Long episodeNumber, Long id){
+        return this.seriesSeasonsService.getSerieEpisode(codigo, seasonNumber, episodeNumber, id);
+    }
+
+    public HashMap getSerieEpisodeCredits(Long codigo, Long seasonNumber, Long episodeNumber){
+        return this.seriesSeasonsService.getSerieEpisodeCredits(codigo, seasonNumber, episodeNumber);
+    }
+
+    public HashMap getSerieEpisodeImages(Long codigo, Long seasonNumber, Long episodeNumber){
+        return this.seriesSeasonsService.getSerieEpisodeImages(codigo, seasonNumber, episodeNumber);
+    }
+
+    public HashMap getSerieEpisodeVideos(Long codigo, Long seasonNumber, Long episodeNumber){
+        return this.seriesSeasonsService.getSerieEpisodeVideos(codigo, seasonNumber, episodeNumber);
     }
 }

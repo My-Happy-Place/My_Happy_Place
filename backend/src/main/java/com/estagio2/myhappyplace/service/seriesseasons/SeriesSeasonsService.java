@@ -2,7 +2,9 @@ package com.estagio2.myhappyplace.service.seriesseasons;
 
 import com.estagio2.myhappyplace.dto.SeriesDTO;
 import com.estagio2.myhappyplace.dto.seriesseasons.SeriesSeasonsDTO;
+import com.estagio2.myhappyplace.dto.seriesseasons.episodes.SeriesEpisodesDTO;
 import com.estagio2.myhappyplace.service.UserService;
+import com.estagio2.myhappyplace.service.seriesseasons.episodes.SeriesEpisodesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -22,6 +24,9 @@ public class SeriesSeasonsService {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private SeriesEpisodesService seriesEpisodesService;
 
 
     public SeriesSeasonsDTO getSeason(Long codigo, Long seasonNumber, Long id){
@@ -120,5 +125,24 @@ public class SeriesSeasonsService {
         HashMap providers = Objects.requireNonNull(monoProviders.block());
 
         return providers;
+    }
+
+
+    //---------------- EPISODES METHODS ---------------------------------------------------------
+
+    public SeriesEpisodesDTO getSerieEpisode(Long codigo, Long seasonNumber, Long episodeNumber, Long id){
+        return this.seriesEpisodesService.getEpisode(codigo, seasonNumber, episodeNumber, id);
+    }
+
+    public HashMap getSerieEpisodeCredits(Long codigo, Long seasonNumber, Long episodeNumber){
+        return this.seriesEpisodesService.getCredits(codigo, seasonNumber, episodeNumber);
+    }
+
+    public HashMap getSerieEpisodeImages(Long codigo, Long seasonNumber, Long episodeNumber){
+        return this.seriesEpisodesService.getImages(codigo, seasonNumber, episodeNumber);
+    }
+
+    public HashMap getSerieEpisodeVideos(Long codigo, Long seasonNumber, Long episodeNumber){
+        return this.seriesEpisodesService.getVideos(codigo, seasonNumber, episodeNumber);
     }
 }
