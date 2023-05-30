@@ -1,8 +1,8 @@
 <div class="content">
-  <img mat-card-image src="{{fullImagePath}}" alt="Card image cap" [routerLink]="['/', item.mediaType, item.idTMDB]">
+  <img mat-card-image src="{{fullImagePath}}" [routerLink]="['/', item.mediaType, item.idTMDB]">
   <div class="details">
     <div class="content-header">
-      <section class="name-year">
+      <section class="name-year" [routerLink]="['/', item.mediaType, item.idTMDB]">
         <h3 class="name">{{item.name}}</h3>
         <h4 class="year">{{releaseYear}}</h4>
       </section>

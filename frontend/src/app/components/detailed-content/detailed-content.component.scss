@@ -41,6 +41,11 @@ img:hover {
   margin-bottom: 0;
 }
 
+.name:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .year {
   color: rgb(110, 109, 109);
   font-weight: 500;

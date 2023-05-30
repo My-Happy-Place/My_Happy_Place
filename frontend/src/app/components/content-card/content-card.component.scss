@@ -18,6 +18,11 @@ img {
   margin: 0 2px 2px;
 }
 
+.title:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 img:hover {
   filter: brightness(40%);
   transition: all 1s ease;
