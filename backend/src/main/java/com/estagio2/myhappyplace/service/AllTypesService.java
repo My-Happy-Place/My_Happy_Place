@@ -56,6 +56,7 @@ public class AllTypesService {
         String type = "M";
         for (HashMap aux : movies){
             aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+            aux.put("media_type", "movie");
         }
         AllTypesDTO allTypesDTO = new AllTypesDTO();
 
@@ -104,6 +105,7 @@ public class AllTypesService {
         String type = "S";
         for (HashMap aux : series){
             aux.put("isFavorite", userService.isFavorite((Integer) aux.get("id"), id));
+            aux.put("media_type", "tv");
         }
         AllTypesDTO allTypesDTO = new AllTypesDTO();
 
