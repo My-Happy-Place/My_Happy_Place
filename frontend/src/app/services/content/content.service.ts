@@ -11,8 +11,8 @@ export class ContentService {
 
   constructor(private http: HttpClient) {}
 
-  getBaseImagePath(width: number) {
-    return `https://image.tmdb.org/t/p/w${width}/`;
+  getBaseImagePath(format: string) {
+    return `https://image.tmdb.org/t/p/${format}/`;
   }
 
   getFavorites(): Observable<any> {
