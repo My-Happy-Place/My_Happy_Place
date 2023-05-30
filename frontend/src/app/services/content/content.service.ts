@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Content } from 'src/app/models/content';
 
 @Injectable({
   providedIn: 'root',
@@ -77,5 +78,11 @@ export class ContentService {
 
   getShowSeasons(idTMDB: number): Observable<any> {
     return this.http.get(`api/series/${idTMDB}/seasons?idUser=1`);
+  }
+
+  filterContent(item: Content): boolean {
+    return (
+      item.name != null && item.overview != null && item.posterPath != null
+    );
   }
 }

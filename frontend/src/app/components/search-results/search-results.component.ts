@@ -46,9 +46,10 @@ export class SearchResultsComponent implements OnInit {
       this.contentService
         .getSearchResults(this.search)
         .pipe(finalize(() => (this.isLoading = false)))
-        .subscribe((data) => {
-          this.results = data;
-          console.log(this.results);
+        .subscribe((data: Content[]) => {
+          this.results = data.filter((item: Content) =>
+            this.contentService.filterContent(item)
+          );
         });
     });
   }
