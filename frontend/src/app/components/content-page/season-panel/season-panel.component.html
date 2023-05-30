@@ -1,0 +1,18 @@
+<ng-container *ngIf="season">
+  <mat-expansion-panel style="margin-bottom: 2em;">
+    <mat-expansion-panel-header>
+      <mat-panel-title style="font-weight: bold; font-size: large;">
+        {{season.seasonNumber}}&#170; Temporada </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <div *ngFor="let episode of season.episodes" class="episode">
+      <img src="{{contentService.getBaseImagePath('original') + episode.stillPath}}">
+      <div class="episode-details">
+        <h3>{{episode.episodeNumber}} - {{episode.name}}</h3>
+        <span>{{episode.overview}}</span>
+      </div>
+    </div>
+
+  </mat-expansion-panel>
+
+</ng-container>

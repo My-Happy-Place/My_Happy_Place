@@ -1,0 +1,22 @@
+@import "src/styles.scss";
+
+.episode {
+  margin: 2em 1em;
+  display: flex;
+  border: 1px solid mat-color($light-app-primary, 800);
+}
+
+img {
+  width: 250px;
+  border-right: 0.5px solid mat-color($light-app-primary, 800);
+}
+
+.episode-details {
+  margin: 1em 1em 0 2em;
+  overflow: auto;
+}
+
+.episode-details h3 {
+  font-size: 1rem;
+  font-weight: bold;
+}

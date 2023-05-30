@@ -8,6 +8,10 @@
   display: flex;
 }
 
+mat-spinner {
+  left: 50%;
+}
+
 img {
   // width: 500px;
   // height: 600px;
@@ -41,7 +45,7 @@ img {
   margin: 1em 0 0 0;
 }
 
-.similar {
+.content-row {
   margin-top: 3em;
   // margin: 3em 0em 1em 5em;
   background-color: rgb(232, 232, 232);
@@ -59,14 +63,15 @@ app-content-card {
   width: min-content;
 }
 
-.similar h1 {
+h2 {
+  font-size: x-large;
   font-weight: 550;
   color: mat-color($light-app-primary, 800);
 }
 
 ::-webkit-scrollbar {
   width: 20px;
-  height: 5px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {

@@ -1,16 +1,27 @@
-<section class="content-header" *ngIf="content">
-  <img mat-card-image src="{{fullImagePath}}" class="poster" (load)="updateDivHeight()">
-  <div class="content-details" [style.height.px]="imageHeight">
-    <h1>{{content.name}} ({{releaseYear}})</h1>
-    <span>{{content.overview}}</span>
-    <button mat-raised-button color="accent" class="watch" *ngIf="isTvShow">Escolher
-      episódio</button>
-  </div>
-</section>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<ng-container *ngIf="content">
+  <section class="content-header" *ngIf="content">
+    <img mat-card-image src="{{fullImagePath}}" class="poster" (load)="updateDivHeight()">
+    <div class="content-details" [style.height.px]="imageHeight">
+      <h1>{{content.name}} ({{releaseYear}})</h1>
+      <span>{{content.overview}}</span>
+      <button mat-raised-button color="accent" class="watch" *ngIf="isTvShow">Escolher
+        episódio</button>
+    </div>
+  </section>
 
-<section class="similar">
-  <h1>Similares:</h1>
-  <div class="card-row">
-    <app-content-card *ngFor="let item of similar" [item]="item"></app-content-card>
-  </div>
-</section>
+  <section class="content-row" *ngIf="isTvShow">
+    <h2>Temporadas:</h2>
+
+    <app-season-panel *ngFor="let season of seasons" [season]="season"></app-season-panel>
+
+  </section>
+
+  <section class="content-row">
+    <h2>Similares:</h2>
+    <div class="card-row">
+      <app-content-card *ngFor="let item of similar" [item]="item"></app-content-card>
+    </div>
+  </section>
+
+</ng-container>

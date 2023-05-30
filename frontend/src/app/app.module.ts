@@ -13,6 +13,7 @@ import { UserComponent } from './components/user/user.component';
 import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { DetailedContentComponent } from './components/detailed-content/detailed-content.component';
 import { ContentPageComponent } from './components/content-page/content-page.component';
+import { SeasonPanelComponent } from './components/content-page/season-panel/season-panel.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ContentPageComponent } from './components/content-page/content-page.com
     SearchResultsComponent,
     DetailedContentComponent,
     ContentPageComponent,
+    SeasonPanelComponent,
   ],
   imports: [
     BrowserModule,
