@@ -18,6 +18,7 @@ export class ContentPageComponent {
   imageWidth = 342;
   imageHeight = 0;
   isLoading = false;
+  favoriteIcon!: 'favorite' | 'favorite_border';
   seasons: Season[] = [];
   similar: Content[] = [];
 
@@ -32,7 +33,7 @@ export class ContentPageComponent {
       this.contentService
         .getContentDetails(routeParams['media-type'], routeParams['id'])
         .pipe(finalize(() => (this.isLoading = false)))
-        .subscribe((response) => {
+        .subscribe((response: Content) => {
           this.content = response;
 
           this.fullImagePath =
@@ -40,15 +41,17 @@ export class ContentPageComponent {
             this.content.posterPath;
           this.releaseYear = this.content.releaseDate.substring(0, 4);
           this.isTvShow = this.content.mediaType == 'tv';
+          this.favoriteIcon = this.content.isFavorite
+            ? 'favorite'
+            : 'favorite_border';
 
           if (this.isTvShow) {
             this.contentService
               .getShowSeasons(response.idTMDB)
               .subscribe((data) => {
-                console.log(data);
                 this.seasons = data;
-                this.seasons.forEach((value: Season, index: number) => {
-                  value.seasonNumber = index + 1;
+                this.seasons.forEach((season: Season, index: number) => {
+                  season.seasonNumber = index + 1;
                 });
               });
           }
@@ -62,6 +65,20 @@ export class ContentPageComponent {
             });
         });
     });
+  }
+
+  changeFavoriteStatus(): void {
+    this.favoriteIcon = this.content.isFavorite
+      ? 'favorite_border'
+      : 'favorite';
+    this.content.isFavorite = !this.content.isFavorite;
+    this.contentService
+      .setFavoriteStatus(
+        this.content.idTMDB,
+        this.content.mediaType,
+        this.content.isFavorite
+      )
+      .subscribe();
   }
 
   updateDivHeight() {

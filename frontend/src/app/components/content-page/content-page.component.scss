@@ -8,6 +8,15 @@
   display: flex;
 }
 
+.title-favorite {
+  display: flex;
+}
+
+mat-icon {
+  margin-left: 1em;
+  transform: scale(1.8);
+}
+
 mat-spinner {
   left: 50%;
 }

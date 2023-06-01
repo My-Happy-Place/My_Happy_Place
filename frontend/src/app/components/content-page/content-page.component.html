@@ -3,7 +3,12 @@
   <section class="content-header" *ngIf="content">
     <img mat-card-image src="{{fullImagePath}}" class="poster" (load)="updateDivHeight()">
     <div class="content-details" [style.height.px]="imageHeight">
-      <h1>{{content.name}} ({{releaseYear}})</h1>
+      <div class="title-favorite">
+        <h1>{{content.name}} ({{releaseYear}})</h1>
+        <button mat-icon-button (click)="changeFavoriteStatus()" class="fav-btn">
+          <mat-icon class="heart" color="primary">{{favoriteIcon}}</mat-icon>
+        </button>
+      </div>
       <span>{{content.overview}}</span>
       <button mat-raised-button color="primary" class="watch" *ngIf="isTvShow">Escolher
         episódio</button>
