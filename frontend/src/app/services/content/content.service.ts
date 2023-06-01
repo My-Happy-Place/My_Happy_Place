@@ -8,6 +8,7 @@ import { Content } from 'src/app/models/content';
 })
 export class ContentService {
   userId: number = 1;
+  readonly api = 'https://myhappyplace-production.up.railway.app';
 
   constructor(private http: HttpClient) {}
 
@@ -16,22 +17,22 @@ export class ContentService {
   }
 
   getFavorites(): Observable<any> {
-    return this.http.get(`api/users/${this.userId}/findFavorites`);
+    return this.http.get(`${this.api}/users/${this.userId}/findFavorites`);
   }
 
   getPopularMovies(): Observable<any> {
-    return this.http.get(`api/movies/popular?idUser=${this.userId}&page=1`);
+    return this.http.get(`${this.api}/movies/popular?idUser=${this.userId}&page=1`);
   }
 
   getTrendingShows(): Observable<any> {
     return this.http.get(
-      `api/all-types/trendingseries/${this.userId}?timeWindow=week&page=1`
+      `${this.api}/all-types/trendingseries/${this.userId}?timeWindow=week&page=1`
     );
   }
 
   getContentDetails(mediaType: string, idTMDB: number): Observable<any> {
     const pathParam = mediaType == 'movie' ? 'movies' : 'series';
-    return this.http.get(`api/${pathParam}/${idTMDB}`);
+    return this.http.get(`${this.api}/${pathParam}/${idTMDB}?idUser=${this.userId}`);
   }
 
   getSearchResults(
@@ -40,7 +41,7 @@ export class ContentService {
     page: number = 1
   ): Observable<any> {
     return this.http.get(
-      `api/all-types/${searchType}/${this.userId}?descricao="${query}"&page=${page}`
+      `${this.api}/all-types/${searchType}/${this.userId}?descricao="${query}"&page=${page}`
     );
   }
 
@@ -61,8 +62,8 @@ export class ContentService {
     mediaType == 'tv' ? (body.serieId = id) : (body.movieId = id);
 
     return status
-      ? this.http.post(`api/${uri}`, body)
-      : this.http.put(`api/${uri}`, body);
+      ? this.http.post(`${this.api}/${uri}`, body)
+      : this.http.put(`${this.api}/${uri}`, body);
   }
 
   getSimilar(
@@ -72,12 +73,12 @@ export class ContentService {
   ): Observable<any> {
     const uri = mediaType == 'movie' ? 'movies' : 'series';
     return this.http.get(
-      `api/${uri}/${idTMDB}/recommendations?idUser=${this.userId}&page=${page}`
+      `${this.api}/${uri}/${idTMDB}/recommendations?idUser=${this.userId}&page=${page}`
     );
   }
 
   getShowSeasons(idTMDB: number): Observable<any> {
-    return this.http.get(`api/series/${idTMDB}/seasons?idUser=1`);
+    return this.http.get(`${this.api}/series/${idTMDB}/seasons?idUser=1`);
   }
 
   filterContent(item: Content): boolean {
