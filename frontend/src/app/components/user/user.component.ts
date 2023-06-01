@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Content } from 'src/app/models/content';
 import { Movie } from 'src/app/models/movie';
 import { Show } from 'src/app/models/show';
@@ -17,7 +18,7 @@ export class UserComponent implements OnInit {
   //TODO: retornar usuário logado
   user: String = 'Nícolas';
 
-  constructor(private contentService: ContentService) {}
+  constructor(private contentService: ContentService, private router: Router) {}
 
   ngOnInit(): void {
     this.contentService.getFavorites().subscribe((data) => {
@@ -31,5 +32,19 @@ export class UserComponent implements OnInit {
     this.contentService.getTrendingShows().subscribe((data) => {
       this.trendingTv = data;
     });
+  }
+
+  pickContent(mediaType: 'movie' | 'tv' | 'all') {
+    let range = this.favorites;
+
+    if (mediaType != 'all') {
+      range = range.filter(
+        (content: Content) => content.mediaType == mediaType
+      );
+    }
+
+    let content = range[Math.floor(Math.random() * range.length)];
+
+    this.router.navigate([`/${content.mediaType}`, content.idTMDB]);
   }
 }
