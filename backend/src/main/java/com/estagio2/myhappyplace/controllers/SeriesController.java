@@ -23,8 +23,8 @@ public class SeriesController {
     SeriesService seriesService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<SeriesDTO> buscarPorId(@PathVariable Long id){
-        SeriesDTO serie = this.seriesService.seriePorId(id);
+    public ResponseEntity<SeriesDTO> buscarPorId(@PathVariable Long id, @RequestParam(value = "idUser") Long idUser){
+        SeriesDTO serie = this.seriesService.seriePorId(id, idUser);
         return ResponseEntity.ok().body(serie);
     }
 

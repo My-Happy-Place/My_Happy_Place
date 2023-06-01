@@ -54,7 +54,7 @@ public class MovieService {
         return new FavoriteMovies();
     }
 
-    public MovieDTO moviePorId(Long codigo){
+    public MovieDTO moviePorId(Long codigo, Long idUser){
 //        String accessToken = requestToken();
         Mono<HashMap> monoMovie = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/movie/{codigo}")
@@ -67,7 +67,10 @@ public class MovieService {
 
         HashMap movie = monoMovie.block();
 
-        return new MovieDTO(movie);
+        String type = "M";
+        movie.put("isFavorite", userService.isFavorite((Integer) movie.get("id"), idUser));
+
+        return new MovieDTO(movie, type);
     }
 
     public List<HashMap> listAllFavorites(List<Integer> idsMovies, List<Integer> idsSeries){

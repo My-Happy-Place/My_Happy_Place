@@ -21,8 +21,8 @@ public class MovieController {
     MovieService movieService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<MovieDTO> buscarPorId(@PathVariable Long id){
-        MovieDTO movie = this.movieService.moviePorId(id);
+    public ResponseEntity<MovieDTO> buscarPorId(@PathVariable Long id, @RequestParam(value = "idUser")  Long idUser){
+        MovieDTO movie = this.movieService.moviePorId(id, idUser);
         return ResponseEntity.ok().body(movie);
     }
     @PostMapping

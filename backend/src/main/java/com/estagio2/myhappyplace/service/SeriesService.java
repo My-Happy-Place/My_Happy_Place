@@ -59,7 +59,7 @@ public class SeriesService {
         return new FavoriteSeries();
     }
 
-    public SeriesDTO seriePorId(Long codigo){
+    public SeriesDTO seriePorId(Long codigo, Long id){
 //        String accessToken = requestToken();
         Mono<HashMap> monoSerie = this.webClient.get()
                 .uri(uriBuilder -> uriBuilder.path("/tv/{codigo}")
@@ -72,7 +72,10 @@ public class SeriesService {
 
         HashMap serie = monoSerie.block();
 
-        return new SeriesDTO(serie);
+        String type = "S";
+        serie.put("isFavorite", userService.isFavorite((Integer) serie.get("id"), id));
+
+        return new SeriesDTO(serie, type);
     }
 
     public List<SeriesDTO> listFavoriteSeries(List<Integer> idsSeries){
@@ -319,7 +322,7 @@ public class SeriesService {
     }
 
     public List<SeriesSeasonsDTO> getSeasonsList(Long codigo, Long id){
-        SeriesDTO serie = seriePorId(codigo);
+        SeriesDTO serie = seriePorId(codigo, id);
         List<SeriesSeasonsDTO> seasons = new ArrayList<>();
 
         for (int i = 1; i <= serie.getNumberOfSeasons(); i++) {
