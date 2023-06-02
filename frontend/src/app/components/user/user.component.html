@@ -1,29 +1,32 @@
-<div class="user-div">
-  <h1>Olá, {{user}}!</h1>
-  <button mat-raised-button color="primary" class="watch-button" (click)="pickContent('tv')">Escolha uma série</button>
-  <button mat-raised-button color="primary" class="watch-button" (click)="pickContent('movie')">Escolha um
-    filme</button>
-  <button mat-raised-button color="primary" class="watch-button" (click)="pickContent('all')">Escolha entre todos</button>
-</div>
-
-<div class="content-row">
-  <h2>Seus favoritos:</h2>
-  <div class="card-row">
-    <app-content-card *ngFor="let item of favorites" [item]="item"></app-content-card>
-  </div>
-</div>
-
-<div class="content-row">
-  <h2>Filmes em alta:</h2>
-  <div class="card-row">
-    <app-content-card *ngFor="let item of trendingMovies" [item]="item"></app-content-card>
+<ng-container *ngIf="user">
+  <div class="user-div">
+    <h1>Olá, {{user}}!</h1>
+    <button mat-raised-button color="primary" class="watch-button" (click)="pickContent('tv')">Escolha uma série</button>
+    <button mat-raised-button color="primary" class="watch-button" (click)="pickContent('movie')">Escolha um
+      filme</button>
+    <button mat-raised-button color="primary" class="watch-button" (click)="pickContent('all')">Escolha entre todos</button>
   </div>
 
-</div>
-
-<div class="content-row">
-  <h2>Séries em alta:</h2>
-  <div class="card-row">
-    <app-content-card *ngFor="let item of trendingTv" [item]="item"></app-content-card>
+  <div class="content-row">
+    <h2>Seus favoritos:</h2>
+    <div class="card-row">
+      <app-content-card *ngFor="let item of favorites" [item]="item"></app-content-card>
+    </div>
   </div>
-</div>
+
+  <div class="content-row">
+    <h2>Filmes em alta:</h2>
+    <div class="card-row">
+      <app-content-card *ngFor="let item of trendingMovies" [item]="item"></app-content-card>
+    </div>
+
+  </div>
+
+  <div class="content-row">
+    <h2>Séries em alta:</h2>
+    <div class="card-row">
+      <app-content-card *ngFor="let item of trendingTv" [item]="item"></app-content-card>
+    </div>
+  </div>
+
+</ng-container>
