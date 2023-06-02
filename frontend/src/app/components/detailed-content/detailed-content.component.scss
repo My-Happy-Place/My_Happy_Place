@@ -4,7 +4,7 @@
   display: flex;
   max-height: 200px;
   margin: 1em;
-  border: 1.5px solid mat-color($light-app-primary, 800);
+  border: 0.2rem solid mat-color($dark-primary, 800);
   border-radius: 5px;
   // max-width: 70%;
 }
@@ -12,7 +12,6 @@
 img {
   width: 133px;
   height: 200px;
-  border-right: 1.5px solid mat-color($light-app-primary, 800);
 }
 
 img:hover {
@@ -37,7 +36,7 @@ img:hover {
 }
 
 .name {
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 0;
 }
 
@@ -47,7 +46,6 @@ img:hover {
 }
 
 .year {
-  color: rgb(110, 109, 109);
   font-weight: 500;
   font-size: small;
 }

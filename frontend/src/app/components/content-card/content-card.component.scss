@@ -8,13 +8,12 @@ img {
   width: 200px;
   height: 300px;
   border-radius: 5%;
-  border-color: mat-color($light-app-primary, 800);
+  border-color: mat-color($dark-primary, 800);
   border-style: solid;
 }
 
 .title {
   font-weight: 500;
-  color: mat-color($light-app-primary);
   margin: 0 2px 2px;
 }
 
@@ -30,7 +29,6 @@ img:hover {
 }
 
 h4 {
-  color: rgb(110, 109, 109);
   font-weight: 500;
   font-size: small;
 }
