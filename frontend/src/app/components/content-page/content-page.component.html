@@ -10,8 +10,11 @@
         </button>
       </div>
       <span>{{content.overview}}</span>
-      <button mat-raised-button color="primary" class="watch" *ngIf="isTvShow">Escolher
+
+      <button mat-raised-button color="primary" class="watch" *ngIf="isTvShow" (click)="pickEpisode()">Escolher
         episódio</button>
+      <app-episode *ngIf="chosenEpisode" [episode]="chosenEpisode"></app-episode>
+
     </div>
   </section>
 
