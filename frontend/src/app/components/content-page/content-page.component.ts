@@ -22,7 +22,7 @@ export class ContentPageComponent {
   favoriteIcon!: 'favorite' | 'favorite_border';
   seasons: Season[] = [];
   similar: Content[] = [];
-  chosenEpisode!: Episode;
+  chosenEpisode?: Episode;
 
   constructor(
     protected contentService: ContentService,
@@ -36,6 +36,7 @@ export class ContentPageComponent {
         .getContentDetails(routeParams['media-type'], routeParams['id'])
         .pipe(finalize(() => (this.isLoading = false)))
         .subscribe((response: Content) => {
+          this.chosenEpisode = undefined;
           this.content = response;
 
           this.fullImagePath =
