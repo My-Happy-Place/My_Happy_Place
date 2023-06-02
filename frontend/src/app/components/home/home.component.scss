@@ -14,6 +14,11 @@
   position: relative;
 }
 
+.logo {
+  width: 188px;
+  height: 188px;
+}
+
 .hero-text {
   text-align: center;
   position: absolute;
@@ -52,7 +57,7 @@ h2 {
   background-color: mat-color($dark-primary, 500);
 }
 
-.create-acct {
-  background-color: transparent;
-  border: 2px solid mat-color($dark-accent, 600);
-}
+// .create-acct {
+//   background-color: transparent;
+//   border: 2px solid mat-color($dark-accent, 600);
+// }
