@@ -32,7 +32,7 @@ public class SecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration().applyPermitDefaultValues();
         configuration.addAllowedHeader("*");
         configuration.setAllowedMethods(Arrays.asList("POST", "GET", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200"));
+        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200", "https://my-happyplace.vercel.app"));
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
         return source;
