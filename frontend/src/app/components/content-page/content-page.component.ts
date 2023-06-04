@@ -85,7 +85,7 @@ export class ContentPageComponent {
   }
 
   updateDivHeight() {
-    const imageElement = document.querySelector('img');
+    const imageElement = document.getElementsByClassName('poster')[0];
     this.imageHeight = imageElement?.clientHeight || 0;
   }
 
