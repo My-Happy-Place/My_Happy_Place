@@ -23,6 +23,7 @@ export class ContentPageComponent {
   seasons: Season[] = [];
   similar: Content[] = [];
   chosenEpisode?: Episode;
+  providers!: string[];
 
   constructor(
     protected contentService: ContentService,
@@ -65,6 +66,20 @@ export class ContentPageComponent {
               this.similar = data.filter((item: Content) =>
                 this.contentService.filterContent(item)
               );
+            });
+
+          this.contentService
+            .getProviders(response.mediaType, response.idTMDB)
+            .subscribe((data) => {
+              // this.providers = data.results.BR.flatrate.
+              console.log(data.results?.BR?.flatrate);
+              this.providers = [];
+              data.results?.BR?.flatrate.forEach((logo: any) => {
+                this.providers.push(
+                  this.contentService.getBaseImagePath(`original`) +
+                    logo.logo_path
+                );
+              });
             });
         });
     });

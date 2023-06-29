@@ -94,4 +94,9 @@ export class ContentService {
       item.name != null && item.overview != null && item.posterPath != null
     );
   }
+
+  getProviders(mediaType: 'movie' | 'tv', idTMDB: number): Observable<any> {
+    const uri = mediaType == 'movie' ? 'movies' : 'series';
+    return this.http.get(`${this.api}/${uri}/${idTMDB}/watchproviders`);
+  }
 }
