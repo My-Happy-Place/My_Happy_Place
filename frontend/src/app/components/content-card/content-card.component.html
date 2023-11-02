@@ -1,6 +1,8 @@
 <img mat-card-image src="{{fullImagePath}}" [routerLink]="['/', item.mediaType, item.idTMDB]">
-<h3 class="title" [routerLink]="['/', item.mediaType, item.idTMDB]">{{item.name}}</h3>
+<div class="info">
+  <h3 class="title" [routerLink]="['/', item.mediaType, item.idTMDB]">{{item.name}}</h3>
   <h4>{{releaseYear}}</h4>
-  <button mat-icon-button (click)="changeFavoriteStatus()" class="fav-btn">
-    <mat-icon class="heart" color="primary">{{favoriteIcon}}</mat-icon>
-  </button>
+</div>
+<button mat-icon-button (click)="changeFavoriteStatus()" class="fav-btn">
+  <mat-icon class="heart" color="primary">{{favoriteIcon}}</mat-icon>
+</button>

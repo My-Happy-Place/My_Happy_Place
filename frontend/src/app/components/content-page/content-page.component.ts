@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { finalize } from 'rxjs';
 import { Content } from 'src/app/models/content';
+import { Episode } from 'src/app/models/episode';
 import { Season } from 'src/app/models/season';
 import { ContentService } from 'src/app/services/content/content.service';
 
@@ -21,6 +22,8 @@ export class ContentPageComponent {
   favoriteIcon!: 'favorite' | 'favorite_border';
   seasons: Season[] = [];
   similar: Content[] = [];
+  chosenEpisode?: Episode;
+  providers!: string[];
 
   constructor(
     protected contentService: ContentService,
@@ -34,10 +37,11 @@ export class ContentPageComponent {
         .getContentDetails(routeParams['media-type'], routeParams['id'])
         .pipe(finalize(() => (this.isLoading = false)))
         .subscribe((response: Content) => {
+          this.chosenEpisode = undefined;
           this.content = response;
 
           this.fullImagePath =
-            this.contentService.getBaseImagePath(`w${this.imageWidth}`) +
+            this.contentService.getBaseImagePath(`original`) +
             this.content.posterPath;
           this.releaseYear = this.content.releaseDate.substring(0, 4);
           this.isTvShow = this.content.mediaType == 'tv';
@@ -63,6 +67,20 @@ export class ContentPageComponent {
                 this.contentService.filterContent(item)
               );
             });
+
+          this.contentService
+            .getProviders(response.mediaType, response.idTMDB)
+            .subscribe((data) => {
+              // this.providers = data.results.BR.flatrate.
+              console.log(data.results?.BR?.flatrate);
+              this.providers = [];
+              data.results?.BR?.flatrate.forEach((logo: any) => {
+                this.providers.push(
+                  this.contentService.getBaseImagePath(`original`) +
+                    logo.logo_path
+                );
+              });
+            });
         });
     });
   }
@@ -82,7 +100,14 @@ export class ContentPageComponent {
   }
 
   updateDivHeight() {
-    const imageElement = document.querySelector('img');
+    const imageElement = document.getElementsByClassName('poster')[0];
     this.imageHeight = imageElement?.clientHeight || 0;
+  }
+
+  pickEpisode() {
+    const seasonNumber = Math.floor(Math.random() * this.seasons.length);
+    const season = this.seasons[seasonNumber] as Season;
+    const episodeNumber = Math.floor(Math.random() * season.episodes.length);
+    this.chosenEpisode = season.episodes[episodeNumber];
   }
 }

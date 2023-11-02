@@ -10,8 +10,20 @@
         </button>
       </div>
       <span>{{content.overview}}</span>
-      <button mat-raised-button color="primary" class="watch" *ngIf="isTvShow">Escolher
+
+      <button mat-raised-button color="primary" class="watch" *ngIf="isTvShow" (click)="pickEpisode()">Escolher
         episódio</button>
+      <app-episode *ngIf="chosenEpisode" [episode]="chosenEpisode"></app-episode>
+
+    </div>
+  </section>
+
+  <section class="content-row providers">
+    <h2>Onde assistir:</h2>
+    <span id="unavailable" *ngIf="!providers">{{content.name}} não está disponível para streaming.</span>
+
+    <div *ngIf="providers">
+      <img alt="provider" *ngFor="let provider of providers" src="{{provider}}">
     </div>
   </section>
 

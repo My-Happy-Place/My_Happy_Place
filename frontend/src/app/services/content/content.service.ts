@@ -12,6 +12,10 @@ export class ContentService {
 
   constructor(private http: HttpClient) {}
 
+  getUserName(): Observable<any> {
+    return this.http.get(`${this.api}/users/${this.userId}`);
+  }
+
   getBaseImagePath(format: string) {
     return `https://image.tmdb.org/t/p/${format}/`;
   }
@@ -21,7 +25,9 @@ export class ContentService {
   }
 
   getPopularMovies(): Observable<any> {
-    return this.http.get(`${this.api}/movies/popular?idUser=${this.userId}&page=1`);
+    return this.http.get(
+      `${this.api}/movies/popular?idUser=${this.userId}&page=1`
+    );
   }
 
   getTrendingShows(): Observable<any> {
@@ -32,7 +38,9 @@ export class ContentService {
 
   getContentDetails(mediaType: string, idTMDB: number): Observable<any> {
     const pathParam = mediaType == 'movie' ? 'movies' : 'series';
-    return this.http.get(`${this.api}/${pathParam}/${idTMDB}?idUser=${this.userId}`);
+    return this.http.get(
+      `${this.api}/${pathParam}/${idTMDB}?idUser=${this.userId}`
+    );
   }
 
   getSearchResults(
@@ -85,5 +93,10 @@ export class ContentService {
     return (
       item.name != null && item.overview != null && item.posterPath != null
     );
+  }
+
+  getProviders(mediaType: 'movie' | 'tv', idTMDB: number): Observable<any> {
+    const uri = mediaType == 'movie' ? 'movies' : 'series';
+    return this.http.get(`${this.api}/${uri}/${idTMDB}/watchproviders`);
   }
 }

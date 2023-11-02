@@ -8,12 +8,17 @@
 
 mat-toolbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
 }
 
 .logo {
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+img {
+  width: 3em;
 }
 
 footer {
@@ -22,7 +27,7 @@ footer {
   align-items: center;
   justify-content: center;
   height: 10%;
-  background-color: mat-color($light-app-primary);
+  background-color: mat-color($dark-primary);
 }
 
 footer span {

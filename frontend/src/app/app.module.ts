@@ -14,6 +14,7 @@ import { AppMaterialModule } from './shared/app-material/app-material.module';
 import { DetailedContentComponent } from './components/detailed-content/detailed-content.component';
 import { ContentPageComponent } from './components/content-page/content-page.component';
 import { SeasonPanelComponent } from './components/content-page/season-panel/season-panel.component';
+import { EpisodeComponent } from './components/episode/episode.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SeasonPanelComponent } from './components/content-page/season-panel/sea
     DetailedContentComponent,
     ContentPageComponent,
     SeasonPanelComponent,
+    EpisodeComponent,
   ],
   imports: [
     BrowserModule,

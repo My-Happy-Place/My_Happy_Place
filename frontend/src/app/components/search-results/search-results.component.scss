@@ -2,7 +2,6 @@
 
 h1 {
   margin: 1em 0 1em 2em;
-  color: mat-color($light-app-primary);
   font-weight: 500;
 }
 
@@ -23,11 +22,11 @@ mat-radio-button {
 #radio-label {
   font-weight: bolder;
   font-size: large;
-  // color: mat-color($light-app-primary);
 }
 
 .radio-btn {
   margin: 10%;
+  font-weight: bold;
 }
 
 mat-spinner {

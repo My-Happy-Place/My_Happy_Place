@@ -21,12 +21,11 @@ mat-spinner {
   left: 50%;
 }
 
-img {
-  // width: 500px;
-  // height: 600px;
+.poster {
+  height: 500px;
+  width: 350px;
   border-radius: 5%;
-  border-color: mat-color($light-app-primary, 800);
-  border-style: solid;
+  border: solid mat-color($dark-primary, 800);
 }
 
 .content-details {
@@ -54,10 +53,27 @@ img {
   margin: 1em 0 0 0;
 }
 
+#unavailable {
+  font-weight: 500;
+}
+
+.provided-by {
+  display: flex;
+  align-items: center;
+}
+
+.provided-by h4 {
+  margin-right: 1em;
+}
+
+.providers img {
+  border-radius: 5%;
+  margin-right: 1em;
+}
+
 .content-row {
   margin-top: 3em;
-  // margin: 3em 0em 1em 5em;
-  background-color: rgb(232, 232, 232);
+  background-color: rgb(99, 99, 99);
   border-radius: 10px;
   padding: 1em;
 }
@@ -75,7 +91,6 @@ app-content-card {
 h2 {
   font-size: x-large;
   font-weight: 550;
-  color: mat-color($light-app-primary, 800);
 }
 
 ::-webkit-scrollbar {
@@ -89,6 +104,6 @@ h2 {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: mat-color($light-app-accent);
+  background: mat-color($dark-accent);
   border-radius: 10px;
 }

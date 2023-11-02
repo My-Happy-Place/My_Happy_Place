@@ -14,11 +14,11 @@ export class UserComponent implements OnInit {
   favorites: Content[] = [];
   trendingMovies: Movie[] = [];
   trendingTv: Show[] = [];
+  user: String = '';
 
-  //TODO: retornar usuário logado
-  user: String = 'Nícolas';
-
-  constructor(private contentService: ContentService, private router: Router) {}
+  constructor(private contentService: ContentService, private router: Router) {
+    this.contentService.getUserName().subscribe((data) => (this.user = data.name));
+  }
 
   ngOnInit(): void {
     this.contentService.getFavorites().subscribe((data) => {

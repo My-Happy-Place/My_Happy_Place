@@ -1,13 +1,16 @@
 @import "src/styles.scss";
 
 .episode {
-  margin: 2em 1em;
+  margin-top: 2em;
   display: flex;
   border: 0.2em solid mat-color($dark-primary, 800);
+  width: 85%;
+  height: 100%;
 }
 
 img {
   width: 250px;
+  object-fit: cover;
 }
 
 .episode-details {

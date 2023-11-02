@@ -1,3 +1,5 @@
+@import "/src/styles.scss";
+
 .hero-image {
   /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
@@ -10,6 +12,11 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+}
+
+.logo {
+  width: 188px;
+  height: 188px;
 }
 
 .hero-text {
@@ -46,8 +53,11 @@ h2 {
   font-size: 1.25em;
 }
 
-.create-acct {
-  background-color: transparent;
-  border: 1px solid white;
-  color: white;
+.login {
+  background-color: mat-color($dark-primary, 500);
 }
+
+// .create-acct {
+//   background-color: transparent;
+//   border: 2px solid mat-color($dark-accent, 600);
+// }
