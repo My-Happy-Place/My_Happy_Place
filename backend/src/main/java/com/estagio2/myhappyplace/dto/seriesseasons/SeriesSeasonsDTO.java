@@ -46,7 +46,7 @@ public class SeriesSeasonsDTO {
         List<HashMap> episodesList;
         List<SeriesEpisodesDTO> episodesDTOS = new ArrayList<>();
         episodesList = Objects.requireNonNull(seriesSeasonsTMDB.values().stream().toList());
-        episodesList = (List<HashMap>) episodesList.get(6);
+        episodesList = (List<HashMap>) episodesList.get(7);
         for (HashMap ep : episodesList){
             episodesDTOS.add(new SeriesEpisodesDTO(ep));
         }
