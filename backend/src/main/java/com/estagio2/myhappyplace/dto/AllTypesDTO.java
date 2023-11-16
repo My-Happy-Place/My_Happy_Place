@@ -24,7 +24,9 @@ public class AllTypesDTO {
     private String overview;
 
     private String posterPath;
-
+    
+    private String backdropPath;
+    
     private String releaseDate;
 
     private Integer runtime;
@@ -45,7 +47,8 @@ public class AllTypesDTO {
         this.name = (objectTMDB.get("media_type").equals("movie")) ? (String) objectTMDB.get("title") : (String) objectTMDB.get("name");
         this.overview = (String) objectTMDB.get("overview");
         this.posterPath = (String) objectTMDB.get("poster_path");
-
+        this.backdropPath = (String) objectTMDB.get("backdrop_path");
+        
         if(objectTMDB.get("media_type").equals("movie")){
             this.releaseDate = (String) objectTMDB.get("release_date");
             this.runtime = (Integer) objectTMDB.get("runtime");
@@ -65,6 +68,7 @@ public class AllTypesDTO {
         this.name = (type.equals("M")) ? (String) objectTMDB.get("title") : (String) objectTMDB.get("name");
         this.overview = (String) objectTMDB.get("overview");
         this.posterPath = (String) objectTMDB.get("poster_path");
+        this.backdropPath = (String) objectTMDB.get("backdrop_path");
 
         if(type.equals("M")){
             this.releaseDate = (String) objectTMDB.get("release_date");
@@ -101,6 +105,7 @@ public class AllTypesDTO {
         aux.put("name", allTypesDTO.name);
         aux.put("overview", allTypesDTO.overview);
         aux.put("posterPath", allTypesDTO.posterPath);
+        aux.put("backdropPath", allTypesDTO.backdropPath);
         aux.put("releaseDate", allTypesDTO.releaseDate);
         aux.put("runtime", allTypesDTO.runtime);
         aux.put("isFavorite", allTypesDTO.isFavorite);

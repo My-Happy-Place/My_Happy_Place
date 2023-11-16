@@ -24,6 +24,8 @@ public class SeriesDTO {
 
     private String posterPath;
 
+    private String backdropPath;
+
     private Integer numberOfEpisodes;
 
     private Integer numberOfSeasons;
@@ -41,6 +43,7 @@ public class SeriesDTO {
         this.name = (String) seriesTMDB.get("name");
         this.overview = (String) seriesTMDB.get("overview");
         this.posterPath = (String) seriesTMDB.get("poster_path");
+        this.backdropPath = (String) seriesTMDB.get("backdrop_path");
         this.numberOfEpisodes = (Integer) seriesTMDB.get("number_of_episodes");
         this.numberOfSeasons = (Integer) seriesTMDB.get("number_of_seasons");
         this.releaseDate = (String) seriesTMDB.get("first_air_date");
@@ -53,6 +56,7 @@ public class SeriesDTO {
         this.name = (String) seriesTMDB.get("name");
         this.overview = (String) seriesTMDB.get("overview");
         this.posterPath = (String) seriesTMDB.get("poster_path");
+        this.backdropPath = (String) seriesTMDB.get("backdrop_path");
         this.numberOfEpisodes = (Integer) seriesTMDB.get("number_of_episodes");
         this.numberOfSeasons = (Integer) seriesTMDB.get("number_of_seasons");
         this.releaseDate = (String) seriesTMDB.get("first_air_date");
@@ -66,6 +70,7 @@ public class SeriesDTO {
         this.name = (String) seriesTMDB.get("name");
         this.overview = (String) seriesTMDB.get("overview");
         this.posterPath = (String) seriesTMDB.get("poster_path");
+        this.backdropPath = (String) seriesTMDB.get("backdrop_path");
         this.numberOfEpisodes = (Integer) seriesTMDB.get("number_of_episodes");
         this.numberOfSeasons = (Integer) seriesTMDB.get("number_of_seasons");
         this.releaseDate = (String) seriesTMDB.get("first_air_date");
@@ -99,6 +104,7 @@ public class SeriesDTO {
         aux.put("name", seriesDTO.name);
         aux.put("overview", seriesDTO.overview);
         aux.put("posterPath", seriesDTO.posterPath);
+        aux.put("backdropPath", seriesDTO.backdropPath);
         aux.put("numberOfEpisodes", seriesDTO.numberOfEpisodes);
         aux.put("numberOfSeasons", seriesDTO.numberOfSeasons);
         aux.put("releaseDate", seriesDTO.releaseDate);

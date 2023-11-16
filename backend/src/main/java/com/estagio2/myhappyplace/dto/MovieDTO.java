@@ -1,16 +1,14 @@
 package com.estagio2.myhappyplace.dto;
 
-import com.estagio2.myhappyplace.entities.FavoriteMovies;
-import com.estagio2.myhappyplace.entities.FavoriteSeries;
-import com.estagio2.myhappyplace.entities.User;
-import com.estagio2.myhappyplace.service.UserService;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.*;
 
 @Getter
 @Setter
@@ -26,6 +24,8 @@ public class MovieDTO {
 
     private String posterPath;
 
+    private String backdropPath;
+
     private String releaseDate;
 
     private Integer runtime;
@@ -40,6 +40,7 @@ public class MovieDTO {
         this.name = (String) movieTMDB.get("title");
         this.overview = (String) movieTMDB.get("overview");
         this.posterPath = (String) movieTMDB.get("poster_path");
+        this.backdropPath = (String) movieTMDB.get("backdrop_path");
         this.releaseDate = (String) movieTMDB.get("release_date");
         this.runtime = (Integer) movieTMDB.get("runtime");
         this.mediaType = "movie";
@@ -51,6 +52,7 @@ public class MovieDTO {
         this.name = (String) movieTMDB.get("title");
         this.overview = (String) movieTMDB.get("overview");
         this.posterPath = (String) movieTMDB.get("poster_path");
+        this.backdropPath = (String) movieTMDB.get("backdrop_path");
         this.releaseDate = (String) movieTMDB.get("release_date");
         this.runtime = (Integer) movieTMDB.get("runtime");
         this.mediaType = "movie";
@@ -62,6 +64,7 @@ public class MovieDTO {
         this.name = (String) movieTMDB.get("title");
         this.overview = (String) movieTMDB.get("overview");
         this.posterPath = (String) movieTMDB.get("poster_path");
+        this.backdropPath = (String) movieTMDB.get("backdrop_path");
         this.releaseDate = (String) movieTMDB.get("release_date");
         this.runtime = (Integer) movieTMDB.get("runtime");
         this.mediaType = "movie";
@@ -93,6 +96,7 @@ public class MovieDTO {
         aux.put("name", movieDTO.name);
         aux.put("overview", movieDTO.overview);
         aux.put("posterPath", movieDTO.posterPath);
+        aux.put("backdropPath", movieDTO.backdropPath);
         aux.put("releaseDate", movieDTO.releaseDate);
         aux.put("runtime", movieDTO.runtime);
         aux.put("mediaType", movieDTO.mediaType);

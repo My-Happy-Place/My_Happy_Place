@@ -1,15 +1,17 @@
 package com.estagio2.myhappyplace.service;
 
-import com.estagio2.myhappyplace.dto.MovieDTO;
-import com.estagio2.myhappyplace.dto.UserDTO;
-import com.estagio2.myhappyplace.entities.User;
-import com.estagio2.myhappyplace.repositories.UserRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import com.estagio2.myhappyplace.dto.UserDTO;
+import com.estagio2.myhappyplace.entities.User;
+import com.estagio2.myhappyplace.repositories.UserRepository;
 
 @Service
 public class UserService {
